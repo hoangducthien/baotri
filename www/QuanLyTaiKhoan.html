@@ -40,6 +40,21 @@
 		
 		});
 		
+		$('#0').on("click", function(){
+			$("#cb_quyenhan input").prop("checked", $("#0").is(":checked"));
+		});
+		
+		$("#cb_quyenhan input").on("click", function(){
+			checkall = true;
+			$("#cb_quyenhan input").each(function() {
+                if ($(this).is(":checked") == false){
+					checkall = false;
+					return false;
+				}
+            });
+			$('#0').prop("checked", checkall);
+		});
+		
 	});
 </script>
 </head>
@@ -77,7 +92,7 @@
 			<p>Chức vụ: <span id="s_chucvu"></span></p>
 			<p>Quyền hạn: <span id="s_quyenhan"></span></p>
 		</div>
-		<div id="tttk_edit" class="ttcn_text" style="display:none">
+		<div id="tttk_edit" style="display:none; margin-left:20px">
         	</br></br>
        		<span style="width:100px; display:block; float:left">Mã số :</span> 
             <input type="text" id="maso" class="input" />
@@ -89,13 +104,32 @@
             <input type="text" id="taikhoan" class="input" />
 			</br></br>
             <span style="width:100px; display:block; float:left">Mật khẩu :</span> 
-            <input type="text" id="matkhau" class="input" />
+            <input type="password" id="matkhau" class="input" />
 			</br></br>
             <span style="width:100px; display:block; float:left">Chức vụ :</span> 
-            <input type="text" id="chucvu" class="input" />
+            <select id="chucvu" class="input select_input" > 
+            	<option>Chức vụ</option>
+            </select>
 			</br></br>
-            <span style="width:100px; display:block; float:left">Quyền hạn :</span> 
-            <input type="text" id="quyenhan" class="input" />
+            <p> <span style="width:120px; display:block; float:left">Quyền hạn : </span><input type="checkbox" id="0" /> Tất cả </p> 
+            <div style="margin-left:120px; clear:both;" id="cb_quyenhan"> 
+            	<p style="margin-top:10px">
+            		<span style="width:240px; display:block; float:left"><input type="checkbox" id="1" /> Xem danh sách bảo trì </span>
+                	<span><input type="checkbox" id="2" /> Báo hư </span>
+                </p>
+                <p style="margin-top:10px">
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="3" /> Xem biên bản sửa chữa </span>
+                	<span><input type="checkbox" id="4" /> Xem kế hoạch bảo trì</span>
+                </p>
+                <p style="margin-top:10px">
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="5" /> Xem thông tin cá nhân</span>
+                	<span><input type="checkbox" id="1" /> Quản lý thiết bị</span>
+                </p>
+                <p style="margin-top:10px">
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="6" /> Quản lý tài khoản </span>
+                	<span><input type="checkbox" id="7" />Xem báo cáo</span>
+                </p>
+            </div>
 			</br></br>
             <div style="height:60px;" align="center">				
 				<div style="width:15%;"><input type="button" value="Hoàn thành" id="hoanthanh" class="button"/></div>
