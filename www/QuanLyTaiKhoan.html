@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">	
 	$(function(){ 
 		var x = $(window).width();
@@ -32,6 +33,11 @@
 		
 		$(".add_icon").on('click', function () {
 			$("#tttk_edit").show();
+		});
+		$("#hoanthanh").on('click',function () {
+			alert(add_user($('#maso').val(),$('#hoten').val(),$('#taikhoan').val(),hex_md5($('#matkhau').val())
+			,$('#chucvu').val(),$('#quyenhan').val()));
+		
 		});
 		
 	});
@@ -65,11 +71,11 @@
 			<p align="center" style="margin-top:0">
 					<img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" />
 			</p>				
-			<p>Mã số: <span id="maso"></span></p>
-			<p>Tài Khoản: <span id="taikhoan"></span></p>			
-			<p>Họ tên: <span id="hoten"></span></p>				
-			<p>Chức vụ: <span id="chucvu"></span></p>
-			<p>Quyền hạn: <span id="quyenhan"></span></p>
+			<p>Mã số: <span id="s_maso"></span></p>
+			<p>Tài Khoản: <span id="s_taikhoan"></span></p>			
+			<p>Họ tên: <span id="s_hoten"></span></p>				
+			<p>Chức vụ: <span id="s_chucvu"></span></p>
+			<p>Quyền hạn: <span id="s_quyenhan"></span></p>
 		</div>
 		<div id="tttk_edit" class="ttcn_text" style="display:none">
         	</br></br>
