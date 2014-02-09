@@ -4,7 +4,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Bao Cao</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 	<script type="text/javascript" src="js/jquery_plus.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>	
@@ -78,7 +80,7 @@
 				$(this).toggleClass("expand collapse");
 			});			
 			
-			
+			$(".datepicker").datepicker();	
 });
 </script>
 </head>
@@ -112,16 +114,15 @@
 				<div class="sub_header">  
 					<h1>Danh Sách</h1>	
 				</div>
-				<div class='time' > 
-					
-					<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>								
-					
-					<input id="from" class="input" style="margin-top:10px"/>
-					<br >
-					
-					<span style="margin-left:10px">Đến Ngày:</span>	
-					<input id="to" class="input" style="margin-bottom:10px"/>
-					
+				<div class='time' > 					
+					<p>
+                        <span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>													
+                        <input id="from" class="input datepicker" type="text" style="margin-top:10px"/>
+                    </p>
+                    <p style="margin-top:10px">
+                        <span style="margin-left:10px">Đến Ngày:</span>	
+                        <input id="to" type="text" class="input datepicker" style="margin-bottom:10px"/>					
+                    </p>					
 				</div>
                 <input name="" id="skbt_search" placeholder="Nhâp tên hoặc mã số"
 			value="" type="search" class="input search" style="margin:10px">
