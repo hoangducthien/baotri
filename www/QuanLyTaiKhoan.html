@@ -8,7 +8,6 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
-<script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript" src="js/QuanLyTaiKhoan.js"></script>
 <script type="text/javascript">	
 	$(function(){ 
@@ -31,20 +30,17 @@
 			$(this).animate({top:"-=5"}, 100);
 			$(this).animate({top:"+=5"}, 100);
 		});
-		
+		get_nhanvien();
 		$(".add_icon").on('click', function () {
+			$('#tttk').hide();
 			$("#tttk_edit").show();
 			$(".edit_icon").hide();
 		});
 		
 		$(".edit_icon").on('click', function () {
+			$('#tttk').hide();
 			$(this).hide();
 			$("#tttk_edit").show();
-		});
-		
-		$("#hoanthanh").on('click', function () {
-			$("#tttk_edit").hide();
-			$(".edit_icon").show();
 		});
 		$('#0').on("click", function(){
 			$("#cb_quyenhan input").prop("checked", $("#0").is(":checked"));
@@ -60,11 +56,16 @@
             });
 			$('#0').prop("checked", checkall);
 		});
-		
+		$(document).on('click','#account-list li',function(){
+			$("#tttk_edit").hide();
+			$(".edit_icon").show();
+			$('#tttk').show();
+			get_detail_nhanvien($(this).attr('data-ms'));
+		});
 		$('#hoanthanh').on('click',function() {
 			if (check_input() == '0') 
 			add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
-			,$('#chucvu').val(), quyenhan_check()); else alert('Không được bỏ trống '+check_input());
+			,$('#chucvu').val(), quyenhan_check()); else thongbao('Không được bỏ trống '+check_input());
 		});
 	});
 </script>
@@ -83,7 +84,7 @@
 		</div>
 		<input name="" placeholder="Nhâp tên hoặc mã số"
 					value="" type="search" class="input search" style="margin:10px">
-		<ul id="account-list" style="overflow:auto;">
+		<ul id="account-list" class="liststyle" style="overflow:auto;">
 			
 		</ul>
 		
@@ -122,6 +123,7 @@
             	<option value="0">Chức vụ</option>
                 <option value="gd">Giám Đốc</option>
                 <option value="tpbt">Trưởng Phòng Bảo Trì</option>
+                <option value="tpql">Trưởng Phòng Quản Lý</option>
                 <option value="gs">Giám Sát</option>
                 <option value="nvbt">Nhân Viên Bảo Trì</option>
                 <option value="nvsx">Nhân Viên Sản Xuất</option>
