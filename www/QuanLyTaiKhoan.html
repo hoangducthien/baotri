@@ -34,6 +34,17 @@
 		
 		$(".add_icon").on('click', function () {
 			$("#tttk_edit").show();
+			$(".edit_icon").hide();
+		});
+		
+		$(".edit_icon").on('click', function () {
+			$(this).hide();
+			$("#tttk_edit").show();
+		});
+		
+		$("#hoanthanh").on('click', function () {
+			$("#tttk_edit").hide();
+			$(".edit_icon").show();
 		});
 		$('#0').on("click", function(){
 			$("#cb_quyenhan input").prop("checked", $("#0").is(":checked"));

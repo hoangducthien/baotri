@@ -46,6 +46,11 @@
 				$(this).animate({top:"+=5"}, 100);
 			});
 			
+			$(".alert_icon").on('click', function () {
+				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã thiết bị: </p></br><p>Tên thiết bị: </p></br><p>Ghi chú: </p></br><div style="text-align:center"><input type="button" value="Xác nhận" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Báo hư thiết bị", 300, 250, content);	
+			});
+			
 		});
 	</script>
 

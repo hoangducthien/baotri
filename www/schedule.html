@@ -4,7 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Ke hoach bao tri</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript">	
 	$(function(){
 		var x = $(window).width(); 
@@ -25,7 +27,8 @@
 			$(this).animate({top:"-=5"}, 100);
 			$(this).animate({top:"+=5"}, 100);
 		});
-	
+		
+		$(".datepicker").datepicker();				
 	});
 	
 </script>
@@ -42,16 +45,15 @@
        		<span class="add_icon icon_click"></span>
 			<h1>Lịch bảo trì</h1>
 		</div>
-		<div class='time' > 
-					
-					<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>								
-					
-					<input id="from" class="input" style="margin-top:10px"/>
-					<br >
-					
-					<span style="margin-left:10px">Đến Ngày:</span>	
-					<input id="to" class="input" style="margin-bottom:10px"/>
-					
+		<div class='time' > 					
+        	<p>
+				<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>													
+				<input id="from" class="input datepicker" type="text" style="margin-top:10px"/>
+			</p>
+            <p style="margin-top:10px">
+				<span style="margin-left:10px">Đến Ngày:</span>	
+				<input id="to" type="text" class="input datepicker" style="margin-bottom:10px"/>					
+            </p>
 		</div>
 		<ul id="danhsachbaotri" style="overflow:auto;">
 			
@@ -65,9 +67,9 @@
 		</div>
         <div class='time' > 					
 			<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>													
-			<input id="from" class="input" style="margin-top:10px"/>
+			<input id="from_2" type="text" class="input datepicker" style="margin-top:10px"/>
 			<span style="margin-left:10px">Đến Ngày:</span>	
-			<input id="to" class="input" style="margin-bottom:10px"/>					
+			<input id="to_2" type="text" class="input datepicker" style="margin-bottom:10px"/>					
 		</div>
         <div style="overflow:auto; width:100%">
 		<table class="tb_lbt" >
