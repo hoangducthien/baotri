@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Quản lý thiết bị</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/jquery_plus.js"></script>
+	<script type="text/javascript">	
+		$(function(){ 
+			var x = $(window).width();
+			var y = $(window).height();
+			var show = false;
+			$("#container").css("width",x); 
+			$("#container").css("height",y);	
+			$(".left_menu").css("height",y-65);		
+			x -= 2;
+			y -= 35;
+			var left = x/4;
+			var right = x - left;	
+			$("#left").css("width",left); 
+			$("#left").css("height",y);
+			$("#right").css("width",right); 
+			$("#right").css("height",y); 
+			$('.danhsach').css("height",y-149);
+			$(".column").each(function() {
+                $(this).css("width", right/5);
+            });		
+			
+			$(".column_edit textarea").each(function() {
+                $(this).css("width", right/5 - 12);
+				$(this).css("height", 100);				
+            });	
+			
+			$(".icon_click").on('click', function () {
+				$(this).animate({top:"-=5"}, 100);
+				$(this).animate({top:"+=5"}, 100);
+			});	
+			
+			
+			$(".menu_icon").on('click', function () {
+				if (show == false){
+					$(".left_menu").animate({width: ""+left}, 200 );	
+					$('.left_menu_content').show();
+				} else {
+					$('.left_menu_content').hide();
+					$(".left_menu").animate({width: 0}, 200 );	
+				}
+				show = !show;
+			});			
+			
+			$(".edit_icon").on('click', function () {
+				$(this).toggleClass("checked");
+				$(".column_content").each(function() {
+                	$(this).toggle();			
+            	});
+				$(".column_edit textarea").each(function() {
+                	$(this).toggle();			
+            	});
+			});	
+			
+			$(".left_menu li").on('click', function () {
+				$('.left_menu_content').hide();
+				$(".left_menu").animate({width: 0}, 200 );
+				show = false;								
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="container">  
+    	<div class="left_menu">
+            <div class="left_menu_content">
+                <ul class="decorate_text">
+                    <li>Thiết bị</li>
+                    <li>Loại thiết bị</li>
+                    <li>Chi tiết thiết bị</li>
+                </ul>
+            </div>
+		</div>
+		<div class="header">
+			<div class="home">
+				<img src="img/back.png" width="15px" height="15px"/>
+				<a href="menu.html">Chức Năng</a>
+			</div>
+			<h1 class="title_header">QUẢN LÝ THIẾT BỊ</h1>
+		</div>
+		<div id="left">
+			<div class="sub_header relative" style="margin-bottom: 10px">
+            	<span class="add_icon icon_click"></span>
+                <span class="menu_icon icon_click"></span>
+				<h1 id="left_title"></h1>
+			</div> 
+			<input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
+			value="" type="search" class="input search">
+			
+		</div>
+		<div id="right" class='bc_right'>
+			<div class="sub_header relative">
+				<span class="edit_icon icon_click"> </span>
+				<h1>Chi tiết</h1>	
+			</div>
+			
+            <div class="column">
+            	<div class="column_header decorate_text">
+                	Mã thiết bị
+                </div>
+                <div class="column_content">
+                	ghjkl
+                </div>
+                <div class="column_edit">
+                	<textarea style="resize:none; display:none">ghjkl</textarea>
+                </div>
+            </div>
+            
+		</div>	
+	</div>	
+</body>
+</html>

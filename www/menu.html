@@ -1,0 +1,126 @@
+﻿<html>
+<head>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<title>Chuc Nang</title>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript">
+	$(function(){	
+		var x = $(window).width();
+		var y = $(window).height();					
+		var sites = ["DSBT.html", "baohu.html", "phieubaotri.html", "schedule.html", "thongtincanhan.html", "QLTB.html", "QuanLyTaiKhoan.html", "BaoCao.html"];
+		var siteNames = ["Danh sách bảo trì", "Báo hư", "Biên bản sửa chữa", "Kế hoạch bảo trì", "Thông tin cá nhân", "Quản lý thiết bị", "Quản lý tài khoản", "Báo cáo"];
+		var siteDescriptions = new Array();
+		siteDescriptions[0] = "Hiển thị danh sách thiết bị cần bao trì, công việc bảo trì cụ thể đối với từng thiết bị";
+		siteDescriptions[1] = "Báo cáo khi có thiết bị gặp sự cố";
+		siteDescriptions[2] = "Hiển thị danh sách các biên bản sửa chữa";
+		siteDescriptions[3] = "Hiển thị kế hoạch bảo trì, lập kế hoạch bảo trì";
+		siteDescriptions[4] = "Hiển thị thông tin cá nhân (họ tên, chức vụ, quyền hạn...)";	
+		siteDescriptions[5] = "Quản lý thiết bị (thêm, xóa, sửa thông tin thiết bị)";
+		siteDescriptions[6] = "Quản lý tài khoản (thêm, xóa, sửa thông tin tài khoản)";
+		siteDescriptions[7] = "Xem báo cáo về bảo trì thiết bị";
+		
+										
+		$("#menu_menu").css("margin-top",(y - 350)/2);		
+		$("#menu_description").css("margin-top",30);
+		$("#menu_description").css("margin-left",40);
+		$("#menu_left_ar").css("margin-left",(x - 530)/2);				
+		$(".menu_item").css("margin-left",(x - 128*3)/4);
+										
+		var qh = localStorage['quyenhan'];
+						
+		var current = 1;				
+		
+		refreshMenu();
+		
+		$("#menu_left_ar").click(function(){
+			if (current > 0){ 
+				current = current - 1;
+				refreshMenu();
+			}					
+		});
+		
+		$("#menu_right_ar").click(function(){
+			if (current < sites.length - 1){
+				current = current + 1;			
+				refreshMenu();
+			}
+		});
+		
+		$("#menu_mid").click(function(){
+			window.location.href = sites[current];
+		});
+		
+		$("#menu_left").click(function(){
+			$("#menu_left_ar").click();
+		});
+		
+		$("#menu_right").click(function(){
+			$("#menu_right_ar").click();
+		});
+		
+		$(window).swipe({
+		  swipe:function(event, direction, distance, duration, fingerCount) {		  		   																
+				if (direction == "left"){
+					$("#menu_right_ar").click();					
+				}else if (direction == "right"){
+					$("#menu_left_ar").click();	
+				}								
+		  }
+		});		
+		
+		function refreshMenu(){													
+			if (current < 1){
+				$("#menu_left_ar").css("visibility", "hidden");
+				$("#menu_left").css("visibility", "hidden");
+			} else {
+				$("#menu_left_ar").css("visibility", "visible");
+				$("#menu_left").css("visibility", "visible");
+			}
+			$("#menu_left p").text(siteNames[current - 1]);	
+			$("#menu_mid p").text(siteNames[current]);
+			$("#menu_description p").text(siteDescriptions[current]);			
+			$("#menu_right p").text(siteNames[current + 1]);
+			if (current < sites.length - 1){				
+				$("#menu_right_ar").css("visibility", "visible");
+				$("#menu_right").css("visibility", "visible");
+			}else{
+				$("#menu_right_ar").css("visibility", "hidden");
+				$("#menu_right").css("visibility", "hidden");
+			}
+		}
+		
+		$(".logout").click(function(){
+			localStorage.clear();												
+			window.location.href="index.html";			
+		});
+		
+	});
+</script>
+<body>
+
+	<div class="header">
+		<h1 class="title_header">Chức Năng</h1>
+        <p class="logout">Đăng xuất</p>
+	</div>		  
+	<div id="menu_menu">
+		<div id="menu_left" class="menu_item" style="opacity:0.5">
+        	<p></p>
+        </div>
+		<div id="menu_mid" class="menu_item"><p></p></div>
+    	<div id="menu_right" class="menu_item" style="opacity:0.5"><p></p></div>
+    </div>
+    <div class="clear">    
+    <img src="img/previous.png" width="50" height="50" id="menu_left_ar" class="menu_ar">
+    <div id="menu_description">
+    	<p>mô tả
+    	</p>
+    </div>
+    <img src="img/next.png" width="50" height="50" id="menu_right_ar" class="menu_ar">
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Bao Cao</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+	<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+	<script type="text/javascript" src="js/jquery_plus.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>	
+	<script type="text/javascript">	
+		$(function(){
+			var x = $(window).width();
+			var y = $(window).height();
+			var page = 0;
+			$("#container").css("width",x); 
+			$("#container").css("height",y);		
+			x -= 2;
+			y -= 70;
+			var left = x/4;
+			var right = x - left;	
+			$("#left").css("width",left); 
+			$("#left").css("height",y);
+			$("#right").css("width",right); 
+			$("#right").css("height",y); 
+			$(".bc_info").css("height", y - 40);
+			
+			$("#container").swipe({
+				swipe:function(event, direction, distance, duration, fingerCount) {		  
+					var item1 = $('.navbar li span').filter('.selected_list');
+					
+					var i = parseInt(item1.parent().attr('id'),10);
+					item1.removeClass("selected_list");					
+					
+					if (direction == "left"){
+						i = i + 1;
+						if (i > 3) i = 1;		
+					}else if (direction == "right"){
+						i = i - 1;
+						if (i < 1) i = 3;
+					}				
+
+					$("#"+i.toString()).click();	
+				}
+			});		
+			
+			$('.navbar li').click(function(){							
+				
+				$(this).parent().children().children().removeClass("selected_list");
+
+				$(this).children().addClass( "selected_list" );				
+				
+				var i = $(this).attr('id');
+					
+				$('.navbar li').each(function() {
+                    $("#step_"+$(this).attr('id')).hide();
+                });	
+					
+				$("#step_"+i).show();
+				
+				if (i == 3){
+					$("#skbt_search").show();
+					$(".time").hide();
+				} else{
+					$("#skbt_search").hide();
+					$(".time").show();
+				}
+				
+			});
+			
+			$('#1').click();
+
+			$(".expand").on('click', function (e) {
+				$(this).toggleClass("expand collapse");
+			});				
+
+			$(".collapse").on('click', function (e) {
+				$(this).toggleClass("expand collapse");
+			});			
+			
+			
+});
+</script>
+</head>
+<body>
+	<div id="container">  
+		<div class="header">
+			<div class="home">
+				<img src="img/back.png" width="15px" height="15px"/>
+				<a href="menu.html">Chức Năng</a>
+			</div>
+			<h1 class="title_header">Báo Cáo</h1>
+		</div>
+		<div class="navbar decorate_text">
+			<ul>
+				<li id="1">
+					<span class="span_bc">Phiếu bảo trì</span>                
+                </li>
+				<li id="2">
+					<span class="span_bc">Lịch bảo trì</span>
+				</li>
+				<li id="3">
+					<span class="span_bc">Sự kiện bảo trì</span>
+				</li>                
+				</ul>
+			</div>	
+			
+			<div class="clear">
+			</div>		
+			
+			<div id="left">
+				<div class="sub_header">  
+					<h1>Danh Sách</h1>	
+				</div>
+				<div class='time' > 
+					
+					<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>								
+					
+					<input id="from" class="input" style="margin-top:10px"/>
+					<br >
+					
+					<span style="margin-left:10px">Đến Ngày:</span>	
+					<input id="to" class="input" style="margin-bottom:10px"/>
+					
+				</div>
+                <input name="" id="skbt_search" placeholder="Nhâp tên hoặc mã số"
+			value="" type="search" class="input search" style="margin:10px">
+                
+				<ul id="sx-list" style="display:none; overflow:auto" class="danhsach liststyle">
+					<li class="expand">san xuat</li>
+					<li class="lv2 collapse">san xuat</li>
+					<li class="lv3">san xuat</li>
+					<li>san xuat</li>
+					<li>san xuat</li>
+					<li>san xuat</li>
+					<li class="lv4">san xuat</li>			
+				</ul>
+				<ul id="bt-list" style="display:none; overflow:auto" class="danhsach liststyle">
+					<li>bao tri</li>
+					<li>bao tri</li>
+				</ul>
+				<ul id="skbt-list" style="display:none; overflow:auto" class="danhsach liststyle">
+					<li>thiet bi a</li>
+					<li>thiet bi b</li>
+				</ul>
+			</div>
+			<div id="right" class='bc_right'>
+				<div class="sub_header">  
+					<h1>Thông Tin Chi Tiết</h1>	
+				</div>
+				<div id="step_1" class="bc_info">
+                	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
+             	</br>
+                <p style="clear:both"> Mã hiệu: </p>                
+                <p>Tình trạng hư hỏng:</p>
+                <p>Nguyên nhân hư hỏng:</p>
+                <p>Phương án sửa chữa:</p>
+                <p>Người lập phương án:</p>
+                <p>Ngày lập phương án:</p>
+                <p>Người duyệt phương án:</p>
+                <p>Ngày duyệt phương án:</p>
+                <p>Kết quả sửa chữa:</p>
+                <p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: </span> <span style="float:right; margin-right:20px">Người sửa chữa:  </span></p>
+                </br>
+                <p style="clear:both">Ngày kết thúc sửa chữa:</p>
+                <p>Kết quả giám sát: </p>
+				<p> <span style="float:left">Người giám sát: </span> <span style="float:right; margin-right:20px">Ngày giám sát:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Người duyệt: </span> <span style="float:right; margin-right:20px">Ngày duyệt:  </span></p>	
+				</div>
+				<div id="step_2" class="bc_info">
+					<div style="overflow:auto; width:100%">
+                        <table class="tb_lbt" >
+                            <tr>
+                                <td class="tenthietbi">Tên thiết bị</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>            
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                            </tr>
+                            <tr class="tb_row_lbt">
+                                <td>Máy quậy acid 1</td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+				</div>
+                <div id="step_3" class="bc_info">   
+                	<div class="sukienbaotri" style="border-bottom:1px solid #ccc">
+                        <p> Mã bảo trì: </p>
+                        <p>Ngày bảo trì: </p>
+                        <p>Người thực hiện: </p>
+                        <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
+                        </p>
+                        <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
+                        </p>                        
+                        <p>Ghi chú: </p>	               
+                    </div>
+                    <div class="sukienbaotri" style="border-bottom:1px solid #ccc">
+                        <p> Mã bảo trì: </p>
+                        <p>Ngày bảo trì: </p>
+                        <p>Người thực hiện: </p>
+                        <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
+                        </p>
+                        <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
+                        </p>                        
+                        <p>Ghi chú: </p>	               
+                    </div>
+				</div>
+			</div>	
+		</div>	
+	</body>
+	</html>

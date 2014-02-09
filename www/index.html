@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<title>Dang Nhap</title>
+
+	<script src="js/md5.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+	<script src="js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="js/jquery_plus.js"></script>
+	<script src="js/cordova-2.9.0.js"></script>
+	<script src="js/index.js"></script>
+	<script type="text/javascript">	
+		$(function(){
+		var x = $(window).width();
+		var y = $(window).height();
+		var link_server = "http://www.servertest.net23.net/projBaoTri/";	//localhost
+		var marginTop = 0;
+		var marginLeft;
+		var height = 627;
+		var width = 600;
+		if (y > 627){
+			marginTop = (y - 627)/2;
+			marginLeft = (x - 600)/2;			
+		}else{
+			height = y;
+			$("#backgroundImg").height(y);
+			width = y * 627 / 600;
+			$("#backgroundImg").width(width);
+			marginLeft = (x - width)/2;
+		}
+		var m = (0.35*height - $("#lg_right").height())/2;
+		var n = (width - $("#lg_right").width())/2
+		$("#lg_right").css("top", marginTop + 0.44*height + m);
+		$("#lg_right").css("left", marginLeft + n);
+		
+		$("#backgroud").parent().css("padding-top", marginTop);
+		$("#backgroud")	.css("margin-left", marginLeft);
+		
+		$('#login_btn').show();			
+		$('#loading_login').hide();
+		$("#lg_container").css("width",x); 
+		$("#lg_container").css("height",y - marginTop);
+		$("#login").click(function(){
+			window.location.href = "menu.html";
+		});
+				
+});	
+</script>
+</head>
+<body id="login" onload="onload()">
+	<div id="lg_container">
+		<div id="backgroud">
+			<img src="img/index-bg.gif" id="backgroundImg"/>
+		</div>
+		<div id="lg_right" align="center">
+			<input type="text" placeholder="Tên đăng nhập" id="username" class="input" />
+			</br></br>
+			<input type="password" placeholder="Mật khẩu" id="password" class="input" />
+			</br></br>
+			<input type="button" value="Đăng Nhập" class="btn" id="login">              	
+		</div>
+	</div>
+</body>
+</html>

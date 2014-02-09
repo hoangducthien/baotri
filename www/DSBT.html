@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Danh Sách Bảo Trì</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript">
+		$(function() {		
+			var x = $(window).width();
+			var y = $(window).height();	
+			$("#container").css("width", x);
+			$("#container").css("height", y);
+			x -= 2;
+			y -= 70;
+			var left = x / 4;
+			var right = x - left;
+			var bottom = y;
+			$("#dsbt_left_bottom").css("height", bottom);
+			$("#left").css("width", left);
+			$("#right").css("width", right);
+
+			var right_left = right * 40 / 100;
+			$("#dsbt_list_tp").css("width", right_left);
+			$("#dsbt_info").css("width", right - right_left - 1);
+			$('.describe').css("width", right - right_left - 41);
+			$("#right").css("height", y);
+			$("#right_top").css("height", y - 40);
+			$("#dstb_list_1").css("max-height", bottom - $("#left_head").height());
+			$("#dstb_list_2").css("max-height", y - $("#right_head").height() -10);
+
+			$(".expand").on('click', function (e) {
+				$(this).toggleClass("expand collapse");
+			});				
+
+			$(".collapse").on('click', function (e) {
+				$(this).toggleClass("expand collapse");
+			});									
+			
+			$(".check_icon").on('click', function () {
+				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã thiết bị: </p></br><p>Tên thiết bị: </p></br><p>Thao tác: </p></br><div style="text-align:center"><input type="button" value="Hoàn thành" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Hoàn thành bảo trì", 300, 250, content);	
+			});
+			
+			$(".alert_icon").on('click', function () {
+				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã thiết bị: </p></br><p>Tên thiết bị: </p></br><p>Ghi chú: </p></br><div style="text-align:center"><input type="button" value="Xác nhận" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Báo hư thiết bị", 300, 250, content);	
+			});
+			
+			$(".icon_click").on('click', function () {
+				$(this).animate({top:"-=5"}, 100);
+				$(this).animate({top:"+=5"}, 100);
+			});
+			
+			$("#container").swipe({
+				swipe:function(event, direction, distance, duration, fingerCount) {		  
+					var item1 = $('.navbar li span').filter('.selected_list');
+					
+					var i = parseInt(item1.parent().attr('id'),10);
+					item1.removeClass("selected_list");					
+					
+					if (direction == "left"){
+						i = i + 1;
+						if (i > 2) i = 1;		
+					}else if (direction == "right"){
+						i = i - 1;
+						if (i < 1) i = 2;
+					}				
+
+					$("#"+i.toString()).click();	
+				}
+			});		
+			
+			$('.navbar li').click(function(){							
+				
+				$(this).parent().children().children().removeClass("selected_list");
+
+				$(this).children().addClass( "selected_list" );				
+				
+				var i = $(this).attr('id');
+				$("#info1").hide();
+				$("#info2").hide();			
+				if (i == 1){
+					page = 1;					
+				}
+				else if (i == 2){
+					page = 2;					
+				}
+					
+			});
+			
+			$('#1').click();
+			
+		});
+	</script>
+
+
+   
+</head>
+<body>
+<div id="container">
+  <div class="header">
+    <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
+				href="menu.html">Chức Năng</a> </div>
+    <h1 class="title_header">DANH SÁCH BẢO TRÌ</h1>    
+  </div>
+  <div class="navbar decorate_text">
+	<ul>
+		<li id="1">
+			<span class="span_dsbt">Bảo trì định kỳ</span>                
+        </li>
+		<li id="2">
+			<span class="span_dsbt">Nhắc nhở bảo trì</span>
+		</li>					             
+	</ul>
+   </div>	
+			
+  <div class="clear"></div>
+  
+  <div id="left">
+    <div id="dsbt_left_bottom">
+      <div id="left_head">
+        <div class="sub_header">
+          <h1>Danh Sách Thiết Bị</h1>
+        </div>
+        <!-- /header -->
+        <input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
+					value="" type="search" class="input search" style="margin:10px">
+      </div>
+      <ul id="dstb_list_1" class="liststyle" style="overflow: auto; ">
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+      </ul>
+    </div>
+  </div>
+  <div id="right">
+    <div id="dsbt_list_tp" class="list_tp">
+      <div id="right_head">
+        <div class="sub_header">
+          <h1>Thành Phần Thiết Bị</h1>
+        </div>
+        <!-- /header -->
+        <input name="" id="dsbt_se_2" placeholder="Nhâp tên hoặc mã số"
+					value="" type="search" class="input search" style="margin:10px">
+      </div>
+      <ul id="dstb_list_2" class="liststyle" style="overflow: auto; ">
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+      </ul>
+    </div>
+    <div id="dsbt_info" class="info">
+      <div class="sub_header relative">
+      	<span class="alert_icon icon_click"> </span>
+        <span class="check_icon icon_click"> </span>
+        <h1>Thông Tin Chi Tiết</h1>
+      </div>
+      <!-- /header -->
+      <div id="right_top" style="overflow: auto; padding-left:10px; padding-top:10px">
+      	<p><b> THÔNG TIN: </b></p>
+        <div style="padding-left:20px">      
+            <p> Mã số: </p>
+            <p> Tên: </p>
+            <p> Vị trí: </p>
+            <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
+            </p>
+            <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
+            
+            </p>
+            <p>Lần bảo trì trước:</p>
+        </div>
+        <div style="padding-left:40px">
+        	<p> - Thời gian: </p>
+        	<p> - Người thực hiện: </p>
+	        <p> - Thao tác: </p>
+    	    <p> - Ghi chú: </p>        
+        </div>
+        </br>
+        <p><b>GHI CHÚ:</b></p>
+        <textarea class="describe input" name="MoTa"></textarea>
+      </div>      
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ke hoach bao tri</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript">	
+	$(function(){
+		var x = $(window).width(); 
+		var y = $(window).height(); 
+		$("#container").css("width",x); 
+		$("#container").css("height",y);		
+		x -= 5;
+		y -= 35;		
+		var left = x/4;
+		var right = x - left + 2.5;
+		$("#left").css("width",left); 
+		$("#left").css("height",y); 
+		$("#right").css("width",right); 
+		$("#right").css("height",y); 
+		$("#top").css("height",y-101); 
+		$("#account-list").css('height',y-160); 
+		$(".icon_click").on('click', function () {
+			$(this).animate({top:"-=5"}, 100);
+			$(this).animate({top:"+=5"}, 100);
+		});
+	
+	});
+	
+</script>
+</head>
+<body>
+  <div id="container">  
+  	<div class="header">
+        <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
+                    href="menu.html">Chức Năng</a> </div>
+        <h1 class="title_header">KẾ HOẠCH BẢO TRÌ</h1>  
+    </div> 		
+	<div id="left">
+		<div class="sub_header relative">
+       		<span class="add_icon icon_click"></span>
+			<h1>Lịch bảo trì</h1>
+		</div>
+		<div class='time' > 
+					
+					<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>								
+					
+					<input id="from" class="input" style="margin-top:10px"/>
+					<br >
+					
+					<span style="margin-left:10px">Đến Ngày:</span>	
+					<input id="to" class="input" style="margin-bottom:10px"/>
+					
+		</div>
+		<ul id="danhsachbaotri" style="overflow:auto;">
+			
+		</ul>
+		
+	</div>
+	<div id="right">
+		<div class="sub_header relative">
+        	<span class="edit_icon icon_click"> </span>
+			<h1>Thông tin bảo trì</h1>
+		</div>
+        <div class='time' > 					
+			<span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>													
+			<input id="from" class="input" style="margin-top:10px"/>
+			<span style="margin-left:10px">Đến Ngày:</span>	
+			<input id="to" class="input" style="margin-bottom:10px"/>					
+		</div>
+        <div style="overflow:auto; width:100%">
+		<table class="tb_lbt" >
+        <tr>
+        	<td class="tenthietbi">Tên thiết bị</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>            
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr class="tb_row_lbt">
+        	<td>Máy quậy acid 1</td>
+        	<td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+            <td><textarea></textarea></td>
+        </tr>
+        </table>
+        </div>
+	</div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Thông Tin Cá Nhân</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">	
+	$(function(){
+		var x = $(window).width();
+		var y = $(window).height();
+		$("#container").css("width",x); 
+		$("#container").css("height",y);		
+		y = y - 35;		
+		$("#right").css("width", x - 1); 
+		$("#right").css("height", y); 
+		$("#top").css("height",y-60); 	
+		$('#changepass').on("click", function(){
+			var content = '<div style="margin-top:30px; text-align:center"><input type="text" placeholder="Mật khẩu cũ" type="password" class="input" /></br></br><input type="password" placeholder="Mật khẩu mới" id="password" class="input" /></br></br><input type="password" placeholder="Nhập lại mật khẩu mới" class="input" /></br></br><input type="button" value="Hoàn thành" class="button" id="login"></div>';
+			popupDialog("Đổi mật khẩu", 300, 300, content);			
+		});		
+				
+	});
+</script>
+</head>
+<body>
+  <div id="container">  
+  	<div class="header">
+    <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
+				href="menu.html">Chức Năng</a> </div>
+    <h1 class="title_header">THÔNG TIN CÁ NHÂN</h1>    
+  </div>	
+	<div id="right">
+		<div id="top">
+			<p align="center">
+					<img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" 
+										/>
+			</p>
+			<div class="ttcn_text">
+				<p>Họ tên: <span id="hoten"></span></p>
+				<p>Mã số: <span id="maso"></span></p>
+				<p>Chức vụ: <span id="chucvu"></span></p>
+				<p>Quyền hạn: <span id="quyenhan"></span></p>
+			</div>
+		</div>
+		<div style="height:60px;" align="center">				
+				<div style="width:15%;"><input type="button" value="Đổi mật khẩu" id="changepass" class="button"/></div>
+		</div>	
+	</div>
+  </div>
+  
+</body>
+</html>

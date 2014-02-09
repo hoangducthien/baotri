@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Phiếu bảo trì</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript">	
+		$(function(){
+			var x = $(window).width(); 
+			var y = $(window).height(); 
+			$("#container").css("width",x); 
+			$("#container").css("height",y);		
+			x -= 2;
+			y -= 75;
+			var left = x/4;
+			var right = x - left;	
+			$("#left").css("width",left); 
+			$("#left").css("height",y);
+			$("#right").css("width",right); 
+			$("#right").css("height",y); 		
+			$(".pbt_info").css("height", y - 60);	
+
+			$('.progressbar li').click(function(){							
+				
+				$(this).parent().children().children().removeClass("selected_list");
+
+				$(this).children().addClass( "selected_list" );				
+				
+				var i = $(this).attr('id');
+					
+				$('.progressbar li').each(function() {
+                    $("#step_"+$(this).attr('id')).hide();
+                });	
+					
+				$("#step_"+i).show();
+						
+			});
+			
+			$('#1').click();																
+});
+
+</script>
+</head>
+<body>
+	<div id="container">  
+		<div class="header">
+			<div class="home">
+				<img src="img/back.png" width="15px" height="15px"/>
+				<a href="menu.html">Chức Năng</a>
+			</div>
+			<h1 class="title_header">PHIẾU BẢO TRÌ</h1>
+		</div>
+		<div class="progressbar">
+			<ul class="decorate_text">
+				<li id="1">
+					<span>Tìm phương án</span>                
+				</li>
+				<li id="2">
+					<span>Duyệt phương án </span>
+				</li>
+				<li id="3">
+					<span>Xác nhận kết quả</span>
+				</li>
+                <li id="4">
+					<span>Người giám sát</span>
+				</li>
+				<li id="5">
+					<span>Người duyệt</span>
+				</li>                 
+			</ul>
+		</div>	
+		
+		<div class="clear">
+		</div>		
+		
+		<div id="left">
+			<div class="sub_header">  
+				<h1>Danh Sách</h1>	
+			</div>
+			
+			
+		</div>
+		<div id="right" class='bc_right'>
+			<div class="sub_header">  
+				<h1>Thông Tin Chi Tiết</h1>	
+			</div>
+			<div id="step_1" class="pbt_info">
+            	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
+             	</br>
+                <p style="clear:both"> Mã hiệu: </p>                
+                <p><span style="width:190px; display:block; float:left">Tình trạng hư hỏng:</span> <input type="text" id="tinhtrang" class="input" style="width:60%"/></p>
+                <p> <span style="width:190px; display:block; float:left"> Nguyên nhân hư hỏng:</span> <input type="text" id="nguyennhan" class="input" style="width:60%"/></p>
+                <p><span style="width:190px; display:block; float:left">Phương án sửa chữa:</span> 
+                <textarea type="text" id="phuongan" class="input" style="width:60%; resize:none; height:80px"> </textarea>
+                </p>
+                <p><span>Người lập phương án:</span></p>
+                <p><span>Ngày lập phương án:</span></p>
+            </div>
+            <div id="step_2" class="pbt_info">
+            	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
+             	</br>
+                <p style="clear:both"> Mã hiệu: </p>                
+                <p>Tình trạng hư hỏng:</p>
+                <p>Nguyên nhân hư hỏng:</p>
+                <p>Phương án sửa chữa:</p>
+                <p>Người lập phương án:</p>
+                <p>Ngày lập phương án:</p>
+                <p>Người duyệt phương án:</p>
+                <p>Ngày duyệt phương án:</p>
+            </div>
+            <div id="step_3" class="pbt_info">
+            	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
+             	</br>
+                <p style="clear:both"> Mã hiệu: </p>                
+                <p>Tình trạng hư hỏng:</p>
+                <p>Nguyên nhân hư hỏng:</p>
+                <p>Phương án sửa chữa:</p>
+                <p>Người lập phương án:</p>
+                <p>Ngày lập phương án:</p>
+                <p>Người duyệt phương án:</p>
+                <p>Ngày duyệt phương án:</p>
+                <p><span style="width:190px; display:block; float:left">Kết quả sửa chữa:</span> 
+                <textarea type="text" id="ketqua" class="input" style="width:60%; resize:none; height:80px"> </textarea>
+                </p>
+                <p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: </span> <span style="float:right; margin-right:20px">Người sửa chữa:  </span></p>
+                <p style="clear:both">Ngày kết thúc sửa chữa:</p>
+            </div>
+            <div id="step_4" class="pbt_info">
+            	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
+             	</br>
+                <p style="clear:both"> Mã hiệu: </p>                
+                <p>Tình trạng hư hỏng:</p>
+                <p>Nguyên nhân hư hỏng:</p>
+                <p>Phương án sửa chữa:</p>
+                <p>Người lập phương án:</p>
+                <p>Ngày lập phương án:</p>
+                <p>Người duyệt phương án:</p>
+                <p>Ngày duyệt phương án:</p>
+                <p>Kết quả sửa chữa:</p>                
+                <p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: </span> <span style="float:right; margin-right:20px">Người sửa chữa:  </span></p>
+                </br>
+                <p style="clear:both">Ngày kết thúc sửa chữa:</p>
+                <p>
+                   <label for="ketqua">Kết quả giám sát: </label> <input type="checkbox" name="ketqua"/> 
+                </p>
+				<p> <span style="float:left">Người giám sát: </span> <span style="float:right; margin-right:20px">Ngày giám sát:  </span></p>
+            </div>
+            <div id="step_5" class="pbt_info">
+            	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
+             	</br>
+                <p style="clear:both"> Mã hiệu: </p>                
+                <p>Tình trạng hư hỏng:</p>
+                <p>Nguyên nhân hư hỏng:</p>
+                <p>Phương án sửa chữa:</p>
+                <p>Người lập phương án:</p>
+                <p>Ngày lập phương án:</p>
+                <p>Người duyệt phương án:</p>
+                <p>Ngày duyệt phương án:</p>
+                <p>Kết quả sửa chữa:</p>
+                <p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: </span> <span style="float:right; margin-right:20px">Người sửa chữa:  </span></p>
+                </br>
+                <p style="clear:both">Ngày kết thúc sửa chữa:</p>
+                <p>Kết quả giám sát: </p>
+				<p> <span style="float:left">Người giám sát: </span> <span style="float:right; margin-right:20px">Ngày giám sát:  </span></p>
+                </br>
+                <p style="clear:both"> <span style="float:left">Người duyệt: </span> <span style="float:right; margin-right:20px">Ngày duyệt:  </span></p>
+            </div>  
+            <span class="next_icon"> </span>                                  
+		</div>	
+	</div>	
+</body>
+</html>

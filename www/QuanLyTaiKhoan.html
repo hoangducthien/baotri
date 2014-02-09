@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Quản lý tài khoản</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">	
+	$(function(){ 
+		var x = $(window).width();
+		var y = $(window).height();
+		var type = '';
+		$("#container").css("width",x); 
+		$("#container").css("height",y);		
+		x -= 5;
+		y -= 35;		
+		var left = x/4;
+		var right = x - left + 2.5;
+		$("#left").css("width",left); 
+		$("#left").css("height",y); 
+		$("#right").css("width",right); 
+		$("#right").css("height",y); 
+		$("#top").css("height",y-101); 
+		$("#account-list").css('height',y-160); 
+		$(".icon_click").on('click', function () {
+			$(this).animate({top:"-=5"}, 100);
+			$(this).animate({top:"+=5"}, 100);
+		});
+		
+		$(".add_icon").on('click', function () {
+			$("#tttk_edit").show();
+		});
+		
+	});
+</script>
+</head>
+<body>
+  <div id="container">  
+  	<div class="header">
+    <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
+				href="menu.html">Chức Năng</a> </div>
+    <h1 class="title_header">QUẢN LÝ TÀI KHOẢN</h1>  
+    </div> 	
+	<div id="left">
+		<div class="sub_header relative">
+       		<span class="add_icon icon_click"></span>
+			<h1>Danh sách tài khoản</h1>
+		</div>
+		<input name="" placeholder="Nhâp tên hoặc mã số"
+					value="" type="search" class="input search" style="margin:10px">
+		<ul id="account-list" style="overflow:auto;">
+			
+		</ul>
+		
+	</div>
+	<div id="right">
+		<div class="sub_header relative">
+        	<span class="edit_icon icon_click"> </span>
+			<h1>Thông tin tài khoản</h1>
+		</div>
+		<div id="tttk" class="ttcn_text" style="display:none">	
+			<p align="center" style="margin-top:0">
+					<img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" />
+			</p>				
+			<p>Mã số: <span id="maso"></span></p>
+			<p>Tài Khoản: <span id="taikhoan"></span></p>			
+			<p>Họ tên: <span id="hoten"></span></p>				
+			<p>Chức vụ: <span id="chucvu"></span></p>
+			<p>Quyền hạn: <span id="quyenhan"></span></p>
+		</div>
+		<div id="tttk_edit" class="ttcn_text" style="display:none">
+        	</br></br>
+       		<span style="width:100px; display:block; float:left">Mã số :</span> 
+            <input type="text" id="maso" class="input" />
+			</br></br>
+			<span style="width:100px; display:block; float:left">Tài khoản :</span> 
+            <input type="text" id="taikhoan" class="input" />
+			</br></br>
+            <span style="width:100px; display:block; float:left">Mật khẩu :</span> 
+            <input type="text" id="matkhau" class="input" />
+			</br></br>
+            <span style="width:100px; display:block; float:left">Chức vụ :</span> 
+            <input type="text" id="chucvu" class="input" />
+			</br></br>
+            
+            <div style="height:60px;" align="center">				
+				<div style="width:15%;"><input type="button" value="Hoàn thành" id="hoanthanh" class="button"/></div>
+			</div>	
+		</div>		
+	</div>
+  </div> 
+</body>
+</html>

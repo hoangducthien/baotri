@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Báo hư</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
+<script type="text/javascript">
+		$(function() {
+			var x = $(window).width();
+			var y = $(window).height();
+			$("#container").css("width", x);
+			$("#container").css("height", y);
+			x -= 2;
+			y -= 35;
+			var left = x / 4;
+			var right = x - left;
+			var bottom = y;
+			$("#dsbt_left_bottom").css("height", bottom);
+			$("#left").css("width", left);
+			$("#right").css("width", right);
+
+			var right_left = right * 40 / 100;
+			$("#dsbt_list_tp").css("width", right_left);
+			$("#dsbt_info").css("width", right - right_left - 1);
+			$('.describe').css("width", right - right_left - 41);
+			$("#right").css("height", y);
+			$("#right_top").css("height", y - 40);
+			$("#dstb_list_1").css("max-height", bottom - $("#left_head").height());
+			$("#dstb_list_2").css("max-height", y - $("#right_head").height());
+
+			$(".expand").on('click', function (e) {
+				$(this).toggleClass("expand collapse");
+			});				
+
+			$(".collapse").on('click', function (e) {
+				$(this).toggleClass("expand collapse");
+			});									
+			$(".btn_close").on('click', function(){
+				$("#dialog").hide(300);				
+			});	
+			$(".icon_click").on('click', function () {
+				$(this).animate({top:"-=5"}, 100);
+				$(this).animate({top:"+=5"}, 100);
+			});
+			
+		});
+	</script>
+
+
+   
+</head>
+<body>
+<div id="container">
+  <div class="header">
+    <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
+				href="menu.html">Chức Năng</a> </div>
+    <h1 class="title_header">BÁO HƯ</h1>    
+  </div>
+  <div id="left">
+    <div id="dsbt_left_bottom">
+      <div id="left_head">
+        <div class="sub_header">
+          <h1>Danh Sách Thiết Bị</h1>
+        </div>
+        <!-- /header -->
+        <input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
+					value="" type="search" class="input search" style="margin:10px">
+      </div>
+      <ul id="dstb_list_1" class="liststyle" style="overflow: auto; ">
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+      </ul>
+    </div>
+  </div>
+  <div id="right">
+    <div id="dsbt_list_tp" class="list_tp">
+      <div id="right_head">
+        <div class="sub_header">
+          <h1>Thành Phần Thiết Bị</h1>
+        </div>
+        <!-- /header -->
+        <input name="" id="dsbt_se_2" placeholder="Nhâp tên hoặc mã số"
+					value="" type="search" class="input search" style="margin:10px">
+      </div>
+      <ul id="dstb_list_2" class="liststyle" style="overflow: auto; ">
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+        <li class="expand">san xuat</li>
+        <li class="lv2 collapse">san xuat</li>
+        <li class="lv3">san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li>san xuat</li>
+        <li class="lv4">san xuat</li>
+      </ul>
+    </div>
+    <div id="dsbt_info" class="info">
+      <div class="sub_header relative">
+      	<span class="alert_icon icon_click"> </span>
+        <h1>Thông Tin Chi Tiết</h1>
+      </div>
+      <!-- /header -->
+      <div id="right_top" style="overflow: auto; padding-left:10px; padding-top:10px">
+      	<p><b> THÔNG TIN: </b></p>
+        <div style="padding-left:20px">
+        <p> Mã số: </p>
+        <p> Tên: </p>
+        <p> Vị trí: </p>
+		<p> Trạng thái hoạt động:</p>
+        <p>Lần bảo trì trước:</p>
+        <div style="padding-left:20px">
+        	<p> - Thời gian: </p>
+        	<p> - Người thực hiện: </p>
+	        <p> - Thao tác: </p>
+    	    <p> - Ghi chú: </p>        
+        </div>
+        </div>
+        </br>
+
+        <p><b>GHI CHÚ :</b></p>
+        <textarea class="describe input" name="MoTa"></textarea>
+      </div>      
+    </div>
+  </div>
+</div>
+</body>
+</html>
