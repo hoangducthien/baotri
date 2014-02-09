@@ -1,4 +1,5 @@
-// JavaScript Document		
+// JavaScript Document	
+	var link_server = "http://localhost/baotri_server/";	
 	var isShow = false;
 	function popupDialog(title, w, h, content){
 		var x = $(window).width();

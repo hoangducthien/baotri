@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/QuanLyTaiKhoan.js"></script>
 <script type="text/javascript">	
 	$(function(){ 
 		var x = $(window).width();
@@ -34,12 +35,6 @@
 		$(".add_icon").on('click', function () {
 			$("#tttk_edit").show();
 		});
-		$("#hoanthanh").on('click',function () {
-			alert(add_user($('#maso').val(),$('#hoten').val(),$('#taikhoan').val(),hex_md5($('#matkhau').val())
-			,$('#chucvu').val(),$('#quyenhan').val()));
-		
-		});
-		
 		$('#0').on("click", function(){
 			$("#cb_quyenhan input").prop("checked", $("#0").is(":checked"));
 		});
@@ -55,6 +50,11 @@
 			$('#0').prop("checked", checkall);
 		});
 		
+		$('#hoanthanh').on('click',function() {
+			if (check_input() == '0') 
+			add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
+			,$('#chucvu').val(), quyenhan_check()); else alert('Không được bỏ trống '+check_input());
+		});
 	});
 </script>
 </head>
@@ -108,7 +108,12 @@
 			</br></br>
             <span style="width:100px; display:block; float:left">Chức vụ :</span> 
             <select id="chucvu" class="input select_input" > 
-            	<option>Chức vụ</option>
+            	<option value="0">Chức vụ</option>
+                <option value="gd">Giám Đốc</option>
+                <option value="tpbt">Trưởng Phòng Bảo Trì</option>
+                <option value="gs">Giám Sát</option>
+                <option value="nvbt">Nhân Viên Bảo Trì</option>
+                <option value="nvsx">Nhân Viên Sản Xuất</option>
             </select>
 			</br></br>
             <p> <span style="width:120px; display:block; float:left">Quyền hạn : </span><input type="checkbox" id="0" /> Tất cả </p> 
@@ -123,11 +128,11 @@
                 </p>
                 <p style="margin-top:10px">
                 	<span style="width:240px; display:block; float:left"><input type="checkbox" id="5" /> Xem thông tin cá nhân</span>
-                	<span><input type="checkbox" id="1" /> Quản lý thiết bị</span>
+                	<span><input type="checkbox" id="6" /> Quản lý thiết bị</span>
                 </p>
                 <p style="margin-top:10px">
-                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="6" /> Quản lý tài khoản </span>
-                	<span><input type="checkbox" id="7" />Xem báo cáo</span>
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="7" /> Quản lý tài khoản </span>
+                	<span><input type="checkbox" id="8" />Xem báo cáo</span>
                 </p>
             </div>
 			</br></br>

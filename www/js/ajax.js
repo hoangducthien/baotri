@@ -1,18 +1,5 @@
-var link_server = "http://localhost/baotri_server/";
-function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
-		var link = link_server + "add_user"; 
-		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+hex_md5(matkhau)
-						+"&chucvu="+chucvu+"&quyenhan="+quyenhan;
-		$.ajax({
-			type: "POST",
-			url: link,
-			data: dataString,
-			success: function(data) {	
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-			} 
-		});
-}
+
+
 function login(username, password) {
 		var ur = username;
 		var pw = hex_md5(password);
