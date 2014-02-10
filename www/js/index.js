@@ -10,3 +10,5 @@ function onDeviceReady() {
 function onload(){
 	document.addEventListener("deviceready",onDeviceReady,false);
 }
+function check_login(ur, pw) {
+}
