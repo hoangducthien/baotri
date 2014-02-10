@@ -24,14 +24,9 @@
 			$("#right").css("width",right); 
 			$("#right").css("height",y); 
 			$('.danhsach').css("height",y-149);
-			$(".column").each(function() {
-                $(this).css("width", right/5);
-            });		
-			
-			$(".column_edit textarea").each(function() {
-                $(this).css("width", right/5 - 12);
-				$(this).css("height", 100);				
-            });	
+			$(".column").css("width", right/5);
+			$(".column_edit textarea").css("width", right/5 - 12);
+			$(".column_edit textarea").css("height", 100);					
 			
 			$(".icon_click").on('click', function () {
 				$(this).animate({top:"-=5"}, 100);
@@ -52,12 +47,8 @@
 			
 			$(".edit_icon").on('click', function () {
 				$(this).toggleClass("checked");
-				$(".column_content").each(function() {
-                	$(this).toggle();			
-            	});
-				$(".column_edit textarea").each(function() {
-                	$(this).toggle();			
-            	});
+				$(".column_content").toggle();
+				$(".column_edit textarea").toggle();
 			});	
 			
 			$(".left_menu li").on('click', function () {

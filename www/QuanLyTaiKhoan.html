@@ -24,12 +24,22 @@
 		$("#left").css("height",y); 
 		$("#right").css("width",right); 
 		$("#right").css("height",y); 
+		$("#tttk").css("width",right - 50); 
+		$("#tttk").css("height",y - 30); 
 		$("#top").css("height",y-101); 
-		$("#account-list").css('height',y-160); 
+		$("#account-list").css('height',y-90); 
 		$(".icon_click").on('click', function () {
 			$(this).animate({top:"-=5"}, 100);
 			$(this).animate({top:"+=5"}, 100);
 		});
+		
+		$('.loading').each(function(){
+			var w = $(this).parent().css('width');
+			var h = $(this).parent().css('height');
+			$(this).css('width', w);
+			$(this).css('height', h);
+		});
+		
 		var mode = '';
 		get_nhanvien();
 		$(".edit_icon").hide();
@@ -67,6 +77,8 @@
 			$("#tttk_edit").hide();
 			$(".edit_icon").show();
 			$('#tttk').show();
+			$('#tttk .loading').show();
+			$('#tttk .data').hide();
 			get_detail_nhanvien($(this).attr('data-ms'));
 		});
 		$('#hoanthanh').on('click',function() {
@@ -99,8 +111,11 @@
 		</div>
 		<input name="" placeholder="Nhâp tên hoặc mã số"
 					value="" type="search" class="input search" style="margin:10px">
+                            
 		<ul id="account-list" class="liststyle" style="overflow:auto;">
-			
+			<div class="loading">
+            	<img src="images/ajax-loader.gif" />
+            </div>
 		</ul>
 		
 	</div>
@@ -109,15 +124,20 @@
         	<span class="edit_icon icon_click"> </span>
 			<h1>Thông tin tài khoản</h1>
 		</div>
-		<div id="tttk" class="ttcn_text" style="display:none">	
-			<p align="center" style="margin-top:0">
-					<img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" />
-			</p>				
-			<p>Mã số: <span id="s_maso"></span></p>
-			<p>Tài Khoản: <span id="s_taikhoan"></span></p>			
-			<p>Họ tên: <span id="s_hoten"></span></p>				
-			<p>Chức vụ: <span id="s_chucvu"></span></p>
-			<p>Quyền hạn: <span id="s_quyenhan"></span></p>
+		<div id="tttk" class="ttcn_text" style="display:none">
+        	<div class="loading">
+            	<img src="images/ajax-loader.gif" />
+            </div>	
+            <div class="data" style="display:none">
+                <p align="center" style="margin-top:0">
+                        <img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" />
+                </p>				
+                <p>Mã số: <span id="s_maso"></span></p>
+                <p>Tài Khoản: <span id="s_taikhoan"></span></p>			
+                <p>Họ tên: <span id="s_hoten"></span></p>				
+                <p>Chức vụ: <span id="s_chucvu"></span></p>
+                <p>Quyền hạn: <span id="s_quyenhan"></span></p>
+            </div>
 		</div>
 		<div id="tttk_edit" style="display:none; margin-left:20px">
         	</br></br>

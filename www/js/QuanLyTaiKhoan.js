@@ -51,6 +51,8 @@ function get_detail_nhanvien(maso) {
 				$('#hoten').val(data['ten']);
 				$('#taikhoan').val(data['ur']);
 				$('#chucvu').val(data['machucvu']);
+				$('#tttk .data').show();
+				$('#tttk .loading').hide();
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 					thongbao('Mạng có vấn đề, vui lòng thử lại!');
