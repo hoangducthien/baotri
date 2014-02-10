@@ -30,17 +30,24 @@
 			$(this).animate({top:"-=5"}, 100);
 			$(this).animate({top:"+=5"}, 100);
 		});
+		var mode = '';
 		get_nhanvien();
+		$(".edit_icon").hide();
 		$(".add_icon").on('click', function () {
+			$('#maso').prop('disabled',false);
 			$('#tttk').hide();
 			$("#tttk_edit").show();
 			$(".edit_icon").hide();
+			mode = 'add';
+			reset_input();
 		});
 		
 		$(".edit_icon").on('click', function () {
+			$('#maso').prop('disabled',true);
 			$('#tttk').hide();
 			$(this).hide();
 			$("#tttk_edit").show();
+			mode = 'edit';
 		});
 		$('#0').on("click", function(){
 			$("#cb_quyenhan input").prop("checked", $("#0").is(":checked"));
@@ -64,8 +71,16 @@
 		});
 		$('#hoanthanh').on('click',function() {
 			if (check_input() == '0') 
-			add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
-			,$('#chucvu').val(), quyenhan_check()); else thongbao('Không được bỏ trống '+check_input());
+			{
+				if (mode == 'add')
+					add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
+							,$('#chucvu').val(), quyenhan_check());
+				else edit_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
+							,$('#chucvu').val(), quyenhan_check());
+				reset_input();
+				get_nhanvien();
+			}else thongbao('Không được bỏ trống '+check_input());
+			
 		});
 	});
 </script>
@@ -132,20 +147,20 @@
             <p> <span style="width:120px; display:block; float:left">Quyền hạn : </span><input type="checkbox" id="0" /> Tất cả </p> 
             <div style="margin-left:120px; clear:both;" id="cb_quyenhan"> 
             	<p style="margin-top:10px">
-            		<span style="width:240px; display:block; float:left"><input type="checkbox" id="1" /> Xem danh sách bảo trì </span>
-                	<span><input type="checkbox" id="2" /> Báo hư </span>
+            		<span style="width:240px; display:block; float:left"><input type="checkbox" id="1" /><span>Xem danh sách bảo trì</span></span>
+                	<span><input type="checkbox" id="2" /><span>Báo hư</span></span>
                 </p>
                 <p style="margin-top:10px">
-                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="3" /> Xem biên bản sửa chữa </span>
-                	<span><input type="checkbox" id="4" /> Xem kế hoạch bảo trì</span>
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="3" /><span>Xem biên bản sửa chữa</span></span>
+                	<span><input type="checkbox" id="4" /><span> Xem kế hoạch bảo trì</span></span>
                 </p>
                 <p style="margin-top:10px">
-                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="5" /> Xem thông tin cá nhân</span>
-                	<span><input type="checkbox" id="6" /> Quản lý thiết bị</span>
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="5" /><span>Xem thông tin cá nhân</span></span>
+                	<span><input type="checkbox" id="6" /><span>Quản lý thiết bị</span></span>
                 </p>
                 <p style="margin-top:10px">
-                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="7" /> Quản lý tài khoản </span>
-                	<span><input type="checkbox" id="8" />Xem báo cáo</span>
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="7" /><span> Quản lý tài khoản </span></span>
+                	<span><input type="checkbox" id="8" /><span>Xem báo cáo</span></span>
                 </p>
             </div>
 			</br></br>

@@ -33,7 +33,7 @@ function get_detail_nhanvien(maso) {
 					$('#s_quyenhan').html('Tất cả các quyền'); 
 					$('#0').prop("checked", true);
 					$("#cb_quyenhan input").prop("checked", true);
-				}else {
+				} else {
 					var array = data['quyenhan'].split(',');
 					var s = '';
 					$('#0').prop("checked", false);
@@ -41,7 +41,10 @@ function get_detail_nhanvien(maso) {
 					for (var i in array) 
 						if (array[i]!='') {
 							$('#'+array[i]).prop("checked", true);
+							s = s+ $('#'+array[i]).parent().find('span').html()+', ';
+
 						} 
+					s = s.substr(0, s.length-2);
 					$('#s_quyenhan').html(s);
 				}
 				$('#maso').val(maso);
@@ -105,4 +108,36 @@ function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 			error: function (xhr, ajaxOptions, thrownError) {
 			} 
 		});
+}
+function edit_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
+		var link = link_server + "edit_user.php"; 
+		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+hex_md5(matkhau)
+						+"&chucvu="+chucvu+"&quyenhan="+quyenhan;
+		$.ajax({
+			type: "POST",
+			url: link,
+			data: dataString,
+			success: function(data) {	
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				if (data['result'] == '1') {
+					thongbao('Thay đổi thông tin thành công!');
+					$("#tttk_edit").hide();
+					$(".edit_icon").show();
+				} else { thongbao('Thay đổi thông tin thất bại!');
+				}
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+			} 
+		});
+}
+function reset_input() {
+		$('#maso').val('');
+		$('#hoten').val('');
+		$('#taikhoan').val('');
+		$('#matkhau').val('');
+		$('#chucvu').val('');
+		$('#0').prop("checked", false);
+		$("#cb_quyenhan input").prop("checked", false);
 }
