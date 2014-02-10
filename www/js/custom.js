@@ -2,6 +2,7 @@
 	var link_server = "http://192.168.1.34/baotri_server/";	
 	var quyenhan = ["Tất cả các quyền","Xem danh sách bảo trì","Báo hư","Xem biên bản sửa chữa","Xem kế hoạch bảo trì"
 					,"Xem thông tin cá nhân","Quản lý thiết bị","Quản lý tài khoản","Xem báo cáo"];
+	var time_baotri = [86400000,180000000,1800000000,5400000000,9000000000,18000000000,21600000000,43200000000,86400000000];
 	var isShow = false;
 	function popupDialog(title, w, h, content){
 		var x = $(window).width();
