@@ -39,6 +39,7 @@
 		$("#lg_container").css("height",y - marginTop);
 		$("#login_btn").on('click',function(){
 			{
+				if (localStorage.getItem('ur')!= null) window.location.href='menu.html'; else
 				check_login($('#username').val(),hex_md5($('#password').val()));
 			}
 		});
