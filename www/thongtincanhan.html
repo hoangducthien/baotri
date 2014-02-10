@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 <script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript" src="js/thongtincanhan.js"></script>
 <script type="text/javascript">	
 	$(function(){
 		var x = $(window).width();
@@ -18,9 +19,21 @@
 		$("#right").css("width", x - 1); 
 		$("#right").css("height", y); 
 		$("#top").css("height",y-60); 	
+		get_info();
 		$('#changepass').on("click", function(){
-			var content = '<div style="margin-top:30px; text-align:center"><input type="text" placeholder="Mật khẩu cũ" type="password" class="input" /></br></br><input type="password" placeholder="Mật khẩu mới" id="password" class="input" /></br></br><input type="password" placeholder="Nhập lại mật khẩu mới" class="input" /></br></br><input type="button" value="Hoàn thành" class="button" id="login"></div>';
-			popupDialog("Đổi mật khẩu", 300, 300, content);			
+			var content = '<div style="margin-top:30px; text-align:center">'
+			+'<input type="text" placeholder="Mật khẩu cũ" type="password" id="oldpw" class="input" /></br></br>'
+			+'<input type="password" placeholder="Mật khẩu mới" id="newpw" class="input" /></br></br>'
+			+'<input type="password" placeholder="Nhập lại mật khẩu mới" id="renewpw" class="input" /></br></br>'
+			+'<input type="button" value="Hoàn thành" class="button" id="change_btn"></div>';
+			popupDialog("Đổi mật khẩu", 300, 300, content);		
+			$('#change_btn').on('click',function(){
+				if (check_input() == 1) {
+				if ($('#newpw').val() == $('#renewpw').val()) {
+					change_pass($('#oldpw').val(),$('#newpw').val());
+				} else thongbao('Mật khẩu xác nhận không đúng.');
+				} else thongbao('Không được bỏ trống.');
+			});	
 		});		
 				
 	});
