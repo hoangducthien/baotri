@@ -20,12 +20,12 @@
 		$('.dialog').css("height", h);
 		$('.dialog').css("top", (y - h)/2);
 		$('.dialog').css("left", (x - w)/2);
-		$('.dialog').show(300);
+		$('.dialog').show();
 		isShow = true;
 	}
 	
 	function dismissDialog(){
-		$(".dialog").hide(300);
+		$(".dialog").hide();
 	}
 
 	function thongbao(content){

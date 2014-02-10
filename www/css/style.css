@@ -148,7 +148,7 @@ td{
 .dialog{
 	position:fixed;
 	box-shadow: 0 0 12px rgba(0,0,0,.6);
-	background-image: linear-gradient( #ddd /*{b-body-background-start}*/, #ccc /*{b-body-background-end}*/);
+	background-color: #ddd;
 	border-radius:10px;
 	display:none;
 }
