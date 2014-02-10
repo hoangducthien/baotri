@@ -35,15 +35,14 @@
 		
 		$("#backgroud").parent().css("padding-top", marginTop);
 		$("#backgroud")	.css("margin-left", marginLeft);
-		
-		$('#login_btn').show();			
-		$('#loading_login').hide();
 		$("#lg_container").css("width",x); 
 		$("#lg_container").css("height",y - marginTop);
-		$("#login").click(function(){
-			window.location.href = "menu.html";
+		$("#login_btn").on('click',function(){
+			{
+				check_login($('#username').val(),hex_md5($('#password').val()));
+			}
 		});
-				
+			
 });	
 </script>
 </head>
@@ -57,7 +56,7 @@
 			</br></br>
 			<input type="password" placeholder="Mật khẩu" id="password" class="input" />
 			</br></br>
-			<input type="button" value="Đăng Nhập" class="btn" id="login">              	
+			<input type="button" value="Đăng Nhập" class="btn" id="login_btn">              	
 		</div>
 	</div>
 </body>

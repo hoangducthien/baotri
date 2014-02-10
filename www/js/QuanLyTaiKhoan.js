@@ -88,7 +88,7 @@ function check_input() {
 }
 function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 		var link = link_server + "add_user.php"; 
-		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+hex_md5(matkhau)
+		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+matkhau
 						+"&chucvu="+chucvu+"&quyenhan="+quyenhan;
 		$.ajax({
 			type: "POST",
@@ -111,7 +111,7 @@ function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 }
 function edit_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 		var link = link_server + "edit_user.php"; 
-		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+hex_md5(matkhau)
+		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+matkhau
 						+"&chucvu="+chucvu+"&quyenhan="+quyenhan;
 		$.ajax({
 			type: "POST",
