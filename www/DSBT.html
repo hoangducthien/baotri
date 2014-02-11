@@ -29,8 +29,15 @@
 			$('.describe').css("width", right - right_left - 41);
 			$("#right").css("height", y);
 			$("#right_top").css("height", y - 40);
-			$("#dstb_list_1").css("max-height", bottom - $("#left_head").height());
-			$("#dstb_list_2").css("max-height", y - $("#right_head").height() -10);
+			$("#dstb_list_1").css("height", bottom - $("#left_head").height() - 10);
+			$("#dstb_list_2").css("height", y - $("#right_head").height() -10);
+
+			$('.loading').each(function(){
+				var w = $(this).parent().css('width');
+				var h = $(this).parent().css('height');
+				$(this).css('width', w);
+				$(this).css('height', h);
+			});
 
 			$(".expand").on('click', function (e) {
 				$(this).toggleClass("expand collapse");
@@ -41,14 +48,10 @@
 			});									
 			
 			$(".check_icon").on('click', function () {
-				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã thiết bị: </p></br><p>Tên thiết bị: </p></br><p>Thao tác: </p></br><div style="text-align:center"><input type="button" value="Hoàn thành" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã chi tiết: </p></br><p>Tên chi tiết: </p></br><p>Thao tác: </p></br><div style="text-align:center"><input type="button" value="Hoàn thành" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
 				popupDialog("Hoàn thành bảo trì", 300, 250, content);	
 			});
-			
-			$(".alert_icon").on('click', function () {
-				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã thiết bị: </p></br><p>Tên thiết bị: </p></br><p>Ghi chú: </p></br><div style="text-align:center"><input type="button" value="Xác nhận" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
-				popupDialog("Báo hư thiết bị", 300, 250, content);	
-			});
+						
 			
 			$(".icon_click").on('click', function () {
 				$(this).animate({top:"-=5"}, 100);
@@ -56,10 +59,22 @@
 			});
 			get_thietbi();
 			$(document).on('click','#dstb_list_1 li',function(){
+				$(".check_icon").hide();
+				$("#dstb_list_2").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+				var w = $('#dstb_list_2').css('width');
+				var h = $('#dstb_list_2').css('height');
+				$('#dstb_list_2 .loading').css('width', w);
+				$('#dstb_list_2 .loading').css('height', h);				
+				$("#tttb").hide();
+				$("#ttcttb").hide();
+				$("#right_top .loading").show();
 				get_chitiet_baotri($(this).attr('data-ms'));
 			});	
 			$(document).on('click','#dstb_list_2 li',function(){
-				
+				$(".check_icon").show();
+				$("#tttb").hide();
+				$("#ttcttb").hide();
+				$("#right_top .loading").show();
 			});									
 			
 		});
@@ -87,7 +102,9 @@
 					value="" type="search" class="input search" style="margin:10px">
       </div>
       <ul id="dstb_list_1" class="liststyle" style="overflow: auto; ">
-        
+        <div class="loading">
+            <img src="images/ajax-loader.gif" />
+         </div>	
       </ul>
     </div>
   </div>
@@ -101,39 +118,58 @@
         <input name="" id="dsbt_se_2" placeholder="Nhâp tên hoặc mã số"
 					value="" type="search" class="input search" style="margin:10px">
       </div>
-      <ul id="dstb_list_2" class="liststyle" style="overflow: auto; ">
-       
+      <ul id="dstb_list_2" class="liststyle" style="overflow: auto; ">       	
       </ul>
     </div>
     <div id="dsbt_info" class="info">
       <div class="sub_header relative">
-      	<span class="alert_icon icon_click"> </span>
-        <span class="check_icon icon_click"> </span>
+        <span class="check_icon icon_click" style="display:none"> </span>
         <h1>Thông Tin Chi Tiết</h1>
       </div>
       <!-- /header -->
       <div id="right_top" style="overflow: auto; padding-left:10px; padding-top:10px">
-      	<p><b> THÔNG TIN: </b></p>
-        <div style="padding-left:20px">      
-            <p> Mã số: </p>
-            <p> Tên: </p>
-            <p> Vị trí: </p>
-            <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
-            </p>
-            <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
-            
-            </p>
-            <p>Lần bảo trì trước:</p>
-        </div>
-        <div style="padding-left:40px">
-        	<p> - Thời gian: </p>
-        	<p> - Người thực hiện: </p>
-	        <p> - Thao tác: </p>
-    	    <p> - Ghi chú: </p>        
-        </div>
-        </br>
-        <p><b>GHI CHÚ:</b></p>
-        <textarea class="describe input" name="MoTa"></textarea>
+      	  <div class="loading" style="display:none">
+            <img src="images/ajax-loader.gif" />
+          </div>	      
+          <div id="ttcttb" style="display:none" class="list_p">
+            <p><b> THÔNG TIN: </b></p>
+            <div style="padding-left:20px">      
+                <p> Thuộc thiết bị </p>
+                <p> Mã chi tiết: </p>
+                <p> Tên: </p>
+                <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
+                </p>
+                <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
+                
+                </p>
+                <p>Lần bảo trì trước:</p>
+            </div>
+            <div style="padding-left:40px">
+                <p> - Thời gian: </p>
+                <p> - Người thực hiện: </p>
+                <p> - Thao tác: </p>
+                <p> - Ghi chú: </p>        
+            </div>
+            </br>
+            <p><b>GHI CHÚ:</b></p>
+            <textarea class="describe input" name="MoTa"></textarea>
+          </div>
+          
+          <div id="tttb" style="display:none">
+            <div style="padding-left:20px" class="list_p">      
+                <p> Mã thiết bịt: </p>
+                <p> Tên: </p>
+                <p> Loại thiết bị </p>
+                <p> Số đăng ký </p>                
+                <p> Vị trí: </p>
+                <p> Kiểu dáng: </p>
+                <p> Hãng sản xuất </p>
+                <p> Nước sản xuất </p>
+                <p> Lô sản xuất: </p> 
+                <p> Năm sản xuất: </p>
+                <p> Thời gian bắt đầu sử dụng: </p>                             
+            </div>            
+          </div>
       </div>      
     </div>
   </div>

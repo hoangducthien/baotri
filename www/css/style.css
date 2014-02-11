@@ -3,6 +3,10 @@
     display: none;
 }
 
+.list_p p{
+	margin-top:10px;
+}
+
 .loading{
 	display:table-cell;
 	vertical-align:middle;

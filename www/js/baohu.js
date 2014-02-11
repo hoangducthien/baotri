@@ -31,6 +31,9 @@ function get_thietbi_info(ms) {
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				$('#vitri').html(data['vitri']);
+				$("#right_top .list_p").show();
+				$("#right_top .loading").hide();
+				$(".alert_icon").show();
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');

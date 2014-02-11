@@ -45,6 +45,9 @@ function get_chitiet_baotri(ms){
 							+ data[i]['ten'] + '</li>'; 
 				}
 				$('#dstb_list_2').html(s);
+				$('#dstb_list_2').show();
+				$("#tttb").show();
+				$("#right_top .loading").hide();
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
