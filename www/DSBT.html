@@ -7,6 +7,7 @@
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 <script type="text/javascript" src="js/jquery_plus.js"></script>
+<script type="text/javascript" src="js/DSBT.js"></script>
 <script type="text/javascript">
 		$(function() {		
 			var x = $(window).width();
@@ -53,7 +54,13 @@
 				$(this).animate({top:"-=5"}, 100);
 				$(this).animate({top:"+=5"}, 100);
 			});
-													
+			get_thietbi();
+			$(document).on('click','#dstb_list_1 li',function(){
+				get_chitiet_baotri($(this).attr('data-ms'));
+			});	
+			$(document).on('click','#dstb_list_2 li',function(){
+				
+			});									
 			
 		});
 	</script>
@@ -80,13 +87,7 @@
 					value="" type="search" class="input search" style="margin:10px">
       </div>
       <ul id="dstb_list_1" class="liststyle" style="overflow: auto; ">
-        <li class="expand">san xuat</li>
-        <li class="lv2 collapse">san xuat</li>
-        <li class="lv3">san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li class="lv4">san xuat</li>
+        
       </ul>
     </div>
   </div>
@@ -101,27 +102,7 @@
 					value="" type="search" class="input search" style="margin:10px">
       </div>
       <ul id="dstb_list_2" class="liststyle" style="overflow: auto; ">
-        <li class="expand">san xuat</li>
-        <li class="lv2 collapse">san xuat</li>
-        <li class="lv3">san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li class="lv4">san xuat</li>
-        <li class="expand">san xuat</li>
-        <li class="lv2 collapse">san xuat</li>
-        <li class="lv3">san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li class="lv4">san xuat</li>
-        <li class="expand">san xuat</li>
-        <li class="lv2 collapse">san xuat</li>
-        <li class="lv3">san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li>san xuat</li>
-        <li class="lv4">san xuat</li>
+       
       </ul>
     </div>
     <div id="dsbt_info" class="info">

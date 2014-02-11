@@ -3,6 +3,11 @@
 	var quyenhan = ["Tất cả các quyền","Xem danh sách bảo trì","Báo hư","Xem biên bản sửa chữa","Xem kế hoạch bảo trì"
 					,"Xem thông tin cá nhân","Quản lý thiết bị","Quản lý tài khoản","Xem báo cáo"];
 	var time_baotri = [86400000,180000000,1800000000,5400000000,9000000000,18000000000,21600000000,43200000000,86400000000];
+	var thaotac_baotri = {};
+	thaotac_baotri['I'] = 'Kiểm tra, làm sạch, hiệu chỉnh hoặc thay thể';
+	thaotac_baotri['I1'] = 'Có dùng khí nén để vệ sinh';
+	thaotac_baotri['L'] = 'Bôi trơn';
+	thaotac_baotri['R'] = 'Thay Thế';
 	var isShow = false;
 	function popupDialog(title, w, h, content){
 		var x = $(window).width();

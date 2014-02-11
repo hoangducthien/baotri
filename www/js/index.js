@@ -24,6 +24,8 @@ function check_login(ur, pw) {
 				data = JSON.parse(data);
 				if (data['result'] == 1) {  
 					localStorage.setItem('ms',data['ms']);
+					localStorage.setItem('ten',data['ten']);
+					localStorage.setItem('qh',data['qh']);
 					localStorage.setItem('ur',ur);
 					window.location.href = "menu.html";
 				}
