@@ -21,12 +21,25 @@
 		$("#left").css("height",y); 
 		$("#right").css("width",right); 
 		$("#right").css("height",y); 
+		$("#ttbt").css("width",right); 
+		$("#ttbt").css("height",y - 30);
 		$("#top").css("height",y-101); 
-		$("#account-list").css('height',y-160); 
+		$("#danhsachbaotri").css('height',y-160); 
 		$(".icon_click").on('click', function () {
 			$(this).animate({top:"-=5"}, 100);
 			$(this).animate({top:"+=5"}, 100);
 		});
+		
+		$('.loading').each(function(){
+			var w = $(this).parent().css('width');
+			var h = $(this).parent().css('height');
+			$(this).css('width', w);
+			$(this).css('height', h);
+		});
+		
+		function getDaysInMonth(m, y) {						
+  			return /8|3|5|10/.test(--m)?30:m==1?(!(y%4)&&y%100)||!(y%400)?29:28:31;
+		}
 		
 		$(".datepicker").datepicker({
 			changeMonth: true,
@@ -37,6 +50,16 @@
 				var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
 				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
 				$(this).datepicker('setDate', new Date(year, month, 1));
+				var days = getDaysInMonth(parseInt(month) + 1, year);				
+				
+				var i;
+				var s = '<table class="tb_lbt" ><tr><td class="tenthietbi">Tên thiết bị</td>';
+				for (i = 1; i <= days; i++){
+					s += '<td>'+i+'</td>';
+				}
+				s += '</tr></table>';
+				
+				$('#table_schedule').html(s);
 			}
 		});				
 	});
@@ -63,7 +86,9 @@
             
 		</div>
 		<ul id="danhsachbaotri" style="overflow:auto;">
-			
+			<div class="loading">
+            	<img src="images/ajax-loader.gif" />
+            </div>
 		</ul>
 		
 	</div>
@@ -72,140 +97,19 @@
         	<span class="edit_icon icon_click"> </span>
 			<h1>Thông tin bảo trì</h1>
 		</div>
-        <div class='time' >
-        	<p> 					
-				<span style="margin-right:10px; margin-left:10px;">Tháng:</span>													
-				<input id="from_2" type="text" class="input datepicker" style="margin-top:10px"/>								
-            </p>
-		</div>
-        <div style="overflow:auto; width:100%; margin-top:10px">
-		<table class="tb_lbt" >
-        <tr>
-        	<td class="tenthietbi">Tên thiết bị</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>            
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-        </tr>
-        <tr class="tb_row_lbt">
-        	<td>Máy quậy acid 1</td>
-        	<td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-            <td><textarea></textarea></td>
-        </tr>
-        </table>
+        <div id="ttbt">
+        	<div class="loading">
+            	<img src="images/ajax-loader.gif" />
+            </div>
+            <div class='time' style="display:none">
+                <p> 					
+                    <span style="margin-right:10px; margin-left:10px;">Tháng:</span>													
+                    <input id="from_2" type="text" class="input datepicker" style="margin-top:10px"/>								
+                </p>
+            </div>
+            <div style="overflow:auto; width:100%; margin-top:10px; display:none" id="table_schedule">
+            
+            </div>
         </div>
 	</div>
   </div>

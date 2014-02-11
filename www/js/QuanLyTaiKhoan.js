@@ -53,6 +53,7 @@ function get_detail_nhanvien(maso) {
 				$('#chucvu').val(data['machucvu']);
 				$('#tttk .data').show();
 				$('#tttk .loading').hide();
+				$(".edit_icon").show();
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 					thongbao('Mạng có vấn đề, vui lòng thử lại!');

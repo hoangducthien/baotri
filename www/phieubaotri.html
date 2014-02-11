@@ -36,7 +36,16 @@
 			});
 			$(document).on('click','#dsbb li',function(){
 				get_detail_phieubaotri($(this).attr('data-ms'),gd,$(this).html());
-			});																		
+			});			
+			
+			$(".next_icon").on('click', function(){
+				var content = '<div style="margin-top:20px; text-align:center">'+
+							  '<p>Chuyển sang giai đoạn tiếp theo</p></br>' +
+							  '<div style="text-align:center">'+
+							  '<input type="button" value="Xác nhận" onclick="thongbao('+ "'báo hư'" +');" class="button" style="margin-right:40px">'+
+							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Báo hư thiết bị", 300, 150, content);	
+			});															
 	});
 </script>
 </head>

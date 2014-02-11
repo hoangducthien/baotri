@@ -65,15 +65,11 @@
 				var h = $('#dstb_list_2').css('height');
 				$('#dstb_list_2 .loading').css('width', w);
 				$('#dstb_list_2 .loading').css('height', h);				
-				$("#tttb").hide();
-				$("#ttcttb").hide();
-				$("#right_top .loading").show();
 				get_chitiet_baotri($(this).attr('data-ms'));
 			});	
 			$(document).on('click','#dstb_list_2 li',function(){
 				$(".check_icon").show();
 				$("#tttb").hide();
-				$("#ttcttb").hide();
 				$("#right_top .loading").show();
 			});									
 			
@@ -153,22 +149,6 @@
             </br>
             <p><b>GHI CHÚ:</b></p>
             <textarea class="describe input" name="MoTa"></textarea>
-          </div>
-          
-          <div id="tttb" style="display:none">
-            <div style="padding-left:20px" class="list_p">      
-                <p> Mã thiết bịt: </p>
-                <p> Tên: </p>
-                <p> Loại thiết bị </p>
-                <p> Số đăng ký </p>                
-                <p> Vị trí: </p>
-                <p> Kiểu dáng: </p>
-                <p> Hãng sản xuất </p>
-                <p> Nước sản xuất </p>
-                <p> Lô sản xuất: </p> 
-                <p> Năm sản xuất: </p>
-                <p> Thời gian bắt đầu sử dụng: </p>                             
-            </div>            
           </div>
       </div>      
     </div>

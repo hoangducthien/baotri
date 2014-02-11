@@ -35,7 +35,7 @@
 
 	function thongbao(content){
 		var c = '<div style="margin-top:20px; text-align:center"><p>' + content + '</p><div style="text-align:center; margin-top:20px"><input type="button" value="OK" class="button" onclick="dismissDialog()"></div></div>';
-		popupDialog("Thông Báo", 300, 145, c);
+		popupDialog("Thông Báo", 300, 165, c);
 	}
 
 	
