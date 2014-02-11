@@ -48,15 +48,20 @@
 			});
 			
 			$(".alert_icon").on('click', function () {
-				var content = '<div style="margin-top:20px; margin-left:20px"><p>Mã thiết bị: </p></br><p>Tên thiết bị: </p></br><p>Ghi chú: </p></br><div style="text-align:center"><input type="button" value="Xác nhận" class="button" style="margin-right:40px"><input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				var content = '<div style="margin-top:20px; margin-left:20px">'+
+							  '<p>Mã thiết bị: <span id="s_ms">'+$('#ms').html()+'</span></p></br>'+
+							  '<p>Tên thiết bị: <span id="s_ten">'+$('#ten').html()+'</span></p></br>'+
+							  '<p> Vị trí: <span id="vitri">'+$('#vitri').html()+'</span></p><br>'+
+							  '<div style="text-align:center">'+
+							  '<input type="button" value="Xác nhận" onclick="thongbao('+ "'báo hư'" +');" class="button" style="margin-right:40px">'+
+							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
 				popupDialog("Báo hư thiết bị", 300, 250, content);	
 			});
 			get_thietbi();
 			$(document).on('click','#dstb_list_1 li',function(){
-				get_chitiet($(this).attr('data-ms'));
-			});	
-			$(document).on('click','#dstb_list_2 li',function(){
-				
+				$('#ms').html($(this).attr('data-ms'));
+				$('#ten').html($(this).html());
+				get_thietbi_info($(this).attr('data-ms'));
 			});	
 		});
 	</script>
@@ -109,22 +114,9 @@
       <div id="right_top" style="overflow: auto; padding-left:10px; padding-top:10px">
       	<p><b> THÔNG TIN: </b></p>
         <div style="padding-left:20px">
-        <p> Mã số: </p>
-        <p> Tên: </p>
-        <p> Vị trí: </p>
-		<p> Trạng thái hoạt động:</p>
-        <p>Lần bảo trì trước:</p>
-        <div style="padding-left:20px">
-        	<p> - Thời gian: </p>
-        	<p> - Người thực hiện: </p>
-	        <p> - Thao tác: </p>
-    	    <p> - Ghi chú: </p>        
-        </div>
-        </div>
-        </br>
-
-        <p><b>TÌNH TRẠNG :</b></p>
-        <textarea class="describe input" name="MoTa"></textarea>
+        <p> Mã số: <span id="ms"></span></p>
+        <p> Tên: <span id="ten"></span></p>
+        <p> Vị trí: <span id="vitri"></span></p>
       </div>      
     </div>
   </div>
