@@ -51,14 +51,16 @@
 			});
 			
 			$(".alert_icon").on('click', function () {
-				var content = '<div style="margin-top:20px; margin-left:20px">'+
+				/*var content = '<div style="margin-top:20px; margin-left:20px">'+
 							  '<p>Mã thiết bị: <span id="s_ms">'+$('#ms').html()+'</span></p></br>'+
 							  '<p>Tên thiết bị: <span id="s_ten">'+$('#ten').html()+'</span></p></br>'+
-							  '<p> Vị trí: <span id="vitri">'+$('#vitri').html()+'</span></p><br>'+
+							  '<p> Vị trí: <span id="s_vitri">'+$('#ten').html()+'</span></p><br>'+
 							  '<div style="text-align:center">'+
-							  '<input type="button" value="Xác nhận" onclick="thongbao('+ "'báo hư'" +');" class="button" style="margin-right:40px">'+
+							  '<input type="button" value="Xác nhận" id="baohu_btn" class="button" style="margin-right:40px">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
-				popupDialog("Báo hư thiết bị", 300, 250, content);	
+				popupDialog("Báo hư thiết bị", 300, 250, content);	*/
+				baohu($('#ms').html(),$('#ten').html(),$('#vitri').html());
+				
 			});
 			get_thietbi();
 			$(document).on('click','#dstb_list_1 li',function(){
@@ -69,6 +71,7 @@
 				$('#ten').html($(this).html());
 				get_thietbi_info($(this).attr('data-ms'));
 			});	
+			
 		});
 	</script>
 
@@ -112,17 +115,17 @@
             	<img src="images/ajax-loader.gif" />
             </div>
             <div style="padding-left:20px; display:none" class="list_p">      
-                <p> Mã thiết bị: </p>
-                <p> Tên: </p>
-                <p> Loại thiết bị </p>
-                <p> Số đăng ký </p>                
-                <p> Vị trí: </p>
-                <p> Kiểu dáng: </p>
-                <p> Hãng sản xuất </p>
-                <p> Nước sản xuất </p>
-                <p> Lô sản xuất: </p> 
-                <p> Năm sản xuất: </p>
-                <p> Thời gian bắt đầu sử dụng: </p>                             
+                <p> Mã thiết bị: <span id="ms"></span></p>
+                <p> Tên: <span id="ten"></span></p>
+                <p> Loại thiết bị <span id="loaitb"></span></p>
+                <p> Số đăng ký <span id="sodk"></span></p>                
+                <p> Vị trí: <span id="vitri"></span></p>
+                <p> Kiểu dáng: <span id="kieudang"></span></p>
+                <p> Hãng sản xuất: <span id="hangsx"></span></p>
+                <p> Nước sản xuất: <span id="nuocsx"></span></p>
+                <p> Lô sản xuất: <span id="lo"></span></p> 
+                <p> Năm sản xuất: <span id="namsx"></span></p>
+                <p> Thời gian bắt đầu sử dụng: <span id="namsd"></span></p>                             
             </div>   
       </div>      
     </div>

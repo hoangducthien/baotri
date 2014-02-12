@@ -41,8 +41,8 @@ function get_detail_phieubaotri(id,gd,ten){
 				var s = '';
 				if (gd == 1) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
-						'<span style="float:right; margin-right:20px">Ngày yêu cầu:'+ get_Date(date['ngayyeucau'])+'  </span></p>'+
-                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị:'+ ten +'</span>'+ 
+						'<span style="float:right; margin-right:20px">Ngày yêu cầu: '+ get_Date(data['ngayyeucau'])+'  </span></p>'+
+                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị: '+ ten +'</span>'+ 
 						'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+'</span></p></br>'+
                 		'<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 		'<p><span style="width:190px; display:block; float:left">Tình trạng hư hỏng:</span>'+ 
@@ -51,11 +51,11 @@ function get_detail_phieubaotri(id,gd,ten){
 						'<input type="text" id="nguyennhan" class="input" style="width:60%"/></p>'+
                 		'<p><span style="width:190px; display:block; float:left">Phương án sửa chữa:</span>'+
                 		'<textarea type="text" id="phuongan" class="input" style="width:60%; resize:none; height:80px"></textarea></p>'+
-                		'<p><span>Người lập phương án:'+localStorage.getItem('ten')+'</span></p>';
+                		'<p><span>Người lập phương án: '+localStorage.getItem('ten')+'</span></p>';
 				} else if (gd == 2) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
-						'<span style="float:right; margin-right:20px">Ngày yêu cầu:'+ get_Date(data['ngayyeucau'])+'  </span></p>'+
-                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị:'+ ten +'</span>'+ 
+						'<span style="float:right; margin-right:20px">Ngày yêu cầu: '+ get_Date(data['ngayyeucau'])+'  </span></p>'+
+                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị: '+ ten +'</span>'+ 
 						'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+'</span></p></br>'+
                 		'<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 		'<p>Tình trạng hư hỏng: '+data['tinhtranghuhong']+'</p>'+
@@ -63,11 +63,11 @@ function get_detail_phieubaotri(id,gd,ten){
                 		'<p>Phương án sửa chữa: '+data['phuongansuachua']+'</p>'+
                 		'<p>Người lập phương án: '+data['nguoilapphuongan']+'</p>'+
                 		'<p>Ngày lập phương án: '+get_Date(data['ngaylapphuongan'])+'</p>'+
-                		'<p>Người duyệt phương án:'+localStorage.getItem('ten')+'</p>';
+                		'<p>Người duyệt phương án: '+localStorage.getItem('ten')+'</p>';
 				} else if (gd == 3) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
-						'<span style="float:right; margin-right:20px">Ngày yêu cầu:'+ get_Date(data['ngayyeucau'])+'  </span></p>'+
-                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị:'+ ten +'</span>'+ 
+						'<span style="float:right; margin-right:20px">Ngày yêu cầu: '+ get_Date(data['ngayyeucau'])+'  </span></p>'+
+                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị: '+ ten +'</span>'+ 
 						'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+'</span></p></br>'+
                 		'<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 		'<p>Tình trạng hư hỏng: '+data['tinhtranghuhong']+'</p>'+
@@ -75,14 +75,17 @@ function get_detail_phieubaotri(id,gd,ten){
                 		'<p>Phương án sửa chữa: '+data['phuongansuachua']+'</p>'+
                 		'<p>Người lập phương án: '+data['nguoilapphuongan']+'</p>'+
                 		'<p>Ngày lập phương án: '+get_Date(data['ngaylapphuongan'])+'</p>'+
-                		'<p>Người duyệt phương án:'+data['nguoiduyetphuongan']+'</p>'+
-						'<p>Ngày duyệt phương án:'+data['ngayduyetphuongan']+'</p>'+
-						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa:'+data['ngaybatdau']+'</span>'+
+                		'<p>Người duyệt phương án: '+data['nguoiduyetphuongan']+'</p>'+
+						'<p>Ngày duyệt phương án: '+get_Date(data['ngayduyetphuongan'])+'</p>'+
+						'<p><span style="width:190px; display:block; float:left">Kết quả sửa chữa:</span>'+
+                		'<textarea type="text" id="ketqua" class="input" style="width:60%; resize:none; height:80px"> </textarea>'+
+                		'</p>'+
+						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 						'<span style="float:right; margin-right:20px">Người sửa chữa: '+localStorage.getItem('ten')+'</span></p>';
 				}  else if (gd == 4) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
-						'<span style="float:right; margin-right:20px">Ngày yêu cầu:'+ get_Date(data['ngayyeucau'])+'  </span></p>'+
-                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị:'+ ten +'</span>'+ 
+						'<span style="float:right; margin-right:20px">Ngày yêu cầu: '+ get_Date(data['ngayyeucau'])+'  </span></p>'+
+                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị: '+ ten +'</span>'+ 
 						'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+'</span></p></br>'+
                 		'<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 		'<p>Tình trạng hư hỏng: '+data['tinhtranghuhong']+'</p>'+
@@ -90,17 +93,18 @@ function get_detail_phieubaotri(id,gd,ten){
                 		'<p>Phương án sửa chữa: '+data['phuongansuachua']+'</p>'+
                 		'<p>Người lập phương án: '+data['nguoilapphuongan']+'</p>'+
                 		'<p>Ngày lập phương án: '+get_Date(data['ngaylapphuongan'])+'</p>'+
-                		'<p>Người duyệt phương án:'+data['nguoiduyetphuongan']+'</p>'+
-						'<p>Ngày duyệt phương án:'+data['ngayduyetphuongan']+'</p>'+
-						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa:'+get_Date(data['ngaybatdau'])+'</span>'+
+                		'<p>Người duyệt phương án: '+data['nguoiduyetphuongan']+'</p>'+
+						'<p>Ngày duyệt phương án: '+get_Date(data['ngayduyetphuongan'])+'</p>'+
+						'<p>Kết quả sửa chữa: '+ data['ketquasuachua']+'</p>  '+
+						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 						'<span style="float:right; margin-right:20px">Người sửa chữa: '+ data['nguoisuachua']+'</span></p>'+
-						'<p style="clear:both">Ngày kết thúc sửa chữa:'+ get_Date(data['ngayketthuc']) +'</p>'+
-               			'<p><label for="ketqua">Kết quả giám sát: </label> <input type="checkbox" name="ketqua"/> </p>'+
+						'<p style="clear:both">Ngày kết thúc sửa chữa: '+ get_Date(data['ngayketthuc']) +'</p>'+
+               			'<p><label for="ketqua">Kết quả giám sát: </label> <input type="checkbox" name="ketqua" id="dat_ck"/> </p>'+
 						'<p><span style="float:left">Người giám sát: '+localStorage.getItem('ten')+'</span></p>';
 				}  else if (gd == 5) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
-						'<span style="float:right; margin-right:20px">Ngày yêu cầu:'+ get_Date(data['ngayyeucau'])+'  </span></p>'+
-                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị:'+ ten +'</span>'+ 
+						'<span style="float:right; margin-right:20px">Ngày yêu cầu: '+ get_Date(data['ngayyeucau'])+'  </span></p>'+
+                		'</br><p style="clear:both"> <span style="float:left">Tên thiết bị: '+ ten +'</span>'+ 
 						'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+'</span></p></br>'+
                 		'<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 		'<p>Tình trạng hư hỏng: '+data['tinhtranghuhong']+'</p>'+
@@ -108,16 +112,49 @@ function get_detail_phieubaotri(id,gd,ten){
                 		'<p>Phương án sửa chữa: '+data['phuongansuachua']+'</p>'+
                 		'<p>Người lập phương án: '+data['nguoilapphuongan']+'</p>'+
                 		'<p>Ngày lập phương án: '+get_Date(data['ngaylapphuongan'])+'</p>'+
-                		'<p>Người duyệt phương án:'+data['nguoiduyetphuongan']+'</p>'+
-						'<p>Ngày duyệt phương án:'+data['ngayduyetphuongan']+'</p>'+
-						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa:'+get_Date(data['ngaybatdau'])+'</span>'+
+                		'<p>Người duyệt phương án: '+data['nguoiduyetphuongan']+'</p>'+
+						'<p>Ngày duyệt phương án: '+data['ngayduyetphuongan']+'</p>'+
+						'<p>Kết quả sửa chữa: '+ data['ketquasuachua']+'</p>'+
+						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 						'<span style="float:right; margin-right:20px">Người sửa chữa: '+ data['nguoisuachua']+'</span></p>'+
-						'<p style="clear:both">Ngày kết thúc sửa chữa:'+ get_Date(data['ngayketthuc']) +'</p>'+
-               			'<p>Kết quả giám sát:'+ kq_giamsat(data['dat'])+'</p>'+
-						'<p><span style="float:left">Người giám sát: '+data['nguoigiamsat']+'</span></p>'+
+						'<p style="clear:both">Ngày kết thúc sửa chữa: '+ get_Date(data['ngayketthuc']) +'</p>'+
+               			'<p>Kết quả giám sát: '+ kq_giamsat(data['dat'])+'</p>'+
+						'<p><span style="float:left">Người giám sát: '+data['nguoigiamsat']+
+						'</span> <span style="float:right; margin-right:20px">Ngày giám sát: '+get_Date(data['ngaygiamsat'])+'</span></p>'+
 						'<p style="clear:both"> <span style="float:left">Người duyệt: '+localStorage.getItem('ten')+'</span>';
 				}
 				$("#info").html(s);
+			},
+		error: function (xhr, ajaxOptions, thrownError) {
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
+}
+function get_check() {
+	if ($('#dat_ck').is(':checked')) return 1; else return 0;
+}
+function set_phieubaotri(id,gd){
+	var dataString = '';
+	if (gd == 1) dataString = 'id='+id+'&gd='+gd+'&tinhtranghuhong='+$('#tinhtrang').val()+'&nguyennhanhuhong='+$('#nguyennhan').val()
+								+'&phuongansuachua='+$('#phuongan').val()+'&nguoilapphuongan='+localStorage.getItem('ten');
+	else if (gd == 2) dataString = 'id='+id+'&gd='+gd+'&nguoiduyetphuongan='+localStorage.getItem('ten'); 
+	else if (gd == 3) dataString = 'id='+id+'&gd='+gd+'&ketquasuachua='+$('#ketqua').val()+'&nguoisuachua='+localStorage.getItem('ten');
+	else if (gd == 4) dataString = 'id='+id+'&gd='+gd+'&dat='+get_check()+'&nguoigiamsat='+localStorage.getItem('ten'); 
+	else if (gd == 5) dataString = 'id='+id+'&gd='+gd+'&nguoiduyet='+localStorage.getItem('ten'); 
+	var link = link_server + "set_phieubaotri.php";
+	$.ajax({
+		type: "POST",
+		url: link,
+		data: dataString,
+		success: function(data) {	
+			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				if (data['r'] == 1) {	
+					thongbao('Thao tác thành công');			
+					$('#info').html('');
+					get_phieubaotri(gd);
+				} else thongbao('Thao tác thất bại');
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');

@@ -21,30 +21,36 @@
 			$("#left").css("height",y);
 			$("#right").css("width",right); 
 			$("#right").css("height",y); 		
-			$(".pbt_info").css("height", y - 60);	
+			$(".pbt_info").css("height", y - 60);
+			$('.next_icon').hide();	
 			var gd = 0;
+				id = 0;
 			$('.progressbar li').click(function(){							
-				
+				$('.next_icon').hide();
 				$(this).parent().children().children().removeClass("selected_list");
 
 				$(this).children().addClass("selected_list");				
 				
 				gd = $(this).attr('id');
-				
+				$("#info").html('');
+				$("#dsbb").html('');
 				get_phieubaotri(gd);
 						
 			});
 			$(document).on('click','#dsbb li',function(){
-				get_detail_phieubaotri($(this).attr('data-ms'),gd,$(this).html());
+				id = $(this).attr('data-ms');
+				get_detail_phieubaotri(id,gd,$(this).html());
+				$('.next_icon').show();
 			});			
 			
 			$(".next_icon").on('click', function(){
-				var content = '<div style="margin-top:20px; text-align:center">'+
+				/*var content = '<div style="margin-top:20px; text-align:center">'+
 							  '<p>Chuyển sang giai đoạn tiếp theo</p></br>' +
 							  '<div style="text-align:center">'+
-							  '<input type="button" value="Xác nhận" onclick="thongbao('+ "'báo hư'" +');" class="button" style="margin-right:40px">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
-				popupDialog("Báo hư thiết bị", 300, 150, content);	
+				popupDialog("Báo hư thiết bị", 300, 150, content);	*/
+				set_phieubaotri(id,gd);
 			});															
 	});
 </script>

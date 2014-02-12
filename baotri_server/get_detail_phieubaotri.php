@@ -45,7 +45,7 @@
 		mysqli_free_result($res);
 	}  else if ($gd == 4){
 		$res = $mysqli->query("SELECT MaTB, NguoiYeuCau, NgayYeuCau, DatTai,
-									TinhTrangHuHong,NguyenNhanHuHong,PhuongAnSuaChua,
+									TinhTrangHuHong,NguyenNhanHuHong,PhuongAnSuaChua, KetQuaSuaChua,
 									NguoiLapPhuongAn, NgayLapPhuongAn, NguoiDuyet_PA, NgayDuyet_PA, NgayBatDau,
 									NgayKetThuc, NguoiSuaChua  
 								FROM bienbansuachua
@@ -58,7 +58,7 @@
 									,'nguoilapphuongan'=>$row['NguoiLapPhuongAn'],'ngaylapphuongan'=>$row['NgayLapPhuongAn']
 									,'nguoiduyetphuongan'=>$row['NguoiDuyet_PA'],'ngayduyetphuongan'=>$row['NgayDuyet_PA']
 									,'ngaybatdau'=>$row['NgayBatDau'],'ngayketthuc'=>$row['NgayKetThuc']
-									,'nguoisuachua'=>$row['NgaySuaChua']));
+									,'nguoisuachua'=>$row['NguoiSuaChua'],'ketquasuachua'=>$row['KetQuaSuaChua']));
 		}
 		mysqli_free_result($res);
 	}  else if ($gd == 5){
@@ -76,8 +76,8 @@
 									,'nguoilapphuongan'=>$row['NguoiLapPhuongAn'],'ngaylapphuongan'=>$row['NgayLapPhuongAn']
 									,'nguoiduyetphuongan'=>$row['NguoiDuyet_PA'],'ngayduyetphuongan'=>$row['NgayDuyet_PA']
 									,'ngaybatdau'=>$row['NgayBatDau'],'ngayketthuc'=>$row['NgayKetThuc']
-									,'nguoisuachua'=>$row['NgaySuaChua'],'dat'=>$row['Dat']
-									,'nguoigiamsat'=>$row['NguoiGiamSat'],'NgayGiamSat'=>$row['NgayGiamSat']));
+									,'nguoisuachua'=>$row['NguoiSuaChua'],'dat'=>$row['Dat']
+									,'nguoigiamsat'=>$row['NguoiGiamSat'],'ngaygiamsat'=>$row['NgayGiamSat']));
 		}
 		mysqli_free_result($res);
 	}
