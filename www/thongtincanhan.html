@@ -18,7 +18,15 @@
 		y = y - 35;		
 		$("#right").css("width", x - 1); 
 		$("#right").css("height", y); 
-		$("#top").css("height",y-60); 	
+		$("#top").css("height",y-60);
+		
+		$('.loading').each(function(){
+			var w = $(this).parent().css('width');
+			var h = $(this).parent().css('height');
+			$(this).css('width', w);
+			$(this).css('height', h);
+		});
+		 	
 		get_info();
 		$('#changepass').on("click", function(){
 			var content = '<div style="margin-top:30px; text-align:center">'
@@ -45,12 +53,14 @@
     <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
 				href="menu.html">Chức Năng</a> </div>
     <h1 class="title_header">THÔNG TIN CÁ NHÂN</h1>    
+  </div>
+  <div class="loading mainloading">
+       <img src="images/ajax-loader.gif" />
   </div>	
-	<div id="right">
+	<div id="right" style="display:none">
 		<div id="top">
 			<p align="center">
-					<img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" 
-										/>
+				<img id="img_dai_dien" src="img/no_avatar.gif" width="200" height="200" style="cursor:pointer" />
 			</p>
 			<div class="ttcn_text">
 				<p>Họ tên: <span id="hoten"></span></p>

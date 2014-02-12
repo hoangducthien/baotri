@@ -5,9 +5,11 @@
 <title>Ke hoach bao tri</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
+<script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript">	
+<script type="text/javascript" src="js/schedule.js"></script>
+<script type="text/javascript">
 	$(function(){
 		var x = $(window).width(); 
 		var y = $(window).height(); 
@@ -59,9 +61,17 @@
 				}
 				s += '</tr></table>';
 				
-				$('#table_schedule').html(s);
+				$('#table_schedule').html(s);				
 			}
-		});				
+		});		
+		
+		$('.add_icon').on('click', function(){
+			$("#ttbt .time").show();
+			$('#table_schedule').show();
+		});
+		
+		get_thietbi();
+				
 	});
 	
 </script>
@@ -75,7 +85,7 @@
     </div> 		
 	<div id="left">
 		<div class="sub_header relative">
-       		<span class="add_icon icon_click"></span>
+       		<span class="add_icon icon_click" style="display:none"></span>
 			<h1>Lịch bảo trì</h1>
 		</div>
 		<div class='time' > 					

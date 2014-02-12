@@ -6,22 +6,25 @@ function get_info() {
 		url: link,
 		data: dataString,
 		success: function(data) {	
-			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
-				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				$('#hoten').html(data['ten']);
 				$('#maso').html(localStorage.getItem('ms'));
 				$('#chucvu').html(data['chucvu']);
-				if (data['quyenhan'] == '0') $('#quyenhan').html('Tất cả các quyền'); else {
-				var array = data['quyenhan'].split(',');
-				var s = '';
-				for (var i in array) 
-					if (array[i]!='') {
-						s = s+ quyenhan[Number(array[i])]+', ';	
-					} 
-				s = s.substr(0, s.length-2);
-				$('#quyenhan').html(s);
+				if (data['quyenhan'] == '0') $('#quyenhan').html('Tất cả các quyền'); 
+				else {
+					var array = data['quyenhan'].split(',');
+					var s = '';
+					for (var i in array) 
+						if (array[i]!='') {
+							s = s+ quyenhan[Number(array[i])]+', ';	
+						} 
+					s = s.substr(0, s.length-2);
+					$('#quyenhan').html(s);					
 				}
+				$('.mainloading').hide();
+				$('#right').show();				
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				thongbao('Mạng có vấn đề, vui lòng thử lại!');

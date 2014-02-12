@@ -25,8 +25,7 @@
 			$("#dsbt_info").css("width", right);
 			$("#right").css("height", y);
 			$("#right_top").css("height", y - 40);
-			$("#dstb_list_1").css("height", bottom - $("#left_head").height());
-			$("#dstb_list_2").css("height", y - $("#right_head").height());
+			$("#dstb_list_1").css("height", bottom - $("#left_head").height() - 10);
 			
 			$('.loading').each(function(){
 				var w = $(this).parent().css('width');
@@ -51,17 +50,17 @@
 			});
 			
 			$(".alert_icon").on('click', function () {
-				/*var content = '<div style="margin-top:20px; margin-left:20px">'+
+				var content = '<div style="margin-top:20px; margin-left:20px">'+
 							  '<p>Mã thiết bị: <span id="s_ms">'+$('#ms').html()+'</span></p></br>'+
 							  '<p>Tên thiết bị: <span id="s_ten">'+$('#ten').html()+'</span></p></br>'+
 							  '<p> Vị trí: <span id="s_vitri">'+$('#ten').html()+'</span></p><br>'+
 							  '<div style="text-align:center">'+
-							  '<input type="button" value="Xác nhận" id="baohu_btn" class="button" style="margin-right:40px">'+
+							  '<input type="button" value="Xác nhận" onclick="xacnhan()" class="button" style="margin-right:40px">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
-				popupDialog("Báo hư thiết bị", 300, 250, content);	*/
-				baohu($('#ms').html(),$('#ten').html(),$('#vitri').html());
+				popupDialog("Báo hư thiết bị", 300, 250, content);					
 				
-			});
+			});						
+			
 			get_thietbi();
 			$(document).on('click','#dstb_list_1 li',function(){
 				$("#right_top .list_p").hide();
@@ -84,6 +83,9 @@
     <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
 				href="menu.html">Chức Năng</a> </div>
     <h1 class="title_header">BÁO HƯ</h1>    
+  </div>
+  <div class="loading mainloading" style="display:none">
+       <img src="images/ajax-loader.gif" />
   </div>
   <div id="left">
     <div id="dsbt_left_bottom">
