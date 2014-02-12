@@ -4,15 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Phiếu bảo trì</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/phieubaotri.js"></script>
 <script type="text/javascript">	
-	$(function(){
-			var x = $(window).width(); 
-			var y = $(window).height(); 
-			$("#container").css("width",x); 
-			$("#container").css("height",y);		
+	$(function(){ 
+			$("#container").css("width", x); 
+			$("#container").css("height", y);		
 			x -= 2;
 			y -= 75;
 			var left = x/4;
@@ -22,7 +21,18 @@
 			$("#right").css("width",right); 
 			$("#right").css("height",y); 		
 			$(".pbt_info").css("height", y - 60);
-			$('.next_icon').hide();	
+			$('#dsbb').css('width', left);
+			$('#dsbb').css('height', y - 90);
+			
+			$('.loading').each(function(){
+				var w = $(this).parent().css('width');
+				var h = $(this).parent().css('height');
+				$(this).css('width', w);
+				$(this).css('height', h);
+			});
+					
+			$('.mainloading').css('height', y - 70);
+			
 			var gd = 0;
 				id = 0;
 			$('.progressbar li').click(function(){							
@@ -33,25 +43,33 @@
 				
 				gd = $(this).attr('id');
 				$("#info").html('');
-				$("#dsbb").html('');
-				get_phieubaotri(gd);
-						
+				$("#dsbb").html('<div class="loading"> <img src="images/ajax-loader.gif" /> </div>');
+				var w = $("#dsbb").css('width');
+				var h = $("#dsbb").css('height');
+				$("#dsbb .loading").css('width', w);
+				$("#dsbb .loading").css('height', h);				
+				get_phieubaotri(gd);						
 			});
 			$(document).on('click','#dsbb li',function(){
 				id = $(this).attr('data-ms');
-				get_detail_phieubaotri(id,gd,$(this).html());
-				$('.next_icon').show();
+				$("#info").html('<div class="loading"> <img src="images/ajax-loader.gif" /> </div>');
+				var w = $("#info").css('width');
+				var h = $("#info").css('height');
+				$("#info .loading").css('width', w);
+				$("#info .loading").css('height', h);
+				get_detail_phieubaotri(id,gd,$(this).html());				
 			});			
 			
 			$(".next_icon").on('click', function(){
-				/*var content = '<div style="margin-top:20px; text-align:center">'+
+				var content = '<div style="margin-top:20px; text-align:center">'+
 							  '<p>Chuyển sang giai đoạn tiếp theo</p></br>' +
 							  '<div style="text-align:center">'+
-							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan(' + id + ',' + gd +')">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
-				popupDialog("Báo hư thiết bị", 300, 150, content);	*/
-				set_phieubaotri(id,gd);
-			});															
+				popupDialog("Báo hư thiết bị", 300, 150, content);					
+			});		
+			
+			$('#1').click();													
 	});
 </script>
 </head>
@@ -63,7 +81,7 @@
 				<a href="menu.html">Chức Năng</a>
 			</div>
 			<h1 class="title_header">PHIẾU BẢO TRÌ</h1>
-		</div>
+		</div>        
 		<div class="progressbar">
 			<ul class="decorate_text" id="task">
 				<li id="1">
@@ -83,14 +101,20 @@
 				</li>                 
 			</ul>
 		</div>	
-		
+		        
 		<div class="clear">
 		</div>		
 		
+        <div class="mainloading" style="display:none">
+       		<img src="images/ajax-loader.gif" />
+  		</div>
+        
 		<div id="left">
 			<div class="sub_header">  
 				<h1>Danh Sách</h1>	
 			</div>
+            <input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
+					value="" type="search" class="input search" style="margin:10px">
 			<ul id="dsbb" class="liststyle" style="overflow: auto; ">
         
       		</ul>
@@ -102,7 +126,7 @@
 			<div id="info" class="pbt_info">
             
             </div>    
-            <span class="next_icon"> </span>                             
+            <span class="next_icon" style="display:none"> </span>                             
 		</div>	
 	</div>	
 </body>

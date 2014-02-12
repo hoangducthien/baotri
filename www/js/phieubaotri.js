@@ -123,6 +123,7 @@ function get_detail_phieubaotri(id,gd,ten){
 						'</span> <span style="float:right; margin-right:20px">Ngày giám sát: '+get_Date(data['ngaygiamsat'])+'</span></p>'+
 						'<p style="clear:both"> <span style="float:left">Người duyệt: '+localStorage.getItem('ten')+'</span>';
 				}
+				$('.next_icon').show();
 				$("#info").html(s);
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
@@ -149,15 +150,25 @@ function set_phieubaotri(id,gd){
 		success: function(data) {	
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
-				data = JSON.parse(data);
-				if (data['r'] == 1) {	
-					thongbao('Thao tác thành công');			
-					$('#info').html('');
-					get_phieubaotri(gd);
-				} else thongbao('Thao tác thất bại');
-			},
+			data = JSON.parse(data);
+			if (data['r'] == 1) {	
+				thongbao('Thao tác thành công');			
+				$('#'+gd).click();
+				get_phieubaotri(gd);
+			} else thongbao('Thao tác thất bại');
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
+}
+function xacnhan(id, gd){
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
+	dismissDialog();
+	set_phieubaotri(id,gd);
 }

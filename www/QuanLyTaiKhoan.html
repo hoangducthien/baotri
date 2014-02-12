@@ -11,8 +11,6 @@
 <script type="text/javascript" src="js/QuanLyTaiKhoan.js"></script>
 <script type="text/javascript">	
 	$(function(){ 
-		var x = $(window).width();
-		var y = $(window).height();
 		var type = '';
 		$("#container").css("width",x); 
 		$("#container").css("height",y);		
@@ -38,16 +36,18 @@
 			var h = $(this).parent().css('height');
 			$(this).css('width', w);
 			$(this).css('height', h);
-		});
+		});			
 		
 		var mode = '';
+		var maso = '';
 		get_nhanvien();
-		$(".edit_icon").hide();
+
 		$(".add_icon").on('click', function () {
 			$('#maso').prop('disabled',false);
 			$('#tttk').hide();
 			$("#tttk_edit").show();
 			$(".edit_icon").hide();
+			$(".cross_icon").hide();
 			mode = 'add';
 			reset_input();
 		});
@@ -59,6 +59,16 @@
 			$("#tttk_edit").show();
 			mode = 'edit';
 		});
+		
+		$(".cross_icon").on('click', function(){
+				var content = '<div style="margin-top:20px; text-align:center">'+
+							  '<p>Xóa tài khoản này</p></br>' +
+							  '<div style="text-align:center">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan(' + "'" + maso + "'" +')">'+
+							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Xác nhận", 300, 150, content);					
+		});	
+		
 		$('#0').on("click", function(){
 			$("#cb_quyenhan input").prop("checked", $("#0").is(":checked"));
 		});
@@ -78,7 +88,10 @@
 			$('#tttk').show();
 			$('#tttk .loading').show();
 			$('#tttk .data').hide();
-			get_detail_nhanvien($(this).attr('data-ms'));
+			$(".cross_icon").hide();
+			$(".edit_icon").hide();
+			maso = $(this).attr('data-ms');
+			get_detail_nhanvien(maso);
 		});
 		$('#hoanthanh').on('click',function() {
 			if (check_input() == '0') 
@@ -102,7 +115,10 @@
     <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
 				href="menu.html">Chức Năng</a> </div>
     <h1 class="title_header">QUẢN LÝ TÀI KHOẢN</h1>  
-    </div> 	
+    </div>
+    <div class="mainloading" style="display:none">
+       <img src="images/ajax-loader.gif" />
+  	</div> 	
 	<div id="left">
 		<div class="sub_header relative">
        		<span class="add_icon icon_click"></span>
@@ -120,7 +136,8 @@
 	</div>
 	<div id="right">
 		<div class="sub_header relative">
-        	<span class="edit_icon icon_click"> </span>
+        	<span class="edit_icon icon_click" style="display:none"> </span>
+            <span class="cross_icon icon_click" style="top:-3px; left:5px; display:none"> </span>
 			<h1>Thông tin tài khoản</h1>
 		</div>
 		<div id="tttk" class="ttcn_text" style="display:none">

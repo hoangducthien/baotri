@@ -61,13 +61,15 @@
 				}
 				s += '</tr></table>';
 				
-				$('#table_schedule').html(s);				
+				$('#table_schedule').html(s);
+				$('#div_btn').show();	
+			
 			}
 		});		
 		
 		$('.add_icon').on('click', function(){
 			$("#ttbt .time").show();
-			$('#table_schedule').show();
+			$('#table_schedule').show();			
 		});
 		
 		get_thietbi();
@@ -77,7 +79,7 @@
 </script>
 </head>
 <body>
-  <div id="container">  
+  <div id="container schedule">  
   	<div class="header">
         <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
                     href="menu.html">Chức Năng</a> </div>
@@ -92,8 +94,7 @@
         	<p>
 				<span style="margin-right:10px; margin-left:10px;">Tháng:</span>													
 				<input id="from" class="input datepicker" type="text" style="margin-top:10px"/>
-			</p>
-            
+			</p>            
 		</div>
 		<ul id="danhsachbaotri" style="overflow:auto;">
 			<div class="loading">
@@ -104,7 +105,7 @@
 	</div>
 	<div id="right">
 		<div class="sub_header relative">
-        	<span class="edit_icon icon_click"> </span>
+        	<span class="edit_icon icon_click" style="display:none"> </span>
 			<h1>Thông tin bảo trì</h1>
 		</div>
         <div id="ttbt">
@@ -120,6 +121,9 @@
             <div style="overflow:auto; width:100%; margin-top:10px; display:none" id="table_schedule">
             
             </div>
+            <div style="height:60px; display:none; margin-top:20px" align="center" id="div_btn">				
+				<div style="width:15%;"><input type="button" value="Hoàn thành" id="hoanthanh" class="button"/></div>
+			</div>
         </div>
 	</div>
   </div>

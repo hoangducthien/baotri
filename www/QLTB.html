@@ -51,8 +51,20 @@
 				$(".column_edit textarea").toggle();
 			});	
 			
+			$(".add_icon").on('click', function () {
+				$('.edit_icon').addClass('checked');
+				$('.edit_icon').show();	
+				$('.column').show();			
+				$(".column_content").hide();
+				$(".column_edit textarea").show();
+			});	
+			
+			
+			var currentID;
+			
 			$(".left_menu li").on('click', function () {
-				$('.left_menu_content').hide();
+				currentID = $(this).attr('id');
+				$('.left_menu_content').hide();				
 				$(".left_menu").animate({width: 0}, 200 );
 				show = false;								
 			});
@@ -64,9 +76,9 @@
     	<div class="left_menu">
             <div class="left_menu_content">
                 <ul class="decorate_text">
-                    <li>Thiết bị</li>
-                    <li>Loại thiết bị</li>
-                    <li>Chi tiết thiết bị</li>
+                    <li id="1">Thiết bị</li>
+                    <li id="2">Loại thiết bị</li>
+                    <li id="3">Chi tiết thiết bị</li>
                 </ul>
             </div>
 		</div>
@@ -89,11 +101,11 @@
 		</div>
 		<div id="right" class='bc_right'>
 			<div class="sub_header relative">
-				<span class="edit_icon icon_click"> </span>
+				<span class="edit_icon icon_click" style="display:none"> </span>
 				<h1>Chi tiết</h1>	
 			</div>
 			
-            <div class="column">
+            <div class="column" style="display:none">
             	<div class="column_header decorate_text">
                 	Mã thiết bị
                 </div>
