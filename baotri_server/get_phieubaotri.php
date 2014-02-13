@@ -3,7 +3,8 @@
 	include('connect_db.php');
 	$res = $mysqli->query("SELECT TenTB, ID 
 							FROM bienbansuachua
-							WHERE GiaiDoan = ".$_GET['giaidoan']);
+							WHERE GiaiDoan = ".$_GET['giaidoan']."
+							ORDER BY TenTB ASC");
 	$res->data_seek(0);
 	$array = array();
 	while ($row = $res->fetch_assoc()) {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2014 at 09:23 AM
+-- Generation Time: Feb 13, 2014 at 12:33 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -50,18 +50,21 @@ CREATE TABLE IF NOT EXISTS `bienbansuachua` (
   `NgayDuyet_BB` bigint(20) NOT NULL,
   `GiaiDoan` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `bienbansuachua`
 --
 
 INSERT INTO `bienbansuachua` (`ID`, `NguoiYeuCau`, `NgayYeuCau`, `TenTB`, `MaTB`, `TinhTrangHuHong`, `DatTai`, `NguyenNhanHuHong`, `PhuongAnSuaChua`, `NguoiLapPhuongAn`, `NgayLapPhuongAn`, `NguoiDuyet_PA`, `KetQuaSuaChua`, `NgayBatDau`, `NgayKetThuc`, `NguoiSuaChua`, `NguoiGiamSat`, `NgayGiamSat`, `Dat`, `NguoiDuyet_BB`, `NgayDuyet_PA`, `NgayDuyet_BB`, `GiaiDoan`) VALUES
-(1, 'Mã Văn A', 1392183104000, 'Băng tải bố 1', 'BANGTAIBO1', 'abc', 'A', 'abc', 'abc', 'Mã Văn A', 1392145583000, 'Mã Văn A', ' abcd', 1392146138000, 1392147691000, 'Mã Văn A', 'Mã Văn A', 1392148701000, 1, 'Mã Văn A', 1392146138000, 1392149503000, 6),
-(2, 'Mã Văn A', 1392183731000, 'Băng tải bố 2', 'BANGTAIBO2', '', 'A', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1),
-(3, 'Mã Văn A', 1392183757000, 'Máy cán 2', 'MAYCAN2', '', 'C', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1),
+(1, 'Mã Văn A', 1392183104000, 'Băng tải bố 1', 'BANGTAIBO1', 'abc', 'A', 'abc', 'abc', 'Mã Văn A', 1392145583000, 'Mã Văn A', 'undefined', 1392146138000, 1392176030000, 'null', 'Mã Văn A', 1392148701000, 1, 'Mã Văn A', 1392146138000, 1392149503000, 4),
+(2, 'Mã Văn A', 1392183731000, 'Băng tải bố 2', 'BANGTAIBO2', '', 'A', '', '', 'null', 1392164424000, 'null', '', 1392173136000, 0, '', '', 0, 0, '', 1392173136000, 0, 3),
+(3, 'Mã Văn A', 1392183757000, 'Máy cán 2', 'MAYCAN2', '', 'C', '', '', 'null', 1392176084000, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 2),
 (4, 'Mã Văn A', 1392183801000, 'Máy quậy mủ 3', 'MAYQUAYMU3', '', 'B', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1),
-(5, 'Mã Văn A', 1392184017000, 'Máy quậy mủ 2', 'MAYQUAYMU2', '', 'C', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1);
+(5, 'Mã Văn A', 1392184017000, 'Máy quậy mủ 2', 'MAYQUAYMU2', '', 'C', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1),
+(6, 'null', 1392164378000, 'Băng tải con lăn 1', 'BANGTAICONLAN1', '', 'A', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1),
+(7, 'null', 1392165490000, 'Băng tải bố 1', 'BANGTAIBO1', '', 'A', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1),
+(8, 'null', 1392166372000, 'Băng tải bố 3', 'BANGTAIBO3', '', 'B', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -708,6 +711,29 @@ CREATE TABLE IF NOT EXISTS `tablekehoachbaotri` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tablelichbaotri`
+--
+
+CREATE TABLE IF NOT EXISTS `tablelichbaotri` (
+  `STT` int(11) NOT NULL AUTO_INCREMENT,
+  `ID` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ChiTiet` varchar(10000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `NguoiLap` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`STT`),
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tablelichbaotri`
+--
+
+INSERT INTO `tablelichbaotri` (`STT`, `ID`, `ChiTiet`, `NguoiLap`) VALUES
+(8, '03/2014', 'BANGTAIBO1:1393693200000:1394384400000:1395075600000:1395594000000,BANGTAIBO2:1393693200000:1394384400000:1395075600000:1395594000000,BANGTAIBO3:1393693200000:1394384400000:1395075600000:1395594000000,BANGTAIBO4:1393693200000:1394384400000:1395075600000:1395594000000,BANGTAICONLAN1:1393693200000:1394384400000:1395075600000:1395594000000,BOMCOM1:1393693200000:1394384400000:1395075600000:1395594000000,LOSAY1:1393779600000:1394470800000:1395162000000:1395680400000,MAYCAN1:1393779600000:1394470800000:1395162000000:1395680400000,MAYCAN2:1393779600000:1394470800000:1395162000000:1395680400000,MAYCAN3:1393779600000:1394470800000:1395162000000:1395680400000,MAYCANCAT1:1393779600000:1394470800000:1395162000000:1395680400000,MAYKEOCAN1:1393866000000:1394557200000:1395248400000:1395766800000,MAYQUAYACID1:1393866000000:1394557200000:1395248400000:1395766800000,MAYQUAYACID2:1393866000000:1394557200000:1395248400000:1395766800000,MAYQUAYMU1:1393866000000:1394557200000:1395248400000:1395766800000,MAYQUAYMU2:1393866000000:1394557200000:1395248400000:1395766800000,MAYQUAYMU3:1393866000000:1394557200000:1395248400000:1395766800000,MAYQUAYMU4:1393952400000:1394643600000:1395334800000:1395853200000,MAYEPKIEN1:1393952400000:1394643600000:1395334800000:1395853200000,MAYEPKIEN2:1393952400000:1394643600000:1395334800000:1395853200000,MANGPHANPHOIMU1:1393952400000:1394643600000:1395334800000:1395853200000,SANRUNG1:1393952400000:1394643600000:1395334800000:1395853200000', 'Mã Văn A'),
+(9, '02/2014', 'BANGTAIBO1:1392310800000,BANGTAIBO2:1392310800000', 'Mã Văn A');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tableloaichitiet`
 --
 
@@ -1161,11 +1187,11 @@ CREATE TABLE IF NOT EXISTS `tablethietbi` (
 --
 
 INSERT INTO `tablethietbi` (`MaTB`, `LoaiTB`, `MaThoiGianBaoTri`, `SoDangKy`, `TrangThai`, `NoiDat`, `KieuDang`, `HangSX`, `NuocSX`, `LoSX`, `NamSX`, `ThoiGianBatDauSD`, `VanHanh`, `BaoDuong`, `SuaChua`, `Catalog`, `DongCo`, `TruyenDong`, `IsDeleted`, `ChiTiet`, `ThoiGianBaoTri`, `QuaHan`, `TenTB`, `ViTri`) VALUES
-('BANGTAIBO1', 'V', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải bố 1', 'A'),
+('BANGTAIBO1', 'V', '', '', 0, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải bố 1', 'A'),
 ('BANGTAIBO2', 'V', '', '', 0, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải bố 2', 'A'),
-('BANGTAIBO3', 'V', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải bố 3', 'B'),
+('BANGTAIBO3', 'V', '', '', 0, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải bố 3', 'B'),
 ('BANGTAIBO4', 'V', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải bố 4', 'B'),
-('BANGTAICONLAN1', 'XII', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải con lăn 1', 'A'),
+('BANGTAICONLAN1', 'XII', '', '', 0, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Băng tải con lăn 1', 'A'),
 ('BOMCOM1', 'VIII', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Bơm cốm 1', 'A'),
 ('LOSAY1', 'IX', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Lò sấy 1', 'B'),
 ('MANGPHANPHOIMU1', 'III', '', '', 1, '', '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', '', 0, 'Mảng phân phối mủ 1', 'B'),
