@@ -7,8 +7,7 @@ function get_thietbi() {
 		success: function(data) {	
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
-				listtb = JSON.parse(data);
-				$('#ttbt .loading').hide();
+				listtb = JSON.parse(data);				
 				$('.add_icon').show();
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
@@ -65,8 +64,7 @@ function get_lichbaotri() {
 				data = JSON.parse(data);
 				var s = '';
 				for (var i in data) s += '<li>' + data[i]['ms'] + '</li>';
-				$('#danhsachbaotri').html(s);
-				$('#danhsachbaotri loading').hide();
+				$('#danhsachbaotri').html(s);				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
@@ -92,8 +90,7 @@ function get_lichbaotri_detail(ms) {
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
-				$('#table_schedule').html('');
-				$("#ttbt .time").show();
+				$('#table_schedule').html('');				
 				$('#table_schedule').show();			
 				var t = ms.split('/');
 				var month = t[0];

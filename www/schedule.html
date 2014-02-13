@@ -24,7 +24,7 @@
 		$("#right").css("width",right); 
 		$("#right").css("height",y); 
 		$("#ttbt").css("width",right); 
-		$("#ttbt").css("height",y - 30);
+		$("#ttbt").css("height",y - 40);
 		$("#table_schedule").css("width",right); 
 		$("#table_schedule").css("height",y - 160);
 		
@@ -82,11 +82,20 @@
 			mode = 'add';
 			$('#table_schedule').html('');
 			$("#ttbt .time").show();
-			$('#table_schedule').show();			
+			$('#table_schedule').show();
+			$("#div_btn").hide();
+			$("#from_2").datepicker('setDate', '');	
 		});
 		
 		$(document).on('click','#danhsachbaotri li',function(){
 			mode = 'edit';
+			$('#div_btn').hide();
+			$('.time').hide();
+			$("#table_schedule").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+			var w = $('#table_schedule').css('width');
+			var h = $('#table_schedule').css('height');
+			$('#table_schedule .loading').css('width', w);
+			$('#table_schedule .loading').css('height', h);
 			get_lichbaotri_detail($(this).html());
 		});
 		
@@ -110,11 +119,9 @@
 		<div class="sub_header relative">
        		<span class="add_icon icon_click" style="display:none"></span>
 			<h1>Lịch bảo trì</h1>
-		</div>
-		<div class='time' > 					
-        	<input name="" id="from" placeholder="Nhâp tháng/năm"
+		</div>					
+       	<input name="" id="from" placeholder="Nhâp tháng/năm"
 					value="" type="search" class="input search" style="margin:10px">            
-		</div>
 		<ul id="danhsachbaotri" class="liststyle" style="overflow:auto;">
 			<div class="loading">
             	<img src="images/ajax-loader.gif" />
@@ -127,10 +134,7 @@
         	<span class="edit_icon icon_click" style="display:none"> </span>
 			<h1>Thông tin bảo trì</h1>
 		</div>
-        <div id="ttbt">
-        	<div class="loading">
-            	<img src="images/ajax-loader.gif" />
-            </div>
+        <div id="ttbt">        	
             <div class='time' style="display:none">
                 <p> 					
                     <span style="margin-right:10px; margin-left:10px;">Tháng:</span>													
@@ -138,8 +142,8 @@
                     <style id='hideMonth'></style>								
                 </p>
             </div>
-            <div style="overflow:auto; width:100%; margin-top:10px; display:none" id="table_schedule">
-            
+            <div style="overflow:auto; width:100%; margin-top:10px;" id="table_schedule">
+            	
             </div>
             <div style="height:50px; display:none; margin-top:20px" align="center" id="div_btn">				
 				<div style="width:15%;"><input type="button" value="Cập nhật" id="hoanthanh" class="button"/></div>
