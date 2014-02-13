@@ -12,11 +12,6 @@
     <script type="text/javascript" src="js/custom.js"></script>	
 	<script type="text/javascript">	
 		$(function(){
-			var x = $(window).width();
-			var y = $(window).height();
-			var page = 0;
-			$("#container").css("width",x); 
-			$("#container").css("height",y);		
 			x -= 2;
 			y -= 70;
 			var left = x/4;
@@ -62,10 +57,16 @@
 				
 				if (i == 3){
 					$("#skbt_search").show();
+					$('.monthPick').hide();
 					$(".time").hide();
-				} else{
+				} else if (i == 1){
 					$("#skbt_search").hide();
+					$('.monthPick').hide();
 					$(".time").show();
+				} else if (i == 2){
+					$("#skbt_search").hide();
+					$('.monthPick').show();
+					$(".time").hide();
 				}
 				
 			});
@@ -81,6 +82,19 @@
 			});			
 			
 			$(".datepicker").datepicker();	
+			
+			$(".monthPicker").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			showButtonPanel: true,
+			dateFormat: 'mm/yy',
+			onClose: function(dateText, inst) { 
+				var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+				$(this).datepicker('setDate', new Date(year, month, 1));							
+			}
+		});
+			
 });
 </script>
 </head>
@@ -124,6 +138,10 @@
                         <input id="to" type="text" class="input datepicker" style="margin-bottom:10px"/>					
                     </p>					
 				</div>
+                <div class='monthPick' style="display:none"> 					
+                     <span style="margin-right:10px; margin-left:10px;">Tháng/năm:</span>													
+                     <input id="month" class="input monthPicker" type="text" style="margin-top:10px"/>			
+				</div>                
                 <input name="" id="skbt_search" placeholder="Nhâp tên hoặc mã số"
 			value="" type="search" class="input search" style="margin:10px">
                 

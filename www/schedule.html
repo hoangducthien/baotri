@@ -5,6 +5,7 @@
 <title>Ke hoach bao tri</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
+<script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/schedule.js"></script>
@@ -13,7 +14,7 @@
 		var x = $(window).width(); 
 		var y = $(window).height(); 
 		$("#container").css("width",x); 
-		$("#container").css("height",y);		
+		$("#container").css("height",y);				
 		x -= 5;
 		y -= 35;		
 		var left = x/4;
@@ -37,16 +38,15 @@
 			$(this).css('width', w);
 			$(this).css('height', h);
 		});
-		
-		function getDaysInMonth(m, y) {						
-  			return /8|3|5|10/.test(--m)?30:m==1?(!(y%4)&&y%100)||!(y%400)?29:28:31;
-		}
-		
-		$(".datepicker").datepicker({
+		var mode = '';
+		get_thietbi();
+		get_lichbaotri();	
+		$("#from_2").datepicker({
 			changeMonth: true,
 			changeYear: true,
 			showButtonPanel: true,
 			dateFormat: 'mm/yy',
+			beforeShow: function() { $('#hideMonth').html('.ui-datepicker-calendar{display:none;}'); },
 			onClose: function(dateText, inst) { 
 				var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
 				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -57,18 +57,47 @@
 				var s = '<table class="tb_lbt" ><tr><td class="tenthietbi">Tên thiết bị</td>';
 				for (i = 1; i <= days; i++){
 					s += '<td>'+i+'</td>';
+				}		
+				s += '</tr>';
+				for (var k in listtb){
+					s += '<tr><td id="'+ listtb[k]['ms'] +'">' + listtb[k]['ten'] + '</td>';
+					for (i = 1; i <= days; i++){
+						var date = new Date(year, month, i);
+						s += '<td><input type="checkbox"  data-d="'+ date.getTime()
+						+'" class="'+ listtb[k]['ms'] +'"/></td>';
+					}
+					s += '</tr>';
 				}
-				s += '</tr></table>';
-				
+				s += '</table>';
 				$('#table_schedule').html(s);
+				$('#div_btn').show();	
+				setTimeout(function(){$('#hideMonth').html('');},300);
 			}
-		});				
+		});		
+		
+		$('.add_icon').on('click', function(){
+			mode = 'add';
+			$('#table_schedule').html('');
+			$("#ttbt .time").show();
+			$('#table_schedule').show();			
+		});
+		
+		$(document).on('click','#danhsachbaotri li',function(){
+			mode = 'edit';
+			get_lichbaotri_detail($(this).html());
+		});
+		
+		$('#hoanthanh').on('click', function(){
+			if (mode == 'add') set_lichbaotri(); 
+			else update_lichbaotri();
+		});
+		search_list('#danhsachbaotri','#from');		
 	});
 	
 </script>
 </head>
 <body>
-  <div id="container">  
+  <div id="container schedule">  
   	<div class="header">
         <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
                     href="menu.html">Chức Năng</a> </div>
@@ -76,17 +105,16 @@
     </div> 		
 	<div id="left">
 		<div class="sub_header relative">
-       		<span class="add_icon icon_click"></span>
+       		<span class="add_icon icon_click" style="display:none"></span>
 			<h1>Lịch bảo trì</h1>
 		</div>
 		<div class='time' > 					
         	<p>
 				<span style="margin-right:10px; margin-left:10px;">Tháng:</span>													
-				<input id="from" class="input datepicker" type="text" style="margin-top:10px"/>
-			</p>
-            
+				<input id="from" type="text" style="margin-top:10px"/>
+			</p>            
 		</div>
-		<ul id="danhsachbaotri" style="overflow:auto;">
+		<ul id="danhsachbaotri" class="liststyle" style="overflow:auto;">
 			<div class="loading">
             	<img src="images/ajax-loader.gif" />
             </div>
@@ -95,7 +123,7 @@
 	</div>
 	<div id="right">
 		<div class="sub_header relative">
-        	<span class="edit_icon icon_click"> </span>
+        	<span class="edit_icon icon_click" style="display:none"> </span>
 			<h1>Thông tin bảo trì</h1>
 		</div>
         <div id="ttbt">
@@ -105,12 +133,16 @@
             <div class='time' style="display:none">
                 <p> 					
                     <span style="margin-right:10px; margin-left:10px;">Tháng:</span>													
-                    <input id="from_2" type="text" class="input datepicker" style="margin-top:10px"/>								
+                    <input id="from_2" type="text" class="input datepicker" style="margin-top:10px"/>
+                    <style id='hideMonth'></style>								
                 </p>
             </div>
             <div style="overflow:auto; width:100%; margin-top:10px; display:none" id="table_schedule">
             
             </div>
+            <div style="height:60px; display:none; margin-top:20px" align="center" id="div_btn">				
+				<div style="width:15%;"><input type="button" value="Hoàn thành" id="hoanthanh" class="button"/></div>
+			</div>
         </div>
 	</div>
   </div>

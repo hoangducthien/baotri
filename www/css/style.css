@@ -1,5 +1,5 @@
 /* CSS Document */
-.ui-datepicker-calendar {
+.schedule .ui-datepicker-calendar {
     display: none;
 }
 
@@ -7,7 +7,7 @@
 	margin-top:10px;
 }
 
-.loading{
+.loading, .mainloading{
 	display:table-cell;
 	vertical-align:middle;
 	text-align:center;
@@ -75,6 +75,16 @@ td{
 .checked{
 	background-position:-505px !important;
 }
+
+
+.cross_icon{
+	position:absolute;
+	width:36px;
+	height:36px;
+	background:url(../images/icons-36-white.png);
+	background-position:-146px;
+}
+
 .edit_icon{
 	position:absolute;
 	right:5px;

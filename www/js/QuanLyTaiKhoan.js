@@ -12,7 +12,6 @@ function quyenhan_check(){
 		}
 function get_chucvu() {
 		var link = link_server + "get_chucvu.php";
-		
 }
 function get_detail_nhanvien(maso) {
 		var link = link_server + "get_detail_nhanvien.php";
@@ -54,6 +53,7 @@ function get_detail_nhanvien(maso) {
 				$('#tttk .data').show();
 				$('#tttk .loading').hide();
 				$(".edit_icon").show();
+				$(".cross_icon").show();			
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 					thongbao('Mạng có vấn đề, vui lòng thử lại!');
@@ -143,4 +143,11 @@ function reset_input() {
 		$('#chucvu').val('');
 		$('#0').prop("checked", false);
 		$("#cb_quyenhan input").prop("checked", false);
+}
+
+function xacnhan(maso){
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
+	dismissDialog();
 }

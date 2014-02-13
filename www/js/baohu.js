@@ -70,10 +70,19 @@ function baohu(ms,ten,vitri){
 					thongbao('Báo hư thành công');
 					get_thietbi();	
 				} else thongbao('Báo hư thất bại');
-				
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
+}
+function xacnhan(){
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
+	dismissDialog();
+	baohu($('#ms').html(),$('#ten').html(),$('#vitri').html());
 }

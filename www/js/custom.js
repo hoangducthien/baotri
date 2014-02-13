@@ -37,6 +37,29 @@
 		var c = '<div style="margin-top:20px; text-align:center"><p>' + content + '</p><div style="text-align:center; margin-top:20px"><input type="button" value="OK" class="button" onclick="dismissDialog()"></div></div>';
 		popupDialog("Thông Báo", 300, 165, c);
 	}
+	function filter(selector, query, s) {  
+			query = $.trim(query);
+			query = query.replace(/ /gi, '|');  
+			$(selector).each(function() {  
+				if (s != '')
+				var str = $(this).attr(s); 
+				else var str = $(this).text();
+				(str.search(new RegExp(query, "i")) < 0) ? $(this).hide(): $(this).show();  
+			});  
+	}
+
+	function search_list(s1,s2) {
+		$(s1+' li').addClass('visible');
+		$(s2).keyup(function(event) {  
+   			 if (event.keyCode == 27 || $(this).val() == '') {  
+      				$(this).val('');  
+              		$(s1+' li').show();  
+   			 }  
+    		else {
+				filter(s1+' li', $(this).val(),'');
+			}
+    	});  	
+	}
 
 	
 
