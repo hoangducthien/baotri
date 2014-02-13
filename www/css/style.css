@@ -83,6 +83,7 @@ td{
 	height:36px;
 	background:url(../images/icons-36-white.png);
 	background-position:-146px;
+	top: -3px; left: 5px;
 }
 
 .edit_icon{
@@ -143,6 +144,15 @@ td{
 	background:url(../img/right_arrow_2.png);
 }
 
+.previous_icon{
+	position:absolute;
+	left:15px;
+	bottom:10px;
+	width:32px;
+	height:32px;
+	background:url(../img/left_arrow_2.png);
+}
+
 .relative{
 	position:relative;
 	left:0;
@@ -151,8 +161,12 @@ td{
 
 .column_header{
 	background-color:#4799C1;
-	height:30px;
+	height:50px;
 	text-align:center;
+	padding-left:10px;
+	padding-right:10px;
+	vertical-align:middle;
+	display:table-cell;
 }
 
 .column_content{
@@ -160,9 +174,12 @@ td{
 }
 .column_edit textarea{
 	padding:5px;
+	border:none;
 }
-.column{
-	border:1px solid #ccc;
+
+.column_item{
+	float:left;
+	border-right:1px solid #fff;
 }
 
 /*--------------------------------*/
@@ -224,7 +241,7 @@ td{
 }
 
 .search{
-	background-image:url(../img/icon-search.png);
+	background:url(../img/icon-search.png);
 	background-position:right;
 	background-repeat:no-repeat;
 	width:90%;
@@ -259,14 +276,14 @@ td{
 }
 
 .expand{
-	background-image:url(../img/expand.2.png);
+	background:url(../img/expand.2.png);
 	background-repeat:no-repeat;
 	background-position:5px 13px;
 	padding-left:25px !important;
 }
 
 .collapse{
-	background-image:url(../img/collapse.2.png);
+	background:url(../img/collapse.2.png);
 	background-repeat:no-repeat;
 	background-position:5px 13px;
 	padding-left:25px !important;
@@ -499,7 +516,7 @@ ul{
 .button{
 	padding:10px;
 	text-align:center;
-	background-image:url(../img/menu_bg.png);
+	background:url(../img/menu_bg.png);
 	border-radius: 6px;
 	border:1px solid #cccccc;
     color: #FFFFFF;
@@ -518,7 +535,7 @@ ul{
 }
 
 .input_bg{
-	background-image: -webkit-linear-gradient( #fff , #f1f1f1);
+	background: -webkit-linear-gradient( #fff , #f1f1f1);
 }
 
 .title{	
@@ -545,7 +562,7 @@ ul{
 /*--------------DSBT-------------*/
 
 .select_input:hover{
-	background-image: linear-gradient( #fff , #f1f1f1);
+	background: linear-gradient( #fff , #f1f1f1);
 	cursor:pointer;
 }
 

@@ -23,11 +23,7 @@
 		$("#tttk").css("width",right - 50); 
 		$("#tttk").css("height",y - 30); 
 		$("#top").css("height",y-101); 
-		$("#account-list").css('height',y-90); 
-		$(".icon_click").on('click', function () {
-			$(this).animate({top:"-=5"}, 100);
-			$(this).animate({top:"+=5"}, 100);
-		});
+		$("#account-list").css('height',y-90); 		
 		
 		$('.loading').each(function(){
 			var w = $(this).parent().css('width');
@@ -136,7 +132,7 @@
 	<div id="right">
 		<div class="sub_header relative">
         	<span class="edit_icon icon_click" style="display:none"> </span>
-            <span class="cross_icon icon_click" style="top:-3px; left:5px; display:none"> </span>
+            <span class="cross_icon icon_click" style="display:none"> </span>
 			<h1>Thông tin tài khoản</h1>
 		</div>
 		<div id="tttk" class="ttcn_text" style="display:none">

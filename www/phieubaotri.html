@@ -17,7 +17,8 @@
 			$("#left").css("width",left); 
 			$("#left").css("height",y);
 			$("#right").css("width",right); 
-			$("#right").css("height",y); 		
+			$("#right").css("height",y); 	
+			$("#right").css("position",'relative'); 		
 			$(".pbt_info").css("height", y - 60);
 			$('#dsbb').css('width', left);
 			$('#dsbb').css('height', y - 90);
@@ -35,6 +36,8 @@
 				id = 0;
 			$('.progressbar li').click(function(){							
 				$('.next_icon').hide();
+				$('.previous_icon').hide();
+				$('.cross_icon').hide();
 				$(this).parent().children().children().removeClass("selected_list");
 
 				$(this).children().addClass("selected_list");				
@@ -55,6 +58,7 @@
 				var h = $("#info").css('height');
 				$("#info .loading").css('width', w);
 				$("#info .loading").css('height', h);
+				$('.cross_icon').hide();
 				get_detail_phieubaotri(id,gd,$(this).html());				
 			});			
 			
@@ -118,13 +122,15 @@
       		</ul>
 		</div>
 		<div id="right" class='bc_right'>
-			<div class="sub_header">  
+			<div class="sub_header relative">
+            	<span class="cross_icon icon_click" style="display:none"> </span>  
 				<h1>Thông Tin Chi Tiết</h1>	
 			</div>
 			<div id="info" class="pbt_info">
             
             </div>    
-            <span class="next_icon" style="display:none"> </span>                             
+            <span class="next_icon" style="display:none"> </span> 
+            <span class="previous_icon" style="display:none"> </span>                             
 		</div>	
 	</div>	
 </body>

@@ -29,21 +29,10 @@
 				$(this).css('width', w);
 				$(this).css('height', h);
 			});
-
-			$(".expand").on('click', function (e) {
-				$(this).toggleClass("expand collapse");
-			});				
-
-			$(".collapse").on('click', function (e) {
-				$(this).toggleClass("expand collapse");
-			});									
+												
 			$(".btn_close").on('click', function(){
 				$("#dialog").hide(300);				
-			});	
-			$(".icon_click").on('click', function () {
-				$(this).animate({top:"-=5"}, 100);
-				$(this).animate({top:"+=5"}, 100);
-			});
+			});				
 			
 			$(".alert_icon").on('click', function () {
 				var content = '<div style="margin-top:20px; margin-left:20px">'+
