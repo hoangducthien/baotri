@@ -90,7 +90,8 @@ function get_lichbaotri_detail(ms) {
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
-				$('#table_schedule').html('');				
+				$('#table_schedule').html('');
+				$("#ttbt .time").show();
 				$('#table_schedule').show();			
 				var t = ms.split('/');
 				var month = t[0];
