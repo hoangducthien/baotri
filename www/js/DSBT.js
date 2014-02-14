@@ -1,6 +1,7 @@
 var info_chitiet = {};
+var tb, ms_tb, ct, ms_ct, tt;
 function get_thietbi() {
-	var link = link_server + "get_thietbi.php";
+	var link = link_server + "get_danhsachbaotri.php";
 	$.ajax({
 		type: "GET",
 		url: link,
@@ -62,7 +63,9 @@ function set_logbaotri(){
 	dataString['ms'] = $('#s_ct').html();
 	dataString['nguoithuchien'] = localStorage.getItem("ten");
 	dataString['update'] = info_chitiet[$('#s_ct').html()];
+	dataString['ghichu'] = $('#ghichu').val();
 	var jsonString = JSON.stringify(dataString);
+	alert(jsonString);
 	$.ajax({
 		type: "POST",
 		url: link,
@@ -71,10 +74,24 @@ function set_logbaotri(){
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
-				
+				if (data['r'] == 1) {
+					thongbao('Thao tác thành công.'); 
+					$(".check_icon").hide();
+					$("#dstb_list_2").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+					var w = $('#dstb_list_2').css('width');
+					var h = $('#dstb_list_2').css('height');
+					$('#dstb_list_2 .loading').css('width', w);
+					$('#dstb_list_2 .loading').css('height', h);
+					$('#ttcttb').hide();			
+					get_chitiet_baotri(ms_tb);
+				} else thongbao('Thao tác thất bại.');
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
+}
+function xacnhan() {
+	dismissDialog();
+	set_logbaotri();
 }

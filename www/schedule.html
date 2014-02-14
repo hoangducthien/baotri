@@ -51,35 +51,23 @@
 			dateFormat: 'mm/yy',
 			beforeShow: function() { $('#hideMonth').html('.ui-datepicker-calendar{display:none;}'); },
 			onClose: function(dateText, inst) { 
+				
 				var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
 				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
 				$(this).datepicker('setDate', new Date(year, month, 1));
-				var days = getDaysInMonth(parseInt(month) + 1, year);				
-				
-				var i;
-				var s = '<table class="tb_lbt" ><tr><td class="tenthietbi">Tên thiết bị</td>';
-				for (i = 1; i <= days; i++){
-					s += '<td>'+i+'</td>';
-				}		
-				s += '</tr>';
-				for (var k in listtb){
-					s += '<tr><td id="'+ listtb[k]['ms'] +'">' + listtb[k]['ten'] + '</td>';
-					for (i = 1; i <= days; i++){
-						var date = new Date(year, month, i);
-						s += '<td><input type="checkbox"  data-d="'+ date.getTime()
-						+'" class="'+ listtb[k]['ms'] +'"/></td>';
-					}
-					s += '</tr>';
-				}
-				s += '</table>';
-				$('#table_schedule').html(s);
-				$('#div_btn').show();	
-				setTimeout(function(){$('#hideMonth').html('');},300);
+				var now = new Date();
+				if (((month >= now.getMonth()) && (year >= now.getFullYear())) || (year >= now.getFullYear())) {
+					var T = '0';
+					if ((month == now.getMonth()) && (year == now.getFullYear())) T = '1';
+					check_lichbaotri($(this).val(),month,year,T);
+				} else thongbao('Chọn thời gian lớn hơn hiện tại.');
+				setTimeout(function(){$('#hideMonth').html('');},300);			
 			}
 		});		
 		
 		$('.add_icon').on('click', function(){
 			mode = 'add';
+			$("#from_2").prop("disabled", false);
 			$('#table_schedule').html('');
 			$("#ttbt .time").show();
 			$('#table_schedule').show();
@@ -89,6 +77,7 @@
 		
 		$(document).on('click','#danhsachbaotri li',function(){
 			mode = 'edit';
+			$("#from_2").prop("disabled", true);
 			$('#div_btn').hide();
 			$('.time').hide();
 			$("#table_schedule").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
@@ -100,8 +89,12 @@
 		});
 		
 		$('#hoanthanh').on('click', function(){
-			if (mode == 'add') set_lichbaotri(); 
-			else update_lichbaotri();
+			{
+				if (mode == 'add') set_lichbaotri(); 
+				else update_lichbaotri();
+				
+				$('#table_schedule').html('');
+			}
 		});
 		search_list('#danhsachbaotri','#from');		
 	});

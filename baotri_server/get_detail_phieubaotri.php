@@ -4,13 +4,15 @@
 	$gd = $_GET['gd'];
 	$id = $_GET['id'];
 	if ($gd == 1){
-		$res = $mysqli->query("SELECT MaTB, NguoiYeuCau, NgayYeuCau, DatTai 
+		$res = $mysqli->query("SELECT MaTB, NguoiYeuCau, NgayYeuCau, DatTai,
+			 						TinhTrangHuHong,NguyenNhanHuHong,PhuongAnSuaChua
 								FROM bienbansuachua
 								WHERE ID = ".$_GET['id']);
 		$res->data_seek(0);
 		while ($row = $res->fetch_assoc()) {
 			echo json_encode(array('matb'=>$row['MaTB'],'nguoiyeucau'=>$row['NguoiYeuCau'],'ngayyeucau'=>$row['NgayYeuCau']
-									,'dattai'=>$row['DatTai']));
+									,'dattai'=>$row['DatTai'],'tinhtranghuhong'=>$row['TinhTrangHuHong']
+									,'nguyennhanhuhong'=>$row['NguyenNhanHuHong'],'phuongansuachua'=>$row['PhuongAnSuaChua']));
 		}
 		mysqli_free_result($res);
 	} else if ($gd == 2){
@@ -30,7 +32,7 @@
 	}  else if ($gd == 3){
 		$res = $mysqli->query("SELECT MaTB, NguoiYeuCau, NgayYeuCau, DatTai,
 									TinhTrangHuHong,NguyenNhanHuHong,PhuongAnSuaChua,
-									NguoiLapPhuongAn, NgayLapPhuongAn, NguoiDuyet_PA, NgayDuyet_PA, NgayBatDau  
+									NguoiLapPhuongAn, NgayLapPhuongAn, NguoiDuyet_PA, NgayDuyet_PA, NgayBatDau, KetQuaSuaChua  
 								FROM bienbansuachua
 								WHERE ID = ".$_GET['id']);
 		$res->data_seek(0);
@@ -40,7 +42,7 @@
 									,'nguyennhanhuhong'=>$row['NguyenNhanHuHong'],'phuongansuachua'=>$row['PhuongAnSuaChua']
 									,'nguoilapphuongan'=>$row['NguoiLapPhuongAn'],'ngaylapphuongan'=>$row['NgayLapPhuongAn']
 									,'nguoiduyetphuongan'=>$row['NguoiDuyet_PA'],'ngayduyetphuongan'=>$row['NgayDuyet_PA']
-									,'ngaybatdau'=>$row['NgayBatDau']));
+									,'ngaybatdau'=>$row['NgayBatDau'],'ketquasuachua'=>$row['KetQuaSuaChua']));
 		}
 		mysqli_free_result($res);
 	}  else if ($gd == 4){

@@ -46,11 +46,11 @@ function get_detail_phieubaotri(id,gd,ten){
 						'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+'</span></p></br>'+
                 		'<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 		'<p><span style="width:190px; display:block; float:left">Tình trạng hư hỏng:</span>'+ 
-						'<input type="text" id="tinhtrang" class="input" style="width:60%"/></p>'+
+						'<input type="text" id="tinhtrang" class="input" style="width:60%" value="'+data['tinhtranghuhong']+'"/></p>'+
                 		'<p> <span style="width:190px; display:block; float:left"> Nguyên nhân hư hỏng:</span>'+ 
-						'<input type="text" id="nguyennhan" class="input" style="width:60%"/></p>'+
+						'<input type="text" id="nguyennhan" class="input" style="width:60%" value="'+data['nguyennhanhuhong']+'"/></p>'+
                 		'<p><span style="width:190px; display:block; float:left">Phương án sửa chữa:</span>'+
-                		'<textarea type="text" id="phuongan" class="input" style="width:60%; resize:none; height:80px"></textarea></p>'+
+                		'<textarea type="text" id="phuongan" class="input" style="width:60%; resize:none; height:80px">'+data['phuongansuachua']+'</textarea></p>'+
                 		'<p><span>Người lập phương án: '+localStorage.getItem('ten')+'</span></p>';
 				} else if (gd == 2) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
@@ -77,8 +77,9 @@ function get_detail_phieubaotri(id,gd,ten){
                 		'<p>Ngày lập phương án: '+get_Date(data['ngaylapphuongan'])+'</p>'+
                 		'<p>Người duyệt phương án: '+data['nguoiduyetphuongan']+'</p>'+
 						'<p>Ngày duyệt phương án: '+get_Date(data['ngayduyetphuongan'])+'</p>'+
-						'<p><span style="width:190px; display:block; float:left">Kết quả sửa chữa:</span>'+
-                		'<textarea type="text" id="ketqua" class="input" style="width:60%; resize:none; height:80px"> </textarea>'+
+						'<p><span style="width:190px; display:block; float:left">Kết quả sửa chữa:</span>'+ 
+                		'<textarea type="text" id="ketqua" class="input" style="width:60%; resize:none; height:80px">'+ data['ketquasuachua']
+						'</textarea>'+
                 		'</p>'+
 						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 						'<span style="float:right; margin-right:20px">Người sửa chữa: '+localStorage.getItem('ten')+'</span></p>';
@@ -113,7 +114,7 @@ function get_detail_phieubaotri(id,gd,ten){
                 		'<p>Người lập phương án: '+data['nguoilapphuongan']+'</p>'+
                 		'<p>Ngày lập phương án: '+get_Date(data['ngaylapphuongan'])+'</p>'+
                 		'<p>Người duyệt phương án: '+data['nguoiduyetphuongan']+'</p>'+
-						'<p>Ngày duyệt phương án: '+data['ngayduyetphuongan']+'</p>'+
+						'<p>Ngày duyệt phương án: '+get_Date(data['ngayduyetphuongan'])+'</p>'+
 						'<p>Kết quả sửa chữa: '+ data['ketquasuachua']+'</p>'+
 						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 						'<span style="float:right; margin-right:20px">Người sửa chữa: '+ data['nguoisuachua']+'</span></p>'+
