@@ -144,7 +144,28 @@ function reset_input() {
 		$('#0').prop("checked", false);
 		$("#cb_quyenhan input").prop("checked", false);
 }
-
+function delete_taikhoan(ms) {
+		var link = link_server + "delete_taikhoan.php";
+		var dataString = "qh="+localStorage.getItem('qh')+"&maso="+ms;
+		$.ajax({
+			type: "POST",
+			url: link,
+			data: dataString,
+			success: function(data) {	
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				if (data['result'] == '1') {
+					thongbao('Xoá thành công!');
+				} else { 
+					thongbao('Xoá thất bại!');
+				}
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+					thongbao('Mạng có vấn đề, vui lòng thử lại!');
+			} 
+		});
+}
 function xacnhan(maso){
 	$('.mainloading').show();
 	$('#left').hide();
