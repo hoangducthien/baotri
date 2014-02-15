@@ -83,6 +83,9 @@ function check_null() {
 }
 
 function add() {
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
 	var dataString = {};
 	if (currentID == 1) {
 		dataString['ms'] = $('#ms').val(); 
@@ -136,12 +139,18 @@ function add() {
 		url: link,
 		data: {data:jsonString},
 		success: function(data) {	
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
@@ -269,4 +278,8 @@ function get_count_component() {
 			return 0;
 		} 
 	});
+}
+
+function update(){
+	alert('update');
 }

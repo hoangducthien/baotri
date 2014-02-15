@@ -46,11 +46,16 @@
 			});			
 			
 			$(".edit_icon").on('click', function () {
-				if ($(this).hasClass('checked')){
-					if (check_null()) add();
+				if ($(this).hasClass('checked')){					
 					$(".column_content").show();
-					$(".column_edit").hide();	
+					$(".column_edit").hide();
+					if (mode == 'add'){
+						if (check_null()) add();	
+					} else {
+						if (check_null()) update();	
+					}
 				} else {
+					mode="edit";
 					$(".column_content").hide();
 					$(".column_edit").show();	
 				}
@@ -171,6 +176,11 @@
 			</div>
 			<h1 class="title_header">QUẢN LÝ THIẾT BỊ</h1>
 		</div>
+        
+        <div class="mainloading" style="display:none">
+            <img src="images/ajax-loader.gif" />
+        </div>
+        
 		<div id="left">
 			<div class="sub_header relative" style="margin-bottom: 10px">
             	<span class="add_icon icon_click"></span>
