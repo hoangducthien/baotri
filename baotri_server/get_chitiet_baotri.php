@@ -34,6 +34,21 @@
 			array_push($array,array('ms'=>$row['MaSo'],'ten'=>$row['Ten'],'level'=>$row['Level'],'T'=>$s)); else 
 			if ($row['Level'] == 1) array_push($array,array('ms'=>$row['MaSo'],'ten'=>$row['Ten'],'level'=>$row['Level'],'T'=>array()));
 		}
+		
+		foreach ($array as $k => $v) {
+			$kt = 0;
+			if ($array[$k]['level'] == 1) {
+			foreach ($array as $k1 => $v1) {
+				if ($array[$k1]['level'] == 2) {
+					if (strpos($array[$k1]['ms'], $array[$k]['ms'].'.') !== false) {
+						$kt = 1; 
+						break;
+					}
+				}
+			}
+			if ($kt == 0) unset($array[$k]);
+			}
+		}
 		mysqli_free_result($res);
 		echo json_encode($array);
 		mysqli_close($mysqli);

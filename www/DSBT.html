@@ -57,7 +57,7 @@
 			
 			$("#check_btn_2").on('click', function () {
 				var content = '<div style="margin-top:20px; margin-left:20px">'+
-							'<p>Mã thiết bị: '+ms_ct+'</p></br><p>Tên thiết bị: '+ct+'</p></br>'+
+							'<p>Mã thiết bị: '+ms_tb+'</p></br><p>Tên thiết bị: '+tb+'</p></br>'+
 							'<div style="text-align:center">'+
 							'<input type="button" value="Hoàn thành" onclick="xacnhan2()" class="button" style="margin-right:40px">'+
 							'<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
@@ -107,7 +107,13 @@
 							tt += '; ';
 						}
 						str_thaotac += thaotac[i]['job'];						
-						tt += work[""+thaotac[i]['job']];
+						if (thaotac[i]['job'].search('/+/')<0) {
+							tt += work[""+thaotac[i]['job']];
+						} else {
+							var sss = thaotac[i]['job'].split('/+/');
+							for (var j in sss) 
+								tt += work[""+sss[j]];
+						}
 					}
 										
 					$('#s_thaotac').html(tt);

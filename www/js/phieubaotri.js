@@ -176,7 +176,7 @@ function set_phieubaotri(id,gd){
 
 function set_phieubaotri_return(id,gd){
 	var dataString = 'id='+id+'&gd='+gd; 
-	var link = link_server + "set_phieubaotri.php";
+	var link = link_server + "set_phieubaotri_return.php";
 	$.ajax({
 		type: "POST",
 		url: link,
@@ -242,5 +242,29 @@ function xacnhan3(id){
 		$('.mainloading').show();
 		$('#left').hide();
 		$('#right').hide();
+		var dataString = 'id='+id+'&ten='+localStorage.getItem('ten')+'&nguyennhan='+reason;
+		var link = link_server + "xoa_phieubaotri.php";
+		$.ajax({
+			type: "GET",
+			url: link,
+			data: dataString,
+			success: function(data) {	
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				if (data['r'] == 1) {	
+					thongbao('Thao tác thành công');			
+				} else thongbao('Thao tác thất bại');
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
 	}
 }

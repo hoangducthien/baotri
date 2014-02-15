@@ -111,5 +111,20 @@ function xacnhan2() {
 	$('#left').hide();
 	$('#right').hide();
 	dismissDialog();
-	
+	var link = link_server + "complete_baotri.php";
+	var dataString = 'ms=' + ms_tb;
+	$.ajax({
+		type: "GET",
+		url: link,
+		data: dataString,
+		success: function(data) {	
+			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+			data = JSON.parse(data);
+			if (data['r']==1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.');
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
 }
