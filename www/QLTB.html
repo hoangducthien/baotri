@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Quản lý thiết bị</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
-	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+	<script `="text/javascript" src="js/jquery-1.10.1.js"></script>
 	<script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/jquery_plus.js"></script>
     <script type="text/javascript" src="js/QLTB.js"></script>
@@ -23,9 +23,6 @@
 			$('.danhsach').css("height",y-149);
 			
 								
-			var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thiết bị', 'Trạng thái', 'Kiểu dáng', 'Hãng sản xuất', 'Nước sản xuất', 
-			'Lô sản xuất', 'Năm sản xuất', 'Thời gian bắt đầu sử dụng'], ['Mã loại thiết bị', 'Tên thiết bị'], ['Mã chi tiết', 'Loại chi tiết', 
-			], ['Mã loại chi tiết', 'Tên chi tiết', 'Thời gian bảo trì', 'Level']];										
 			
 			
 			$(".menu_icon").on('click', function () {
@@ -44,22 +41,18 @@
 				$(".column_content").toggle();
 				$(".column_edit textarea").toggle();
 			});	
-			
+			state = 1;
 			$(".add_icon").on('click', function () {
+				mode = "add";
 				$('.edit_icon').addClass('checked');
 				$('.edit_icon').show();	
 				$('.column').show();			
-				$(".column_content").hide();
-				$(".column_edit textarea").show();
-				$('.column').html(getTable(title[currentID-1]));
+				$('.column').html(getTable(currentID-1));
 				$(".column_item").css("width", right/5 - 1);
 				$(".column_header").css("width", right/5 - 1);
 				$(".column_edit textarea").css("width", right/5 - 12);
 				$(".column_edit textarea").css("height", 100);
 			});	
-			
-			
-			var currentID;
 			
 			$(".left_menu li").on('click', function () {
 				currentID = $(this).attr('id');
@@ -69,7 +62,13 @@
 				$(".left_menu").animate({width: 0}, 200 );
 				show = false;								
 			});
-			
+			$(document).on('click','#ds_comp li',function(){
+				mode = "edit";
+			});
+			$('#hoanthanh').on('click', function() {
+				if (check_null()) add();
+					else thongbao('Vui lòng nhập đầy đủ thông tin');
+			});
 			$("#1").click();
 		});
 	</script>
@@ -78,11 +77,10 @@
 	<div id="container">  
     	<div class="left_menu">
             <div class="left_menu_content">
-                <ul class="decorate_text">
+                <ul class="decorate_text" id="type">
                     <li id="1">Thiết bị</li>
                     <li id="2">Loại thiết bị</li>
-                    <li id="3">Chi tiết thiết bị</li>
-                    <li id="4">Loại Chi tiết</li>
+                    <li id="3">Loại Chi tiết</li>
                 </ul>
             </div>
 		</div>
@@ -101,11 +99,12 @@
 			</div> 
 			<input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
 			value="" type="search" class="input search">
-			
+			<ul id="ds_comp" class="liststyle" style="overflow: auto; ">
+            </ul>
 		</div>
 		<div id="right" class='bc_right'>
 			<div class="sub_header relative">
-				<span class="edit_icon icon_click" style="display:none"> </span>
+				<span class="edit_icon icon_click" id="hoanthanh" style="display:none"> </span>
 				<h1>Chi tiết</h1>	
 			</div>
 			
