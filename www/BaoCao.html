@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 	<script type="text/javascript" src="js/jquery_plus.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>	
@@ -21,38 +20,36 @@
 			var right = x - left;	
 			$("#left").css("width",left); 
 			$("#left").css("height",y);
+			$("#list_1").css("width",left); 
+			$("#list_1").css("height",y - 90);			
 			$("#right").css("width",right); 
 			$("#right").css("height",y); 
-			$(".bc_info").css("height", y - 40);
-			$("#dschitiet").css('width', right/3);
+			$("#step_1").css("width",right); 
+			$("#step_1").css("height",y); 
+			$("#info_lichbaotri").css("width",right); 
+			$("#info_lichbaotri").css("height",y - 30); 
+			$(".bc_info").css("height", y - 40);			
 			$("#right_left").css('width', right/3);	
 			$("#right_left").css('height', y-30);		
 			$("#list_title").css('width', right/3);
-			$("#dschitiet").css('height', y-70);
+			$("#dschitiet").css('height', y-80);
+			$("#dschitiet").css('width', right/3);
 			$("#log_baotri").css('width', 2*right/3);
 			$("#log_baotri").css('height', y-30);
-			
-			$("#container").swipe({
-				swipe:function(event, direction, distance, duration, fingerCount) {		  
-					var item1 = $('.navbar li span').filter('.selected_list');
-					
-					var i = parseInt(item1.parent().attr('id'),10);
-					item1.removeClass("selected_list");					
-					
-					if (direction == "left"){
-						i = i + 1;
-						if (i > 3) i = 1;		
-					}else if (direction == "right"){
-						i = i - 1;
-						if (i < 1) i = 3;
-					}				
-
-					$("#"+i.toString()).click();	
-				}
-			});		
-			get_thietbi();
-			$('.navbar li').click(function(){							
+						
+			$('.loading').each(function(){
+				var w = $(this).parent().css('width');
+				var h = $(this).parent().css('height');
+				$(this).css('width', w);
+				$(this).css('height', h);
+			});
 				
+			get_thietbi();
+			$('.navbar li').click(function(){														
+				$('#dschitiet').html('');
+				$('#log_baotri').html('');
+				$('#step_1').html('');
+				$('#info_lichbaotri').html('');
 				$(this).parent().children().children().removeClass("selected_list");
 
 				$(this).children().addClass( "selected_list" );				
@@ -85,7 +82,11 @@
 					$('#month').val('')
 					$("#pbt_search").hide();
 				}
-				
+				$("#list_1").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+				var w = $('#list_1').css('width');
+				var h = $('#list_1').css('height');
+				$('#list_1 .loading').css('width', w);
+				$('#list_1 .loading').css('height', h);
 			});
 			
 			$('#1').click();
@@ -100,17 +101,38 @@
 			});			
 			
 			$(".datepicker").datepicker();	
-			$(document).on('click','#list_1 li',function(){
+			$(document).on('click','#list_1 li',function(){				
 				if (currentID == 1) {
+					$("#step_1").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+					var w = $('#step_1').css('width');
+					var h = $('#step_1').css('height');
+					$('#step_1 .loading').css('width', w);
+					$('#step_1 .loading').css('height', h);
+					get_chitiet($(this).attr('data-ms'));
 					get_phieubaotri($(this).attr('data-ms'));
 				} else if (currentID == 2) {
+					$("#info_lichbaotri").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+					var w = $('#info_lichbaotri').css('width');
+					var h = $('#info_lichbaotri').css('height');
+					$('#info_lichbaotri .loading').css('width', w);
+					$('#info_lichbaotri .loading').css('height', h);
 					get_lichbaotri_detail($(this).html());
 				} else if (currentID == 3) {
+					$("#dschitiet").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+					var w = $('#dschitiet').css('width');
+					var h = $('#dschitiet').css('height');
+					$('#dschitiet .loading').css('width', w);
+					$('#dschitiet .loading').css('height', h);
 					get_chitiet($(this).attr('data-ms'));
 				}
 			});
 			
-			$(document).on('click','#dschitiet li',function(){
+			$(document).on('click','#dschitiet li',function(){				
+				$("#log_baotri").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+				var w = $('#log_baotri').css('width');
+				var h = $('#log_baotri').css('height');
+				$('#log_baotri .loading').css('width', w);
+				$('#log_baotri .loading').css('height', h);
 				get_logbaotri($(this).attr('data-ms'));
 			});
 			
