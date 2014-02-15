@@ -21,6 +21,13 @@
 			$("#right").css("width",right); 
 			$("#right").css("height",y); 
 			$(".bc_info").css("height", y - 40);
+			$("#dschitiet").css('width', right/3);
+			$("#right_left").css('width', right/3);	
+			$("#right_left").css('height', y-30);		
+			$("#list_title").css('width', right/3);
+			$("#dschitiet").css('height', y-70);
+			$("#log_baotri").css('width', 2*right/3);
+			$("#log_baotri").css('height', y-30);
 			
 			$("#container").swipe({
 				swipe:function(event, direction, distance, duration, fingerCount) {		  
@@ -219,26 +226,37 @@
                         </table>
                     </div>
 				</div>
-                <div id="step_3" class="bc_info">   
-                	<div class="sukienbaotri" style="border-bottom:1px solid #ccc">
-                        <p> Mã bảo trì: </p>
-                        <p>Ngày bảo trì: </p>
-                        <p>Người thực hiện: </p>
-                        <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
-                        </p>
-                        <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
-                        </p>                        
-                        <p>Ghi chú: </p>	               
-                    </div>
-                    <div class="sukienbaotri" style="border-bottom:1px solid #ccc">
-                        <p> Mã bảo trì: </p>
-                        <p>Ngày bảo trì: </p>
-                        <p>Người thực hiện: </p>
-                        <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
-                        </p>
-                        <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
-                        </p>                        
-                        <p>Ghi chú: </p>	               
+                <div id="step_3" class="bc_info">
+                	<div id="right_left" style="float:left">
+                        <p id="list_title" style="height:30px; margin-top:10px; text-align:center" class="decorate_text">Danh sách chi tiết</p>
+                        <ul id="dschitiet" class="liststyle" style="overflow: auto; ">
+                            <li>abc</li>
+                            <li>abc</li>
+                            <li>abc</li>
+                            <li>abc</li>
+                         </ul>
+                     </div>
+                    <div id="log_baotri" style="overflow:auto; float:left">  
+                        <div class="sukienbaotri" style="border-bottom:1px solid #ccc">
+                            <p> Mã bảo trì: </p>
+                            <p>Ngày bảo trì: </p>
+                            <p>Người thực hiện: </p>
+                            <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
+                            </p>
+                            <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
+                            </p>                        
+                            <p>Ghi chú: </p>	               
+                        </div>
+                        <div class="sukienbaotri" style="border-bottom:1px solid #ccc">
+                            <p> Mã bảo trì: </p>
+                            <p>Ngày bảo trì: </p>
+                            <p>Người thực hiện: </p>
+                            <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
+                            </p>
+                            <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
+                            </p>                        
+                            <p>Ghi chú: </p>	               
+                        </div>
                     </div>
 				</div>
 			</div>	

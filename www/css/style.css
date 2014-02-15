@@ -135,6 +135,16 @@ td{
 	background-position:-505px;
 }
 
+.check_icon_2{
+	position:absolute;
+	right:5px;
+	top:-3px;
+	width:36px;
+	height:36px;
+	background:url(../images/icons-36-white.png);
+	background-position:-505px;
+}
+
 .next_icon{
 	position:fixed;
 	right:15px;
@@ -586,7 +596,7 @@ li:hover{
 	margin-left:5px;
 }
 
-#right, #left{	
+#right, #left, #right_left{	
 	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
 }
 #right{

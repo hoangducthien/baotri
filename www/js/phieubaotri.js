@@ -125,7 +125,7 @@ function get_detail_phieubaotri(id,gd,ten){
 						'<p style="clear:both"> <span style="float:left">Người duyệt: '+localStorage.getItem('ten')+'</span>';
 				}
 				$('.next_icon').show();
-				if (gd > 1){
+				if (gd == 2 || gd == 4){
 					$('.previous_icon').show();	
 				}
 				$('.cross_icon').show();			
@@ -171,9 +171,42 @@ function set_phieubaotri(id,gd){
 	});
 }
 function xacnhan(id, gd){
+	dismissDialog();
+	var check = true;
+	if (gd == 1){
+		if ($("#tinhtrang").val() == "" || $("#nguyennhan").val() == "" || $("#phuongan").val() == ""){
+			check = false;
+		}
+	} else if (gd == 3){
+		if ($("#ketqua").val() == ""){
+			check = false;
+		}
+	}
+	if (check == true){
+		$('.mainloading').show();
+		$('#left').hide();
+		$('#right').hide();		
+		set_phieubaotri(id,gd);
+	} else {
+		thongbao('Bạn cần điền đầy đủ thông tin');
+	}
+}
+
+function xacnhan2(id, gd){
 	$('.mainloading').show();
 	$('#left').hide();
 	$('#right').hide();
 	dismissDialog();
-	set_phieubaotri(id,gd);
+}
+
+function xacnhan3(id){	
+	var reason = $('#reason').val();
+	dismissDialog();	
+	if (reason == ""){
+		thongbao('Không được để trống nguyên nhân');
+	} else {
+		$('.mainloading').show();
+		$('#left').hide();
+		$('#right').hide();
+	}
 }
