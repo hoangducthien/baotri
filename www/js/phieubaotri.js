@@ -171,11 +171,25 @@ function set_phieubaotri(id,gd){
 	});
 }
 function xacnhan(id, gd){
-	$('.mainloading').show();
-	$('#left').hide();
-	$('#right').hide();
 	dismissDialog();
-	set_phieubaotri(id,gd);
+	var check = true;
+	if (gd == 1){
+		if ($("#tinhtrang").val() == "" || $("#nguyennhan").val() == "" || $("#phuongan").val() == ""){
+			check = false;
+		}
+	} else if (gd == 3){
+		if ($("#ketqua").val() == ""){
+			check = false;
+		}
+	}
+	if (check == true){
+		$('.mainloading').show();
+		$('#left').hide();
+		$('#right').hide();		
+		set_phieubaotri(id,gd);
+	} else {
+		thongbao('Bạn cần điền đầy đủ thông tin');
+	}
 }
 
 function xacnhan2(id, gd){

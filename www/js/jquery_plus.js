@@ -1,6 +1,6 @@
 var y = $(window).height();
 var x = $(window).width();
-$(function(){ 
+$(function(){ 	
 	$("#container").css("width",x); 
 	$("#container").css("height",y);
 	$('.mainloading').css('height', y - 35);
@@ -10,3 +10,8 @@ $(function(){
 		$(this).animate({top:"+=5"}, 100);
 	});
 });
+
+function backKeyDown() {
+	alert('st');
+    navigator.app.exitApp();
+}

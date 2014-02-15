@@ -11,7 +11,10 @@
     <script type="text/javascript" src="js/jquery_plus.js"></script>
 	<script src="js/index.js"></script>
 	<script type="text/javascript">	
-		$(function(){
+	$(function(){
+		if (localStorage.getItem('qh') != null){
+			window.location.href="menu.html";
+		}
 		var x = $(window).width();
 		var y = $(window).height();
 		var marginTop = 0;
@@ -37,11 +40,17 @@
 		$("#backgroud")	.css("margin-left", marginLeft);
 		$("#lg_container").css("width",x); 
 		$("#lg_container").css("height",y - marginTop);
-		$("#login_btn").on('click',function(){
-			{
-				if (localStorage.getItem('ur')!= null) window.location.href='menu.html'; else
-				check_login($('#username').val(),hex_md5($('#password').val()));
-			}
+		$("#login_btn").on('click',function(){		
+			$('.loading').show();	
+			$('#login_area').hide();
+			check_login($('#username').val(),hex_md5($('#password').val()));
+		});
+		
+		$('.loading').each(function(){
+			var w = $(this).parent().css('width');
+			var h = $(this).parent().css('height');
+			$(this).css('width', w);
+			$(this).css('height', h);
 		});
 			
 });	
@@ -53,11 +62,16 @@
 			<img src="img/index-bg.gif" id="backgroundImg"/>
 		</div>
 		<div id="lg_right" align="center">
-			<input type="text" placeholder="Tên đăng nhập" id="username" class="input" />
-			</br></br>
-			<input type="password" placeholder="Mật khẩu" id="password" class="input" />
-			</br></br>
-			<input type="button" value="Đăng Nhập" class="btn" id="login_btn">              	
+        	<div class="loading" style="display:none">
+            	<img src="images/ajax-loader.gif" />
+            </div>
+            <div id="login_area">
+                <input type="text" placeholder="Tên đăng nhập" id="username" class="input" />
+                </br></br>
+                <input type="password" placeholder="Mật khẩu" id="password" class="input" />
+                </br></br>
+                <input type="button" value="Đăng Nhập" class="btn" id="login_btn">       
+            </div>       	
 		</div>
 	</div>
 </body>

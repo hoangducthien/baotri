@@ -22,7 +22,7 @@
 		}
 		$('.dialog').css("width", w);
 		$('.dialog_title p').css("width", w);
-		$('.dialog').css("height", h);
+		$('.dialog').css("padding-bottom", 10);
 		$('.dialog').css("top", (y - h)/2);
 		$('.dialog').css("left", (x - w)/2);
 		$('.dialog').show();

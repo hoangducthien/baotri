@@ -78,6 +78,13 @@
 				get_chitiet_baotri(ms_tb);
 				tb = $(this).html();
 			});	
+			
+			var work = new Array();
+			work['I'] = "Kiểm tra, làm sạch, hiệu chỉnh hoặc thay thế";
+			work['I1'] = "Kiểm tra, làm sạch, hiệu chỉnh hoặc thay thế có dùng khí nén để vệ sinh";
+			work['L'] = "Bôi trơn";
+			work['R'] = "Thay thế";
+			
 			$(document).on('click','#dstb_list_2 li',function(){
 				if ($(this).attr('data-T') != '') {
 					$("#check_btn").show();
@@ -94,8 +101,13 @@
 						str_thaotac += thaotac[i]['job']+',';
 					}
 					if (str_thaotac.length>0) str_thaotac = str_thaotac.substr(0,str_thaotac.length-1); 
-					tt = str_thaotac;
-					$('#s_thaotac').html(str_thaotac);
+					var arr_thaotac = str_thaotac.split(",");
+					tt = "";
+					for (i = 0; i < arr_thaotac.length; i++){
+						tt += work[""+arr_thaotac];
+					}
+					$('#s_thaotac').html(tt);
+					$('#s_thaotac').addClass(str_thaotac);
 					$('#s_tb').html(tb);
 					$("#right_top .loading").hide();
 				} else {

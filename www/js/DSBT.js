@@ -60,7 +60,7 @@ function get_chitiet_baotri(ms){
 function set_logbaotri(){
 	var link = link_server + "set_logbaotri.php";
 	var dataString = {};
-	dataString['macv'] = $('#s_thaotac').html();
+	dataString['macv'] = $('#s_thaotac').attr('class');
 	dataString['ms'] = $('#s_ct').html();
 	dataString['nguoithuchien'] = localStorage.getItem("ten");
 	dataString['update'] = info_chitiet[$('#s_ct').html()];

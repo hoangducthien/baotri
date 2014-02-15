@@ -2,15 +2,16 @@ function initialize() {
 	$.mobile.allowCrossDomainPages = true;
 	$.support.cors = true;
 	$.mobile.phonegapNavigationEnabled = true;	
+	document.addEventListener("backbutton", function(){return false;}, false);
 }
 
 function onDeviceReady() {
-	console.log("Now loading...");
     initialize();
 }
 function onload(){
 	document.addEventListener("deviceready",onDeviceReady,false);
 }
+
 function check_login(ur, pw) {
 	var link = link_server + "check_login.php";
 	var dataString = "ur="+ur+"&pw="+pw;
@@ -28,11 +29,17 @@ function check_login(ur, pw) {
 					localStorage.setItem('qh',data['qh']);
 					localStorage.setItem('ur',ur);
 					window.location.href = "menu.html";
-				}
-				else {thongbao('Vui lòng kiểm tra lại thông tin tài khoản/mật khẩu.');}
+				}				
+				else {
+					$('.loading').hide();	
+					$('#login_area').show();
+					thongbao('Vui lòng kiểm tra lại thông tin tài khoản/mật khẩu.');
+				}				
 			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				thongbao('Mạng có vấn đề, vui lòng thử lại!');
-			} 
+		error: function (xhr, ajaxOptions, thrownError) {
+			$('.loading').hide();	
+			$('#login_area').show();
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
 	});
 }		
