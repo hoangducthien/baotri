@@ -1,5 +1,5 @@
 var info_chitiet = {};
-var tb, ms_tb, ct, ms_ct, tt;
+var tb, ms_tb, ct, ms_ct, tt, currentDeviceID;
 function get_thietbi() {
 	var link = link_server + "get_danhsachbaotri.php";
 	$.ajax({
@@ -13,7 +13,8 @@ function get_thietbi() {
 			for (var i in data) {
 				s = s + '<li data-ms="' +data[i]['ms'] + '">' + data[i]['ten'] + '</li>';
 			}
-			$('#dstb_list_1').html(s);
+			$('#dstb_list_1').html(s);	
+			currentDeviceID = $('#dstb_list_1 li:first').attr('data-ms');
 			$("#check_btn_2").show();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
@@ -103,4 +104,12 @@ function xacnhan() {
 	$('#right').hide();
 	dismissDialog();
 	set_logbaotri();
+}
+
+function xacnhan2() {
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
+	dismissDialog();
+	
 }
