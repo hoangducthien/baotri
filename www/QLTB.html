@@ -35,9 +35,12 @@
 			});			
 			
 			$(".edit_icon").on('click', function () {
+				if ($(this).hasClass('checked')){
+					alert('aa');
+				}
 				$(this).toggleClass("checked");
 				$(".column_content").toggle();
-				$(".column_edit textarea").toggle();
+				$(".column_edit textarea").toggle();				
 			});	
 			state = 1;
 			$(".add_icon").on('click', function () {
@@ -63,10 +66,7 @@
 			$(document).on('click','#ds_comp li',function(){
 				mode = "edit";
 			});
-			$('#hoanthanh').on('click', function() {
-				if (check_null()) add();
-					else thongbao('Vui lòng nhập đầy đủ thông tin');
-			});
+			
 			$("#1").click();
 			$('body').show();
 		});
