@@ -11,7 +11,7 @@
 			mysqli_free_result($res);
 		} else if ($_GET['type'] == 2) {
 			$res = $mysqli->query("SELECT Count(MaSo) AS Total
-									FROM tableloaithiebi");
+									FROM tableloaithietbi");
 			$res->data_seek(0);
 			while ($row = $res->fetch_assoc()) {
 				echo json_encode(array('count'=>$row['Total']));

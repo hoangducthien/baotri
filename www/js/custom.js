@@ -43,7 +43,7 @@
 			$(selector).each(function() {  
 				if (s != '')
 				var str = $(this).attr(s); 
-				else var str = $(this).text();
+				else var str = $(this).html();
 				(str.search(new RegExp(query, "i")) < 0) ? $(this).hide(): $(this).show();  
 			});  
 	}

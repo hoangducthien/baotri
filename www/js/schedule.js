@@ -85,6 +85,7 @@ function check_date(d) {
 		d_1 = d_2.getTime();
 	if (d < d_1) return "disabled"; else return;
 }
+
 function get_lichbaotri_detail(ms) {
 	var link = link_server + "get_lichbaotri_detail.php";
 	var dataString = 'ms='+ms;	

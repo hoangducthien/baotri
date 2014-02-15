@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 	<script type="text/javascript" src="js/jquery_plus.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>	
+    <script type="text/javascript" src="js/baocao.js"></script>	 
 	<script type="text/javascript">	
 		$(function(){
 			x -= 2;
@@ -47,7 +48,7 @@
 					$("#"+i.toString()).click();	
 				}
 			});		
-			
+			get_thietbi();
 			$('.navbar li').click(function(){							
 				
 				$(this).parent().children().children().removeClass("selected_list");
@@ -61,24 +62,32 @@
                 });	
 					
 				$("#step_"+i).show();
-				
+				$('#list_1').html('');
+				currentID = i;
 				if (i == 3){
+					get_list_thietbi();
 					$("#skbt_search").show();
-					$('.monthPick').hide();
-					$(".time").hide();
+					$("#skbt_search").val('');
+					$('#month').hide();
+					$("#pbt_search").hide();
 				} else if (i == 1){
+					get_list_phieubaotri();
 					$("#skbt_search").hide();
-					$('.monthPick').hide();
-					$(".time").show();
+					$('#month').hide();
+					$("#pbt_search").val('');
+					$("#pbt_search").show();
 				} else if (i == 2){
+					get_lichbaotri();
 					$("#skbt_search").hide();
-					$('.monthPick').show();
-					$(".time").hide();
+					$('#month').show();
+					$('#month').val('')
+					$("#pbt_search").hide();
 				}
 				
 			});
 			
 			$('#1').click();
+			get_list_phieubaotri();
 
 			$(".expand").on('click', function (e) {
 				$(this).toggleClass("expand collapse");
@@ -89,19 +98,24 @@
 			});			
 			
 			$(".datepicker").datepicker();	
+			$(document).on('click','#list_1 li',function(){
+				if (currentID == 1) {
+					get_phieubaotri($(this).attr('data-ms'));
+				} else if (currentID == 2) {
+					get_lichbaotri_detail($(this).html());
+				} else if (currentID == 3) {
+					get_chitiet($(this).attr('data-ms'));
+				}
+			});
 			
-			$(".monthPicker").datepicker({
-			changeMonth: true,
-			changeYear: true,
-			showButtonPanel: true,
-			dateFormat: 'mm/yy',
-			onClose: function(dateText, inst) { 
-				var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-				$(this).datepicker('setDate', new Date(year, month, 1));							
-			}
-		});
-		$('body').show();	
+			$(document).on('click','#dschitiet li',function(){
+				get_logbaotri($(this).attr('data-ms'));
+			});
+			
+			search_list('#list_1','#pbt_search');
+			search_list('#list_1','#month');
+			search_list('#list_1','#skbt_search');
+			$('body').show();	
 });
 </script>
 </head>
@@ -135,39 +149,16 @@
 				<div class="sub_header">  
 					<h1>Danh Sách</h1>	
 				</div>
-				<div class='time' > 					
-					<p>
-                        <span style="margin-right:10px; margin-left:10px;">Từ Ngày:</span>													
-                        <input id="from" class="input datepicker" type="text" style="margin-top:10px"/>
-                    </p>
-                    <p style="margin-top:10px">
-                        <span style="margin-left:10px">Đến Ngày:</span>	
-                        <input id="to" type="text" class="input datepicker" style="margin-bottom:10px"/>					
-                    </p>					
-				</div>
-                <div class='monthPick' style="display:none"> 					
-                     <span style="margin-right:10px; margin-left:10px;">Tháng/năm:</span>													
-                     <input id="month" class="input monthPicker" type="text" style="margin-top:10px"/>			
-				</div>                
-                <input name="" id="skbt_search" placeholder="Nhâp tên hoặc mã số"
+				 <input name="" id="pbt_search" placeholder="Nhâp tên thiết bị"
+			value="" type="search" class="input search" style="margin:10px">
+                 																	
+                 <input id="month" class="input search" type="text" placeholder="Nhâp tháng/năm" style="margin:10px"/>			
+           
+                 <input name="" id="skbt_search" placeholder="Nhâp tên thiết bị"
 			value="" type="search" class="input search" style="margin:10px">
                 
-				<ul id="sx-list" style="display:none; overflow:auto" class="danhsach liststyle">
-					<li class="expand">san xuat</li>
-					<li class="lv2 collapse">san xuat</li>
-					<li class="lv3">san xuat</li>
-					<li>san xuat</li>
-					<li>san xuat</li>
-					<li>san xuat</li>
-					<li class="lv4">san xuat</li>			
-				</ul>
-				<ul id="bt-list" style="display:none; overflow:auto" class="danhsach liststyle">
-					<li>bao tri</li>
-					<li>bao tri</li>
-				</ul>
-				<ul id="skbt-list" style="display:none; overflow:auto" class="danhsach liststyle">
-					<li>thiet bi a</li>
-					<li>thiet bi b</li>
+				<ul id="list_1" style="overflow:auto" class="danhsach liststyle">
+							
 				</ul>
 			</div>
 			<div id="right" class='bc_right'>
@@ -175,88 +166,22 @@
 					<h1>Thông Tin Chi Tiết</h1>	
 				</div>
 				<div id="step_1" class="bc_info">
-                	<p> <span style="float:left">Người yêu cầu: </span> <span style="float:right; margin-right:20px">Ngày yêu cầu:  </span></p>
-                </br>
-                <p style="clear:both"> <span style="float:left">Tên thiết bị: </span> <span style="float:right; margin-right:20px">Đặt tại:  </span></p>
-             	</br>
-                <p style="clear:both"> Mã hiệu: </p>                
-                <p>Tình trạng hư hỏng:</p>
-                <p>Nguyên nhân hư hỏng:</p>
-                <p>Phương án sửa chữa:</p>
-                <p>Người lập phương án:</p>
-                <p>Ngày lập phương án:</p>
-                <p>Người duyệt phương án:</p>
-                <p>Ngày duyệt phương án:</p>
-                <p>Kết quả sửa chữa:</p>
-                <p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: </span> <span style="float:right; margin-right:20px">Người sửa chữa:  </span></p>
-                </br>
-                <p style="clear:both">Ngày kết thúc sửa chữa:</p>
-                <p>Kết quả giám sát: </p>
-				<p> <span style="float:left">Người giám sát: </span> <span style="float:right; margin-right:20px">Ngày giám sát:  </span></p>
-                </br>
-                <p style="clear:both"> <span style="float:left">Người duyệt: </span> <span style="float:right; margin-right:20px">Ngày duyệt:  </span></p>	
+                		
 				</div>
 				<div id="step_2" class="bc_info">
-					<div style="overflow:auto; width:100%">
-                        <table class="tb_lbt" >
-                            <tr>
-                                <td class="tenthietbi">Tên thiết bị</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>            
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr class="tb_row_lbt">
-                                <td>Máy quậy acid 1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
+					<div style="overflow:auto; width:100%" id="info_lichbaotri">
+                        
                     </div>
 				</div>
                 <div id="step_3" class="bc_info">
                 	<div id="right_left" style="float:left">
                         <p id="list_title" style="height:30px; margin-top:10px; text-align:center" class="decorate_text">Danh sách chi tiết</p>
                         <ul id="dschitiet" class="liststyle" style="overflow: auto; ">
-                            <li>abc</li>
-                            <li>abc</li>
-                            <li>abc</li>
-                            <li>abc</li>
+                            
                          </ul>
                      </div>
                     <div id="log_baotri" style="overflow:auto; float:left">  
-                        <div class="sukienbaotri" style="border-bottom:1px solid #ccc">
-                            <p> Mã bảo trì: </p>
-                            <p>Ngày bảo trì: </p>
-                            <p>Người thực hiện: </p>
-                            <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
-                            </p>
-                            <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
-                            </p>                        
-                            <p>Ghi chú: </p>	               
-                        </div>
-                        <div class="sukienbaotri" style="border-bottom:1px solid #ccc">
-                            <p> Mã bảo trì: </p>
-                            <p>Ngày bảo trì: </p>
-                            <p>Người thực hiện: </p>
-                            <p>Trạng thái hoạt động &nbsp; : &nbsp; Bình thường       
-                            </p>
-                            <p> Thao tác bảo trì &nbsp; : &nbsp; Thay nhớt
-                            </p>                        
-                            <p>Ghi chú: </p>	               
-                        </div>
+                        
                     </div>
 				</div>
 			</div>	
