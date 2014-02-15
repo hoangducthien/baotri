@@ -74,7 +74,15 @@
 				show = false;								
 			});
 			$(document).on('click','#ds_comp li',function(){
+				$('.edit_icon').addClass('checked');
+				$('.edit_icon').show();	
 				mode = "edit";
+				$('.column').html(getTable(currentID-1));
+				$(".column_item").css("width", right/5 - 1);
+				$(".column_header").css("width", right/5 - 1);
+				$(".column_edit textarea").css("width", right/5 - 12);
+				$(".column_edit textarea").css("height", 100);
+				get_detail_component($(this).attr('data-ms'),$(this).html());
 			});
 			
 			$("#1").click();
@@ -124,6 +132,7 @@
 					}					
 				}	
 			}
+
 		});
 	</script>
 </head>

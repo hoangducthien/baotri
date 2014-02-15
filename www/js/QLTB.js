@@ -5,7 +5,7 @@ var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thi
 var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocsx','losx','namsx','thoigiansd'],
 			['ms','ten'],['ms','ten','thoigianbaotri','level','tb']];
 
-var currentID, mode, state;
+var currentID, mode, state, num_count;
 
 function getColumn(title, content, id){
 	var s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
@@ -14,10 +14,18 @@ function getColumn(title, content, id){
 	return s;
 }
 
+function getColumn2(title, content, id){
+	var s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+	'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
+	'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+	return s;
+}
+
 function getTable(k){
 	var s = '';
 	for (i = 0; i< title[k].length; i++){
-		s += getColumn(title[k][i], '',id_t[k][i]);
+		if (mode == 'add') s += getColumn(title[k][i], '',id_t[k][i]); else
+		if (mode == 'edit') s += getColumn2(title[k][i], '',id_t[k][i]);
 	}
 	return s;
 }
@@ -155,6 +163,92 @@ function get_list_component(page) {
 					s += '<li data-ms="'+data[i]['ms']+'">'+data[i]['ten']+'</li>';
 				}
 				$('#ds_comp').html(s);
+			},
+		error: function (xhr, ajaxOptions, thrownError) {
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
+}
+
+function get_detail_component(ms, ten) {
+	if (currentID == 2) {
+			$('#ms').val(ms); 
+			$('#ten').val(ten); 
+					
+			$('[data-s="ms"]').html(ms);
+			$('[data-s="ten"]').html(ten);
+	} else {
+	var dataString = 'ms='+ms+'&type='+currentID;
+		link = link_server + "get_detail_component.php";	
+	$.ajax({
+		type: "GET",
+		url: link,
+		data: dataString,
+		success: function(data) {	
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				var s = '';
+				if (currentID == 1) {
+					$('#ms').val(ms); 
+					$('#ten').val(ten); 
+					$('#noidat').val(data['noidat']);
+					$('#loaitb').val(data['loaitb']); 
+					$('#trangthai').val(data['trangthai']); 
+					$('#kieudang').val(data['kieudang']); 
+					$('#hangsx').val(data['hangsx']); 
+					$('#nuocsx').val(data['nuocsx']); 
+					$('#losx').val(data['losx']); 
+					$('#namsx').val(data['namsx']);
+					var date = new Date(parseInt(data['thoigiansd'])); 
+						s_date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
+					$('#thoigiansd').val(s_date); 
+					
+					$('[data-s="ms"]').html(ms);
+					$('[data-s="ten"]').html(ten);
+					$('[data-s="noidat"]').html(data['noidat']);
+					$('[data-s="loaitb"]').html(data['loaitb']);
+					$('[data-s="trangthai"]').html(data['trangthai']);
+					$('[data-s="kieudang"]').html(data['kieudang']);
+					$('[data-s="hangsx"]').html(data['hangsx']);
+					$('[data-s="nuocsx"]').html(data['nuocsx']);
+					$('[data-s="losx"]').html(data['losx']);
+					$('[data-s="namsx"]').html(data['namsx']);
+					$('[data-s="thoigiansd"]').html(s_date);
+					
+				} else if (currentID == 3) {
+					$('#ms').val(ms.substring(ms.search('.')+1,ms.length-ms.search('.'))); 
+					$('#ten').val(ten); 
+					$('#thoigianbaotri').val(data['ThoiGianBaoTri']); 
+					$('#level').val(data['Level']);
+					$('#tb').val(ms.substring(0,ms.search('.'))); 
+					
+					$('[data-s="ms"]').html(ms.substring(ms.search('.')+1,ms.length-ms.search('.')));
+					$('[data-s="ten"]').html(ten);
+					$('[data-s="thoigianbaotri"]').html(data['ThoiGianBaoTri']);
+					$('[data-s="level"]').html(data['Level']);
+					$('[data-s="tb"]').html(ms.substring(0,ms.search('.')));
+				}
+			},
+		error: function (xhr, ajaxOptions, thrownError) {
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
+	}
+}
+
+function get_count_component() {
+	var dataString = 'type='+currentID;
+	    link = link_server + 'get_count_component.php';
+	$.ajax({
+		type: "GET",
+		url: link,
+		data: dataString,
+		success: function(data) {	
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				num_count = parseInt(data['count']);
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
