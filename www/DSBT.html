@@ -52,6 +52,15 @@
 				popupDialog("Hoàn thành bảo trì", 300, 250, content);	
 			});
 			
+			$("#check_btn_2").on('click', function () {
+				var content = '<div style="margin-top:20px; margin-left:20px">'+
+							'<p>Mã thiết bị: '+ms_ct+'</p></br><p>Tên thiết bị: '+ct+'</p></br>'+
+							'<div style="text-align:center">'+
+							'<input type="button" value="Hoàn thành" onclick="xacnhan()" class="button" style="margin-right:40px">'+
+							'<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Hoàn thành bảo trì", 300, 200, content);	
+			});
+			
 			$(".icon_click").on('click', function () {
 				$(this).animate({top:"-=5"}, 100);
 				$(this).animate({top:"+=5"}, 100);
@@ -59,7 +68,7 @@
 			
 			get_thietbi();
 			$(document).on('click','#dstb_list_1 li',function(){
-				$(".check_icon").hide();
+				$("#check_btn").hide();
 				$("#dstb_list_2").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
 				var w = $('#dstb_list_2').css('width');
 				var h = $('#dstb_list_2').css('height');
@@ -71,7 +80,7 @@
 			});	
 			$(document).on('click','#dstb_list_2 li',function(){
 				if ($(this).attr('data-T') != '') {
-					$(".check_icon").show();
+					$("#check_btn").show();
 					$('#ttcttb').show();
 					$("#tttb").hide();
 					$("#right_top .loading").show();
@@ -90,7 +99,7 @@
 					$('#s_tb').html(tb);
 					$("#right_top .loading").hide();
 				} else {
-					$(".check_icon").hide();
+					$("#check_btn").hide();
 					$('#ttcttb').hide();
 					$("#tttb").hide();
 				}
@@ -114,7 +123,8 @@
   <div id="left">
     <div id="dsbt_left_bottom">
       <div id="left_head">
-        <div class="sub_header">
+        <div class="sub_header relative">
+          <span class="check_icon_2 icon_click" id="check_btn_2" style="display:none"> </span>
           <h1>Danh Sách Thiết Bị</h1>
         </div>
         <!-- /header -->

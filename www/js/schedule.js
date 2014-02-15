@@ -178,7 +178,7 @@ function check_lichbaotri(id, month, year,T) {
 					$('#table_schedule').html('');
 					$('#div_btn').hide();
 				} else if (data['r'] == -1) {
-					thongbao('Chưa có lịch bảo trì tháng trước');
+					thongbao('Bạn chưa nhập lịch bảo trì cho những tháng trước đây');
 					$('#table_schedule').html('');
 					$('#div_btn').hide();
 				}

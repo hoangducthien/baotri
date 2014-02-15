@@ -56,11 +56,13 @@
 				var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
 				$(this).datepicker('setDate', new Date(year, month, 1));
 				var now = new Date();
-				if (((month >= now.getMonth()) && (year >= now.getFullYear())) || (year >= now.getFullYear())) {
+				if (((month >= now.getMonth()) && (year >= now.getFullYear())) || (year > now.getFullYear())) {
 					var T = '0';
 					if ((month == now.getMonth()) && (year == now.getFullYear())) T = '1';
 					check_lichbaotri($(this).val(),month,year,T);
-				} else thongbao('Chọn thời gian lớn hơn hiện tại.');
+				} else {
+					thongbao('Không thể lập lịch bảo trì cho tháng đã qua');
+				}
 				setTimeout(function(){$('#hideMonth').html('');},300);			
 			}
 		});		

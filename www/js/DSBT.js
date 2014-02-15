@@ -8,13 +8,14 @@ function get_thietbi() {
 		success: function(data) {	
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
-				data = JSON.parse(data);
-				var s = '';
-				for (var i in data) {
-					s = s + '<li data-ms="' +data[i]['ms'] + '">' + data[i]['ten'] + '</li>';
-				}
-				$('#dstb_list_1').html(s);
-			},
+			data = JSON.parse(data);
+			var s = '';
+			for (var i in data) {
+				s = s + '<li data-ms="' +data[i]['ms'] + '">' + data[i]['ten'] + '</li>';
+			}
+			$('#dstb_list_1').html(s);
+			$("#check_btn_2").show();
+		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
@@ -65,7 +66,6 @@ function set_logbaotri(){
 	dataString['update'] = info_chitiet[$('#s_ct').html()];
 	dataString['ghichu'] = $('#ghichu').val();
 	var jsonString = JSON.stringify(dataString);
-	alert(jsonString);
 	$.ajax({
 		type: "POST",
 		url: link,

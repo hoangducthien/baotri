@@ -63,13 +63,36 @@
 			});			
 			
 			$(".next_icon").on('click', function(){
-				var content = '<div style="margin-top:20px; text-align:center">'+
-							  '<p>Chuyển sang giai đoạn tiếp theo</p></br>' +
+				var content = '<div style="text-align:center; padding:10px">'+
+							  '<p>Duyệt kết quả, Chuyển sang giai đoạn tiếp theo</p></br>' +
 							  '<div style="text-align:center">'+
-							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan(' + id + ',' + gd +')">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" ' +
+							  'onclick="xacnhan(' + id + ',' + gd +')">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
-				popupDialog("Báo hư thiết bị", 300, 150, content);					
-			});		
+				popupDialog("Xác nhận", 300, 170, content);					
+			});	
+			
+			$(".previous_icon").on('click', function(){
+				var content = '<div style="padding:10px; text-align:center">'+
+							  '<p>Kết quả không được duyệt, trở về giai đoạn trước</p></br>' +
+							  '<div style="text-align:center">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan2(' + id + ',' + gd +')">'+
+							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Xác nhận", 300, 170, content);					
+			});
+			
+			$(".cross_icon").on('click', function(){
+				var content = '<div style="margin-top:10px; margin-left:20px">'+
+							  '<p>Nguyên nhân: </p>' +
+							  '<textarea id="reason" style="margin-top:10px; margin-bottom:10px; resize:none; width:240px; height:100px; overflow:auto" class="input"></textarea>' +
+							  '<div style="text-align:center; margin-right:20px">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan3(' + id +
+							  ')">'+
+							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Xóa biên bản bảo trì", 300, 250, content);					
+			});
+			
+				
 			search_list('#dsbb','#dsbt_se_1');
 			$('#1').click();													
 	});

@@ -125,7 +125,7 @@ function get_detail_phieubaotri(id,gd,ten){
 						'<p style="clear:both"> <span style="float:left">Người duyệt: '+localStorage.getItem('ten')+'</span>';
 				}
 				$('.next_icon').show();
-				if (gd > 1){
+				if (gd == 2 || gd == 4){
 					$('.previous_icon').show();	
 				}
 				$('.cross_icon').show();			
@@ -176,4 +176,23 @@ function xacnhan(id, gd){
 	$('#right').hide();
 	dismissDialog();
 	set_phieubaotri(id,gd);
+}
+
+function xacnhan2(id, gd){
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
+	dismissDialog();
+}
+
+function xacnhan3(id){	
+	var reason = $('#reason').val();
+	dismissDialog();	
+	if (reason == ""){
+		thongbao('Không được để trống nguyên nhân');
+	} else {
+		$('.mainloading').show();
+		$('#left').hide();
+		$('#right').hide();
+	}
 }
