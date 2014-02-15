@@ -20,10 +20,8 @@
 			$("#left").css("height",y);
 			$("#right").css("width",right); 
 			$("#right").css("height",y); 
-			$('.danhsach').css("height",y-149);
-			
-								
-			
+			$('#ds_comp').css("height",y-120);	
+			$('#ds_comp').css("width", left);														
 			
 			$(".menu_icon").on('click', function () {
 				if (show == false){
@@ -99,9 +97,18 @@
 				<h1 id="left_title"></h1>
 			</div> 
 			<input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
-			value="" type="search" class="input search">
+			value="" type="search" class="input search" style="margin-bottom:10px">
 			<ul id="ds_comp" class="liststyle" style="overflow: auto; ">
             </ul>
+            <div id="page">
+                <a>First</a>
+                <a> <img src="img/cate_image_pg_back.png" /> </a>
+                <a class='selected_color'> 1 </a>
+                <a> 2 </a>
+                <a> 3 </a>
+                <a> <img src="img/cate_image_pg_next.png" /> </a>
+                <a> Last </a>
+			</div>
 		</div>
 		<div id="right" class='bc_right'>
 			<div class="sub_header relative">
