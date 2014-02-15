@@ -36,7 +36,7 @@
 			
 			$(".edit_icon").on('click', function () {
 				if ($(this).hasClass('checked')){
-					alert('aa');
+					if (check_null()) add();
 				}
 				$(this).toggleClass("checked");
 				$(".column_content").toggle();
@@ -57,6 +57,7 @@
 			
 			$(".left_menu li").on('click', function () {
 				currentID = $(this).attr('id');
+				get_list_component(1);
 				$('.column').html('');
 				$('.edit_icon').hide();														
 				$('.left_menu_content').hide();				
@@ -68,6 +69,7 @@
 			});
 			
 			$("#1").click();
+			get_list_component(1);
 			$('body').show();
 		});
 	</script>
@@ -96,7 +98,7 @@
                 <span class="menu_icon icon_click"></span>
 				<h1 id="left_title"></h1>
 			</div> 
-			<input name="" id="dsbt_se_1" placeholder="Nhâp tên hoặc mã số"
+			<input name="" id="dsbt_se_1" placeholder="Nhâp tên"
 			value="" type="search" class="input search" style="margin-bottom:10px">
 			<ul id="ds_comp" class="liststyle" style="overflow: auto; ">
             </ul>

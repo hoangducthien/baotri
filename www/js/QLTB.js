@@ -138,3 +138,26 @@ function add() {
 		} 
 	});
 }
+
+function get_list_component(page) {
+	var dataString = 'type='+currentID+'&page='+page;
+		link = link_server + "get_list_component.php";	
+	$.ajax({
+		type: "GET",
+		url: link,
+		data: dataString,
+		success: function(data) {	
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				var s = '';
+				for (var i in data) {
+					s += '<li data-ms="'+data[i]['ms']+'">'+data[i]['ten']+'</li>';
+				}
+				$('#ds_comp').html(s);
+			},
+		error: function (xhr, ajaxOptions, thrownError) {
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
+}
