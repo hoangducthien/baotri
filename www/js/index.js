@@ -1,16 +1,32 @@
-function initialize() {
-	$.mobile.allowCrossDomainPages = true;
-	$.support.cors = true;
-	$.mobile.phonegapNavigationEnabled = true;	
-	document.addEventListener("backbutton", function(){return false;}, false);
-}
 
-function onDeviceReady() {
-    initialize();
-}
-function onload(){
-	document.addEventListener("deviceready",onDeviceReady,false);
-}
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        document.addEventListener("backbutton", function(){
+			alert('đụ má nó');
+			return false;
+		}, false);
+    }
+};
+
 
 function check_login(ur, pw) {
 	var link = link_server + "check_login.php";
@@ -42,4 +58,4 @@ function check_login(ur, pw) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
-}		
+}	

@@ -23,6 +23,15 @@
 			$('#ds_comp').css("height",y-120);	
 			$('#ds_comp').css("width", left);														
 			
+			$('.loading').each(function(){
+				var w = $(this).parent().css('width');
+				var h = $(this).parent().css('height');
+				$(this).css('width', w);
+				$(this).css('height', h);
+			});
+			
+			$("#left .loading").css('height', y - 80);
+			
 			$(".menu_icon").on('click', function () {
 				if (show == false){
 					$(".left_menu").animate({width: ""+left}, 200 );	
@@ -69,8 +78,52 @@
 			});
 			
 			$("#1").click();
-			get_list_component(1);
+			var currentPage = 1;
+			get_list_component(currentPage);
 			$('body').show();
+			
+			$('#first').on('click', function(){
+				setPage(1);			
+			});	
+			
+			$('#pre').on('click', function(){
+				setPage(currentPage - 1);			
+			});
+			
+			$('#next').on('click', function(){
+				setPage(currentPage + 1);			
+			});
+			
+			$('#last').on('click', function(){
+							
+			});
+			
+			$('.page_num').on('click', function(){
+				setPage(parseInt($(this).html()));			
+			});					
+			
+			function setPage(page){
+				if (currentPage != page && page > 0){
+					currentPage = page;
+					get_list_component(currentPage);					
+					var firstPage = currentPage - 1;
+					if (firstPage > 0){
+						$('.page_num').each(function() {
+                            $(this).html(firstPage);
+							$(this).removeClass('selected_color');
+							firstPage++;							
+                        });
+						$('#page2').addClass('selected_color');
+					} else {
+						$('.page_num').each(function() {
+                            $(this).html(firstPage+1);
+							$(this).removeClass('selected_color');
+							firstPage++;							
+                        });
+						$('#page1').addClass('selected_color');
+					}					
+				}	
+			}
 		});
 	</script>
 </head>
@@ -97,19 +150,22 @@
             	<span class="add_icon icon_click"></span>
                 <span class="menu_icon icon_click"></span>
 				<h1 id="left_title"></h1>
-			</div> 
+			</div>             
 			<input name="" id="dsbt_se_1" placeholder="Nhâp tên"
 			value="" type="search" class="input search" style="margin-bottom:10px">
-			<ul id="ds_comp" class="liststyle" style="overflow: auto; ">
+            <div class="loading">
+                <img src="images/ajax-loader.gif" />
+            </div>
+			<ul id="ds_comp" class="liststyle" style="overflow: auto; display:none">
             </ul>
-            <div id="page">
-                <a>First</a>
-                <a> <img src="img/cate_image_pg_back.png" /> </a>
-                <a class='selected_color'> 1 </a>
-                <a> 2 </a>
-                <a> 3 </a>
-                <a> <img src="img/cate_image_pg_next.png" /> </a>
-                <a> Last </a>
+            <div id="page" style='display:none'>
+                <a id='first'>First</a>
+                <a id='pre'> <img src="img/cate_image_pg_back.png" /> </a>
+                <a class='selected_color page_num' id="page1"> 1 </a>
+                <a class='page_num' id="page2"> 2 </a>
+                <a class='page_num' id="page3"> 3 </a>
+                <a id='next'> <img src="img/cate_image_pg_next.png" /> </a>
+                <a id='last'> Last </a>
 			</div>
 		</div>
 		<div id="right" class='bc_right'>
