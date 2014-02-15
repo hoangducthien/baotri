@@ -63,6 +63,36 @@
 	function getDaysInMonth(m, y) {						
   		return /8|3|5|10/.test(--m)?30:m==1?(!(y%4)&&y%100)||!(y%400)?29:28:31;
 	}
-
 	
-
+	
+	
+	var app = {
+		// Application Constructor
+		initialize: function() {			
+			this.bindEvents();
+		},
+		// Bind Event Listeners
+		//
+		// Bind any events that are required on startup. Common events are:
+		// 'load', 'deviceready', 'offline', and 'online'.
+		bindEvents: function() {
+			document.addEventListener('deviceready', this.onDeviceReady, false);
+		},
+		// deviceready Event Handler
+		//
+		// The scope of 'this' is the event. In order to call the 'receivedEvent'
+		// function, we must explicity call 'app.receivedEvent(...);'
+		onDeviceReady: function() {
+			app.receivedEvent('deviceready');
+		},
+		// Update DOM on a Received Event
+		receivedEvent: function(id) {				
+			document.addEventListener("backbutton", function(){	
+				if (location.href.indexOf('menu.html') > 0 || location.href.indexOf('index.html') > 0)			
+					navigator.app.exitApp();
+				else
+					window.location.href="menu.html";
+				return false;
+			}, false);			
+		}
+	};

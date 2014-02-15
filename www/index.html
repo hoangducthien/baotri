@@ -5,18 +5,17 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<title>Dang Nhap</title>	
 	<script src="js/md5.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
 	<script src="js/jquery-1.10.1.js"></script>
-    <script type="text/javascript" src="js/jquery_plus.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery_plus.js"></script>    
 	<script src="js/index.js"></script>
 	<script type="text/javascript">	
-	
 	app.initialize();
 	$(function(){
 		if (localStorage.getItem('qh') != null){
 			window.location.href="menu.html";
-		}
+		}		
 		var x = $(window).width();
 		var y = $(window).height();
 		var marginTop = 0;
@@ -58,7 +57,7 @@
 });	
 </script>
 </head>
-<body id="login"">
+<body id="login">
 	<div id="lg_container">
 		<div id="backgroud">
 			<img src="img/index-bg.gif" id="backgroundImg"/>
