@@ -30,7 +30,7 @@
 				$(this).css('height', h);
 			});
 			
-			$("#left .loading").css('height', y - 80);
+			$("#left .loading").css('height', y - 120);
 			
 			$(".menu_icon").on('click', function () {
 				if (show == false){
@@ -46,10 +46,14 @@
 			$(".edit_icon").on('click', function () {
 				if ($(this).hasClass('checked')){
 					if (check_null()) add();
+					$(".column_content").show();
+					$(".column_edit").hide();	
+				} else {
+					$(".column_content").hide();
+					$(".column_edit").show();	
 				}
 				$(this).toggleClass("checked");
-				$(".column_content").toggle();
-				$(".column_edit textarea").toggle();				
+							
 			});	
 			state = 1;
 			$(".add_icon").on('click', function () {
@@ -59,15 +63,15 @@
 				$('.column').show();			
 				$('.column').html(getTable(currentID-1));
 				$(".column_item").css("width", right/5 - 1);
-				$(".column_header").css("width", right/5 - 1);
-				$(".column_edit textarea").css("width", right/5 - 12);
-				$(".column_edit textarea").css("height", 100);
-			});	
+				$(".column_header").css("width", right/5 - 23);
+				$(".column_content").css("width", right/5 - 14.5);
+				$(".column_edit textarea").css("width", right/5 - 14.5);
+			});				
 			
 			$(".left_menu li").on('click', function () {
 				currentID = $(this).attr('id');
 				get_list_component(1);
-				numPage = get_count_component();
+				get_count_component();				
 				$('#left .loading').show();
 				$('#ds_comp').hide();
 				$("#page").hide();
@@ -77,20 +81,19 @@
 				$(".left_menu").animate({width: 0}, 200 );
 				show = false;								
 			});
-			$(document).on('click','#ds_comp li',function(){
-				$('.edit_icon').addClass('checked');
+			$(document).on('click','#ds_comp li',function(){				
 				$('.edit_icon').show();	
 				mode = "edit";
 				$('.column').html(getTable(currentID-1));
 				$(".column_item").css("width", right/5 - 1);
-				$(".column_header").css("width", right/5 - 1);
+				$(".column_header").css("width", right/5 - 23);
+				$(".column_content").css("width", right/5 - 14.5);
 				$(".column_edit textarea").css("width", right/5 - 12);
-				$(".column_edit textarea").css("height", 100);
 				get_detail_component($(this).attr('data-ms'),$(this).html());
 			});
 			
 			var currentPage = 1;			
-			var numPage;
+			
 			$("#1").click();
 			
 			$('body').show();
@@ -116,7 +119,7 @@
 			});					
 			
 			function setPage(page){
-				if (currentPage != page && page > 0 && page < num_page){
+				if (currentPage != page && page > 0 && page <= num_page){
 					currentPage = page;
 					$('#left .loading').show();
 					$('#ds_comp').hide();
@@ -136,7 +139,12 @@
 							firstPage++;							
                         });
 						$('#page1').addClass('selected_color');
-					}					
+					}
+					if (currentPage == num_page){
+						$('#page3').hide();
+					} else if (num_page > 2){
+						$('#page3').show();
+					}
 				}	
 			}
 

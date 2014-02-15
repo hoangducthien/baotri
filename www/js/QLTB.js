@@ -242,7 +242,6 @@ function get_detail_component(ms, ten) {
 }
 
 function get_count_component() {
-	alert(currentID);
 	var dataString = 'type='+currentID;
 	    link = link_server + 'get_count_component.php';
 	$.ajax({
@@ -255,8 +254,6 @@ function get_count_component() {
 				data = JSON.parse(data);
 				num_count = parseInt(data['count']);
 				num_page = parseInt(num_count/30);
-				alert(num_count);
-				alert(num_page);
 				if (num_count % 30 > 0)
 					num_page++;
 				if (num_page > 1){
