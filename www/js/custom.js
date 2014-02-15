@@ -1,5 +1,5 @@
 // JavaScript Document	
-	var link_server = "http://192.168.1.34/baotri_server/";	
+	var link_server = "http://www.servertest.net23.net/baotri_server/";	
 	var quyenhan = ["Tất cả các quyền","Xem danh sách bảo trì","Báo hư","Xem biên bản sửa chữa","Xem kế hoạch bảo trì"
 					,"Xem thông tin cá nhân","Quản lý thiết bị","Quản lý tài khoản","Xem báo cáo"];
 	var time_baotri = [86400000,180000000,1800000000,5400000000,9000000000,18000000000,21600000000,43200000000,86400000000];
@@ -63,6 +63,36 @@
 	function getDaysInMonth(m, y) {						
   		return /8|3|5|10/.test(--m)?30:m==1?(!(y%4)&&y%100)||!(y%400)?29:28:31;
 	}
-
 	
-
+	
+	
+	var app = {
+		// Application Constructor
+		initialize: function() {			
+			this.bindEvents();
+		},
+		// Bind Event Listeners
+		//
+		// Bind any events that are required on startup. Common events are:
+		// 'load', 'deviceready', 'offline', and 'online'.
+		bindEvents: function() {
+			document.addEventListener('deviceready', this.onDeviceReady, false);
+		},
+		// deviceready Event Handler
+		//
+		// The scope of 'this' is the event. In order to call the 'receivedEvent'
+		// function, we must explicity call 'app.receivedEvent(...);'
+		onDeviceReady: function() {
+			app.receivedEvent('deviceready');
+		},
+		// Update DOM on a Received Event
+		receivedEvent: function(id) {				
+			document.addEventListener("backbutton", function(){	
+				if (location.href.indexOf('menu.html') > 0 || location.href.indexOf('index.html') > 0)			
+					navigator.app.exitApp();
+				else
+					window.location.href="menu.html";
+				return false;
+			}, false);			
+		}
+	};

@@ -173,6 +173,36 @@ function set_phieubaotri(id,gd){
 		} 
 	});
 }
+
+function set_phieubaotri_return(id,gd){
+	var dataString = 'id='+id+'&gd='+gd; 
+	var link = link_server + "set_phieubaotri.php";
+	$.ajax({
+		type: "POST",
+		url: link,
+		data: dataString,
+		success: function(data) {	
+			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+			data = JSON.parse(data);
+			if (data['r'] == 1) {	
+				thongbao('Thao tác thành công');			
+				$('#'+gd).click();
+				get_phieubaotri(gd);
+			} else thongbao('Thao tác thất bại');
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
+}
+
 function xacnhan(id, gd){
 	dismissDialog();
 	var check = true;
@@ -199,7 +229,8 @@ function xacnhan2(id, gd){
 	$('.mainloading').show();
 	$('#left').hide();
 	$('#right').hide();
-	dismissDialog();
+	dismissDialog();	
+	set_phieubaotri_return(id,gd);
 }
 
 function xacnhan3(id){	

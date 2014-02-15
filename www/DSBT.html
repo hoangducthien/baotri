@@ -4,11 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Danh Sách Bảo Trì</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 <script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/DSBT.js"></script>
 <script type="text/javascript">
+		app.initialize();
 		$(function() {		
 			x -= 2;
 			y -= 35;
@@ -57,7 +59,7 @@
 				var content = '<div style="margin-top:20px; margin-left:20px">'+
 							'<p>Mã thiết bị: '+ms_ct+'</p></br><p>Tên thiết bị: '+ct+'</p></br>'+
 							'<div style="text-align:center">'+
-							'<input type="button" value="Hoàn thành" onclick="xacnhan()" class="button" style="margin-right:40px">'+
+							'<input type="button" value="Hoàn thành" onclick="xacnhan2()" class="button" style="margin-right:40px">'+
 							'<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
 				popupDialog("Hoàn thành bảo trì", 300, 200, content);	
 			});

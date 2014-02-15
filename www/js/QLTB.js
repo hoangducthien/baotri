@@ -5,7 +5,7 @@ var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thi
 var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocsx','losx','namsx','thoigiansd'],
 			['ms','ten'],['ms','ten','thoigianbaotri','level','tb']];
 
-var currentID, mode, state, num_count;
+var currentID, mode, state, num_count, num_page;
 
 function getColumn(title, content, id){
 	var s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
@@ -83,6 +83,9 @@ function check_null() {
 }
 
 function add() {
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
 	var dataString = {};
 	if (currentID == 1) {
 		dataString['ms'] = $('#ms').val(); 
@@ -136,12 +139,18 @@ function add() {
 		url: link,
 		data: {data:jsonString},
 		success: function(data) {	
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
@@ -154,7 +163,9 @@ function get_list_component(page) {
 		type: "GET",
 		url: link,
 		data: dataString,
-		success: function(data) {	
+		success: function(data) {
+				$('#left .loading').hide();
+				$('#ds_comp').show();	
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
@@ -165,6 +176,8 @@ function get_list_component(page) {
 				$('#ds_comp').html(s);
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('#left .loading').hide();
+			$('#ds_comp').show();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
@@ -249,9 +262,24 @@ function get_count_component() {
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				num_count = parseInt(data['count']);
+				num_page = parseInt(num_count/30);
+				if (num_count % 30 > 0)
+					num_page++;
+				if (num_page > 1){
+					if (num_page < 2){
+						$('#page3').hide();
+					}
+					$('#page').show();
+				}				
+				return num_page;
 			},
-		error: function (xhr, ajaxOptions, thrownError) {
+		error: function (xhr, ajaxOptions, thrownError) {			
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+			return 0;
 		} 
 	});
+}
+
+function update(){
+	alert('update');
 }

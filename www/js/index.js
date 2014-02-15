@@ -1,16 +1,6 @@
-function initialize() {
-	$.mobile.allowCrossDomainPages = true;
-	$.support.cors = true;
-	$.mobile.phonegapNavigationEnabled = true;	
-	document.addEventListener("backbutton", function(){return false;}, false);
-}
 
-function onDeviceReady() {
-    initialize();
-}
-function onload(){
-	document.addEventListener("deviceready",onDeviceReady,false);
-}
+
+
 
 function check_login(ur, pw) {
 	var link = link_server + "check_login.php";
@@ -42,4 +32,4 @@ function check_login(ur, pw) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
-}		
+}	
