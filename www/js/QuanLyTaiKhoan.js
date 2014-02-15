@@ -97,7 +97,10 @@ function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 			type: "POST",
 			url: link,
 			data: dataString,
-			success: function(data) {	
+			success: function(data) {
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();	
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
@@ -109,6 +112,10 @@ function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 				}
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
+				thongbao('Mạng có vấn đề, vui lòng thử lại!');
 			} 
 		});
 }
@@ -120,7 +127,10 @@ function edit_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 			type: "POST",
 			url: link,
 			data: dataString,
-			success: function(data) {	
+			success: function(data) {
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();	
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
@@ -129,9 +139,13 @@ function edit_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 					$("#tttk_edit").hide();
 					$(".edit_icon").show();
 				} else { thongbao('Thay đổi thông tin thất bại!');
-				}
+				}				
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
+				thongbao('Mạng có vấn đề, vui lòng thử lại!');
 			} 
 		});
 }
@@ -151,7 +165,10 @@ function delete_taikhoan(ms) {
 			type: "POST",
 			url: link,
 			data: dataString,
-			success: function(data) {	
+			success: function(data) {
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();		
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
@@ -159,10 +176,13 @@ function delete_taikhoan(ms) {
 					thongbao('Xoá thành công!');
 				} else { 
 					thongbao('Xoá thất bại!');
-				}
+				}				
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
-					thongbao('Mạng có vấn đề, vui lòng thử lại!');
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
+				thongbao('Mạng có vấn đề, vui lòng thử lại!');
 			} 
 		});
 }
@@ -171,4 +191,5 @@ function xacnhan(maso){
 	$('#left').hide();
 	$('#right').hide();
 	dismissDialog();
+	delete_taikhoan(maso);
 }

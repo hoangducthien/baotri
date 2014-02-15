@@ -33,6 +33,8 @@ function get_info() {
 }
 
 function change_pass(oldpw, newpw){
+	$('.mainloading').show();
+	$('#right').hide();
 	var link = link_server + "change_pass.php";
 	var dataString = "ms="+localStorage.getItem('ms')+"&ur="+localStorage.getItem('ur')
 			+'&oldpw='+hex_md5(oldpw)+'&newpw='+hex_md5(newpw);
@@ -40,13 +42,17 @@ function change_pass(oldpw, newpw){
 		type: "POST",
 		url: link,
 		data: dataString,
-		success: function(data) {	
+		success: function(data) {
+			$('.mainloading').hide();
+			$('#right').show();	
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				if (data['result'] == 1) thongbao('Đổi mật khẩu thành công'); else thongbao('Đổi mật khẩu thất bại'); 
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
+				$('.mainloading').hide();
+				$('#right').show();
 				thongbao('Mạng có vấn đề, vui lòng thử lại!');
 			} 
 	});

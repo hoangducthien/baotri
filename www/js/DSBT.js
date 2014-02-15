@@ -71,6 +71,9 @@ function set_logbaotri(){
 		url: link,
 		data: {data:jsonString},
 		success: function(data) {	
+			$('.mainloading').show();
+			$('#left').hide();
+			$('#right').hide();
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
@@ -87,11 +90,17 @@ function set_logbaotri(){
 				} else thongbao('Thao tác thất bại.');
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').show();
+			$('#left').hide();
+			$('#right').hide();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
 }
 function xacnhan() {
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
 	dismissDialog();
 	set_logbaotri();
 }

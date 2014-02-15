@@ -13,7 +13,7 @@
 		var qh = localStorage.getItem('qh');
 		if (qh == null){
 			window.location.href="index.html";	
-		}
+		}		
 		var x = $(window).width();
 		var y = $(window).height();					
 		var sites_2 = ["DSBT.html", "baohu.html", "phieubaotri.html", "schedule.html", "thongtincanhan.html", "QLTB.html", "QuanLyTaiKhoan.html", "BaoCao.html"];
@@ -119,9 +119,11 @@
 			window.location.href="index.html";			
 		});
 		
+		$('body').show();
+		
 	});
 </script>
-<body>
+<body style="display:none">
 
 	<div class="header">
 		<h1 class="title_header">Chức Năng</h1>

@@ -25,8 +25,9 @@
 			$('.describe').css("width", right - right_left - 41);
 			$("#right").css("height", y);
 			$("#right_top").css("height", y - 40);
-			$("#dstb_list_1").css("height", bottom - $("#left_head").height() - 10);
-			$("#dstb_list_2").css("height", y - $("#right_head").height() -10);
+			$("#dstb_list_1").css("height", bottom - 90);
+			$("#dstb_list_2").css("height", y - 90);
+			$("#dstb_list_1").css("width", left);
 
 			$('.loading').each(function(){
 				var w = $(this).parent().css('width');
@@ -97,15 +98,16 @@
 					$('#s_ct').html(ms_ct);
 					var thaotac = info_chitiet[$(this).attr('data-ms')];			
 					var str_thaotac = '';
+					tt = '';
 					for (var i in thaotac) {
-						str_thaotac += thaotac[i]['job']+',';
+						if (str_thaotac != ''){
+							str_thaotac += ',';
+							tt += '; ';
+						}
+						str_thaotac += thaotac[i]['job'];						
+						tt += work[""+thaotac[i]['job']];
 					}
-					if (str_thaotac.length>0) str_thaotac = str_thaotac.substr(0,str_thaotac.length-1); 
-					var arr_thaotac = str_thaotac.split(",");
-					tt = "";
-					for (i = 0; i < arr_thaotac.length; i++){
-						tt += work[""+arr_thaotac];
-					}
+										
 					$('#s_thaotac').html(tt);
 					$('#s_thaotac').addClass(str_thaotac);
 					$('#s_tb').html(tb);
@@ -118,20 +120,20 @@
 			});									
 			search_list("#dstb_list_1","#dsbt_se_1");
 			search_list("#dstb_list_2","#dsbt_se_2");
+			$('body').show();
 		});
 	</script>
-
-
-   
 </head>
-<body>
+<body style="display:none">
 <div id="container">
   <div class="header">
     <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
 				href="menu.html">Chức Năng</a> </div>
     <h1 class="title_header">DANH SÁCH BẢO TRÌ</h1>    
   </div>			
-  
+   <div class="mainloading" style="display:none">
+       <img src="images/ajax-loader.gif" />
+  	</div>	
   <div id="left">
     <div id="dsbt_left_bottom">
       <div id="left_head">

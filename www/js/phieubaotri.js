@@ -166,6 +166,9 @@ function set_phieubaotri(id,gd){
 			$('#right').show();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});

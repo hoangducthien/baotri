@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery_plus.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/schedule.js"></script>
 <script type="text/javascript">	
@@ -26,10 +27,11 @@
 		$("#ttbt").css("width",right); 
 		$("#ttbt").css("height",y - 40);
 		$("#table_schedule").css("width",right); 
-		$("#table_schedule").css("height",y - 160);
+		$("#table_schedule").css("height",y - 140);
 		
 		$("#top").css("height",y-101); 
-		$("#danhsachbaotri").css('height',y-160); 
+		$("#danhsachbaotri").css('height',y-80); 
+		$("#danhsachbaotri").css("width",left);
 		$(".icon_click").on('click', function () {
 			$(this).animate({top:"-=5"}, 100);
 			$(this).animate({top:"+=5"}, 100);
@@ -92,24 +94,29 @@
 		
 		$('#hoanthanh').on('click', function(){
 			{
+				$('.mainloading').show();
+				$('#left').hide();
+				$('#right').hide();
 				if (mode == 'add') set_lichbaotri(); 
-				else update_lichbaotri();
-				
-				$('#table_schedule').html('');
+				else update_lichbaotri();	
 			}
 		});
-		search_list('#danhsachbaotri','#from');		
+		search_list('#danhsachbaotri','#from');
+		$('body').show();		
 	});
 	
 </script>
 </head>
-<body>
-  <div id="container schedule">  
+<body style="display:none">
+  <div id="container schedule">    	
   	<div class="header">
         <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
                     href="menu.html">Chức Năng</a> </div>
         <h1 class="title_header">KẾ HOẠCH BẢO TRÌ</h1>  
-    </div> 		
+    </div> 
+    <div class="mainloading" style="display:none">
+       <img src="images/ajax-loader.gif" />
+  	</div>		
 	<div id="left">
 		<div class="sub_header relative">
        		<span class="add_icon icon_click" style="display:none"></span>
@@ -140,7 +147,7 @@
             <div style="overflow:auto; width:100%; margin-top:10px;" id="table_schedule">
             	
             </div>
-            <div style="height:50px; display:none; margin-top:20px" align="center" id="div_btn">				
+            <div style="height:40px; display:none; margin-top:10px" align="center" id="div_btn">				
 				<div style="width:15%;"><input type="button" value="Cập nhật" id="hoanthanh" class="button"/></div>
 			</div>
         </div>

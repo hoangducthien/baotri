@@ -42,14 +42,20 @@ function set_lichbaotri() {
 		type: "POST",
 		url: link,
 		data: dataString,
-		success: function(data) {	
-				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
-					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
-				data = JSON.parse(data);
-				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.');
-				get_lichbaotri();
-			},
+		success: function(data) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();		
+			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+			data = JSON.parse(data);
+			if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.');
+			get_lichbaotri();
+		},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();	
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
@@ -148,14 +154,20 @@ function update_lichbaotri() {
 		type: "POST",
 		url: link,
 		data: dataString,
-		success: function(data) {	
-				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
-					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
-				data = JSON.parse(data);
-				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.');
-				get_lichbaotri();
-			},
+		success: function(data) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();	
+			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+			data = JSON.parse(data);
+			if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.');
+			get_lichbaotri();
+		},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();	
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});

@@ -90,6 +90,9 @@
 		$('#hoanthanh').on('click',function() {
 			if (check_input() == '0') 
 			{
+				$('.mainloading').show();
+				$('#left').hide();
+				$('#right').hide();
 				if (mode == 'add')
 					add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
 							,$('#chucvu').val(), quyenhan_check());
@@ -101,10 +104,11 @@
 			
 		});
 		search_list('#account-list','#seach_opt');
+		$('body').show();
 	});
 </script>
 </head>
-<body>
+<body style="display:none">
   <div id="container">  
   	<div class="header">
     <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a

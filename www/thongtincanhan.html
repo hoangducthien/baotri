@@ -26,24 +26,29 @@
 		get_info();
 		$('#changepass').on("click", function(){
 			var content = '<div style="margin-top:30px; text-align:center">'
-			+'<input type="text" placeholder="Mật khẩu cũ" type="password" id="oldpw" class="input" /></br></br>'
+			+'<input type="password" placeholder="Mật khẩu cũ" type="password" id="oldpw" class="input" /></br></br>'
 			+'<input type="password" placeholder="Mật khẩu mới" id="newpw" class="input" /></br></br>'
 			+'<input type="password" placeholder="Nhập lại mật khẩu mới" id="renewpw" class="input" /></br></br>'
 			+'<input type="button" value="Hoàn thành" class="button" id="change_btn"></div>';
 			popupDialog("Đổi mật khẩu", 300, 300, content);		
 			$('#change_btn').on('click',function(){
 				if (check_input() == 1) {
-				if ($('#newpw').val() == $('#renewpw').val()) {
+				if ($('#newpw').val() == $('#renewpw').val()) {	
+					dismissDialog();				
 					change_pass($('#oldpw').val(),$('#newpw').val());
-				} else thongbao('Mật khẩu xác nhận không đúng.');
-				} else thongbao('Không được bỏ trống.');
+				} else {
+					thongbao('Mật khẩu xác nhận không đúng.');
+				}
+				} else {
+					thongbao('Không được bỏ trống.');
+				}
 			});	
 		});		
-				
+		$('body').show();		
 	});
 </script>
 </head>
-<body>
+<body style="display:none">
   <div id="container">  
   	<div class="header">
     <div class="home"> <img src="img/back.png" width="15px" height="15px" /> <a
