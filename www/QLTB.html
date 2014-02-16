@@ -34,6 +34,8 @@
 			
 			$("#left .loading").css('height', y - 120);
 			
+			$("#right .loading").css('height', y - 30);
+			
 			$(".menu_icon").on('click', function () {
 				if (show == false){
 					$(".left_menu").animate({width: ""+left}, 200 );	
@@ -63,6 +65,7 @@
 					}
 				} else {
 					mode="edit";
+					$(this).addClass('checked');
 					$(".column_content").hide();
 					$(".column_edit").show();	
 				}
@@ -83,8 +86,9 @@
 			});				
 			
 			$(".left_menu li").on('click', function () {
+				$('.cross_icon').hide();
 				currentID = $(this).attr('id');
-				get_list_component(1);
+				setPage(1, true);
 				get_count_component();																						
 				$('.left_menu_content').hide();				
 				$(".left_menu").animate({width: 0}, 200 );
@@ -102,6 +106,16 @@
 				currentMS = $(this).attr('data-ms');
 				get_detail_component(currentMS,$(this).html());
 			});
+			
+			$(".cross_icon").on('click', function(){
+				var content = '<div style="margin-top:10px; margin-left:20px">'+
+							  '<p>Mã số: </p>' +
+							  '<p>Tên: </p> </br>' +
+							  '<div style="text-align:center; margin-right:20px">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="Xoa()">'+
+							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
+				popupDialog("Xóa", 300, 250, content);					
+			});	
 			
 			var currentPage = 1;			
 			
@@ -130,7 +144,12 @@
 			});					
 			
 			function setPage(page){
-				if (currentPage != page && page > 0 && page <= num_page){
+				setPage(page, false);
+			}
+			
+			
+			function setPage(page, check){
+				if ((currentPage != page && page > 0 && page <= num_page) || check){
 					currentPage = page;
 					$('#left .loading').show();
 					$('#ds_comp').hide();
@@ -211,11 +230,13 @@
 		<div id="right" class='bc_right'>
 			<div class="sub_header relative">
 				<span class="edit_icon icon_click" id="hoanthanh" style="display:none"> </span>
+                <span class="cross_icon icon_click" id="delete" style="left:5px; top:-3px; display:none"> </span>
 				<h1>Chi tiết</h1>	
 			</div>
-			
-            <div class="column" >
-            	
+			<div class="loading" style="display:none">
+                <img src="images/ajax-loader.gif" />
+             </div>
+            <div class="column" id="column" style="display:none">            	
             </div>
             
 		</div>	

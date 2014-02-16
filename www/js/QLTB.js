@@ -87,8 +87,7 @@ function check_null() {
 		if ($('#ten').val() == '') return 'Tên'; 
 	} else if (currentID == 3) {
 		if ($('#ms').val() == '') return 'Mã số'; 
-		if ($('#ten').val() == '') return 'Tên'; 
-		if ($('#thoigianbaotri').val() == '') return 'Thời gian bảo trì';
+		if ($('#ten').val() == '') return 'Tên'; 		
 		if ($('#level').val() == '') return 'Level';
 		if ($('#tb').val() == '') return 'Thuộc thiết bị';  
 	}
@@ -159,7 +158,7 @@ function add() {
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
-				$('#'+currentID).click();;
+				$('#'+currentID).click();
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('.mainloading').hide();
@@ -172,8 +171,7 @@ function add() {
 
 function get_list_component(page) {
 	$('#left .loading').show();
-	$('#ds_comp').hide();
-	$("#page").hide();
+	$('#ds_comp').hide();	
 	$('.column').html('');
 	$('.edit_icon').removeClass('checked');
 	$('.edit_icon').hide();
@@ -211,67 +209,77 @@ function get_detail_component(ms, ten) {
 			$('[data-s="ms"]').html(ms);
 			$('[data-s="ten"]').html(ten);
 	} else {
-	var dataString = 'ms='+ms+'&type='+currentID;
-		link = link_server + "get_detail_component.php";	
-	$.ajax({
-		type: "GET",
-		url: link,
-		data: dataString,
-		success: function(data) {	
-				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
-					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
-				data = JSON.parse(data);
-				var s = '';
-				if (currentID == 1) {
-					$('#ms').val(ms); 
-					$('#ten').val(ten); 
-					$('#noidat').val(data['noidat']);
-					$('#loaitb').val(data['loaitb']); 
-					$('#trangthai').val(data['trangthai']); 
-					$('#kieudang').val(data['kieudang']); 
-					$('#hangsx').val(data['hangsx']); 
-					$('#nuocsx').val(data['nuocsx']); 
-					$('#losx').val(data['losx']); 
-					$('#namsx').val(data['namsx']);
-					var date = new Date(parseInt(data['thoigiansd'])); 
-						s_date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
-					$('#thoigiansd').val(s_date); 
+		$('#column').hide();
+		$('#right .loading').show();
+		$('.cross_icon').hide();
+		$('.edit_icon').hide();		
+		var dataString = 'ms='+ms+'&type='+currentID;
+			link = link_server + "get_detail_component.php";	
+		$.ajax({
+			type: "GET",
+			url: link,
+			data: dataString,
+			success: function(data) {
+					$('#column').show();
+					$('#right .loading').hide();
+					$('.cross_icon').show();
+					$('.edit_icon').show();		
+					if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+						data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+					data = JSON.parse(data);
+					var s = '';
+					if (currentID == 1) {
+						$('#ms').val(ms); 
+						$('#ten').val(ten); 
+						$('#noidat').val(data['noidat']);
+						$('#loaitb').val(data['loaitb']); 
+						$('#trangthai').val(data['trangthai']); 
+						$('#kieudang').val(data['kieudang']); 
+						$('#hangsx').val(data['hangsx']); 
+						$('#nuocsx').val(data['nuocsx']); 
+						$('#losx').val(data['losx']); 
+						$('#namsx').val(data['namsx']);
+						var date = new Date(parseInt(data['thoigiansd'])); 
+							s_date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
+						$('#thoigiansd').val(s_date); 
+						
+						$('[data-s="ms"]').html(ms);
+						$('[data-s="ten"]').html(ten);
+						$('[data-s="noidat"]').html(data['noidat']);
+						$('[data-s="loaitb"]').html(data['loaitb']);
+						$('[data-s="trangthai"]').html(data['trangthai']);
+						$('[data-s="kieudang"]').html(data['kieudang']);
+						$('[data-s="hangsx"]').html(data['hangsx']);
+						$('[data-s="nuocsx"]').html(data['nuocsx']);
+						$('[data-s="losx"]').html(data['losx']);
+						$('[data-s="namsx"]').html(data['namsx']);
+						$('[data-s="thoigiansd"]').html(s_date);
+						
+					} else if (currentID == 3) {
+						$('#ms').val(ms.substring(ms.search('.')+2,ms.length-ms.search('.'))); 
+						$('#ten').val(ten); 
+						$('#thoigianbaotri').val(data['thoigianbaotri']); 
+						$('#level').val(data['level']);
+						$('#tb').val(ms.substring(0,ms.search('.') + 1)); 
+						
+						$('[data-s="ms"]').html(ms.substring(ms.search('.')+2,ms.length-ms.search('.')));
+						$('[data-s="ten"]').html(ten);
+						$('[data-s="thoigianbaotri"]').html(data['thoigianbaotri']);
+						$('[data-s="level"]').html(data['level']);
+						$('[data-s="tb"]').html(ms.substring(0,ms.search('.') + 1));
+					}
 					
-					$('[data-s="ms"]').html(ms);
-					$('[data-s="ten"]').html(ten);
-					$('[data-s="noidat"]').html(data['noidat']);
-					$('[data-s="loaitb"]').html(data['loaitb']);
-					$('[data-s="trangthai"]').html(data['trangthai']);
-					$('[data-s="kieudang"]').html(data['kieudang']);
-					$('[data-s="hangsx"]').html(data['hangsx']);
-					$('[data-s="nuocsx"]').html(data['nuocsx']);
-					$('[data-s="losx"]').html(data['losx']);
-					$('[data-s="namsx"]').html(data['namsx']);
-					$('[data-s="thoigiansd"]').html(s_date);
-					
-				} else if (currentID == 3) {
-					$('#ms').val(ms.substring(ms.search('.')+1,ms.length-ms.search('.'))); 
-					$('#ten').val(ten); 
-					$('#thoigianbaotri').val(data['ThoiGianBaoTri']); 
-					$('#level').val(data['Level']);
-					$('#tb').val(ms.substring(0,ms.search('.'))); 
-					
-					$('[data-s="ms"]').html(ms.substring(ms.search('.')+1,ms.length-ms.search('.')));
-					$('[data-s="ten"]').html(ten);
-					$('[data-s="thoigianbaotri"]').html(data['ThoiGianBaoTri']);
-					$('[data-s="level"]').html(data['Level']);
-					$('[data-s="tb"]').html(ms.substring(0,ms.search('.')));
-				}
-				
-			},
-		error: function (xhr, ajaxOptions, thrownError) {
-			thongbao('Mạng có vấn đề, vui lòng thử lại!');
-		} 
-	});
+				},
+			error: function (xhr, ajaxOptions, thrownError) {
+				$('#right .loading').hide();
+				thongbao('Mạng có vấn đề, vui lòng thử lại!');
+			} 
+		});
 	}
 }
 
 function get_count_component() {
+	$("#page").hide();
 	var dataString = 'type='+currentID;
 	    link = link_server + 'get_count_component.php';
 	$.ajax({
@@ -358,7 +366,7 @@ function update(){
 		type: "GET",
 		url: link,
 		data: {data:jsonString},
-		success: function(data) {	
+		success: function(data) {					
 				$('.mainloading').hide();
 				$('#left').show();
 				$('#right').show();
@@ -368,7 +376,11 @@ function update(){
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
-				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
+				if (data['r'] == 1) 
+					thongbao('Thao tác thành công.'); 
+				else 
+					thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
+				$('#'+currentID).click();				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('.mainloading').hide();
@@ -377,4 +389,9 @@ function update(){
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
+}
+
+function Xoa(){
+	alert('xóa');
+	dismissDialog();
 }
