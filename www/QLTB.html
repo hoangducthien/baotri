@@ -52,7 +52,7 @@
 					if (mode == 'add'){
 						if (check_null()) add();	
 					} else {
-						if (check_null()) update();	
+						update();	
 					}
 				} else {
 					mode="edit";
@@ -83,12 +83,14 @@
 				$('#ds_comp').hide();
 				$("#page").hide();
 				$('.column').html('');
+				$('.edit_icon').removeClass('checked');
 				$('.edit_icon').hide();														
 				$('.left_menu_content').hide();				
 				$(".left_menu").animate({width: 0}, 200 );
 				show = false;								
 			});
-			$(document).on('click','#ds_comp li',function(){				
+			$(document).on('click','#ds_comp li',function(){	
+				$('.edit_icon').removeClass('checked');			
 				$('.edit_icon').show();	
 				mode = "edit";
 				$('.column').html(getTable(currentID-1));
