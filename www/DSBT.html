@@ -71,15 +71,9 @@
 			
 			get_thietbi();
 			$(document).on('click','#dstb_list_1 li',function(){
-				$("#check_btn").hide();
-				$("#dstb_list_2").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
-				var w = $('#dstb_list_2').css('width');
-				var h = $('#dstb_list_2').css('height');
-				$('#dstb_list_2 .loading').css('width', w);
-				$('#dstb_list_2 .loading').css('height', h);
-				ms_tb = $(this).attr('data-ms');			
-				get_chitiet_baotri(ms_tb);
-				tb = $(this).html();
+				ms_tb = $(this).attr('data-ms');
+				tb = $(this).html();											
+				get_chitiet_baotri(ms_tb);				
 			});	
 			
 			var work = new Array();
@@ -90,10 +84,8 @@
 			
 			$(document).on('click','#dstb_list_2 li',function(){
 				if ($(this).attr('data-T') != '') {
-					$("#check_btn").show();
-					$('#ttcttb').show();
-					$("#tttb").hide();
-					$("#right_top .loading").show();
+					$("#check_btn").show();	
+					$('#ttcttb').show();				
 					ct = $(this).html();
 					ms_ct = $(this).attr('data-ms');
 					$('#s_ten').html($(this).html());
@@ -119,11 +111,9 @@
 					$('#s_thaotac').html(tt);
 					$('#s_thaotac').addClass(str_thaotac);
 					$('#s_tb').html(tb);
-					$("#right_top .loading").hide();
 				} else {
 					$("#check_btn").hide();
 					$('#ttcttb').hide();
-					$("#tttb").hide();
 				}
 			});									
 			search_list("#dstb_list_1","#dsbt_se_1");
@@ -154,9 +144,7 @@
 					value="" type="search" class="input search" style="margin:10px">
       </div>
       <ul id="dstb_list_1" class="liststyle" style="overflow: auto; ">
-        <div class="loading">
-            <img src="images/ajax-loader.gif" />
-         </div>	
+        	
       </ul>
     </div>
   </div>
@@ -179,10 +167,7 @@
         <h1>Thông Tin Chi Tiết</h1>
       </div>
       <!-- /header -->
-      <div id="right_top" style="overflow: auto; padding-left:10px; padding-top:10px">
-      	  <div class="loading" style="display:none">
-            <img src="images/ajax-loader.gif" />
-          </div>	      
+      <div id="right_top" style="overflow: auto; padding-left:10px; padding-top:10px">      	  
           <div id="ttcttb" style="display:none" class="list_p">
             <p><b> THÔNG TIN: </b></p>
             <div style="padding-left:20px">      

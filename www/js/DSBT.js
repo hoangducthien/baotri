@@ -1,6 +1,15 @@
 var info_chitiet = {};
 var tb, ms_tb, ct, ms_ct, tt, currentDeviceID;
 function get_thietbi() {
+	$("#check_btn").hide();
+	$("#check_btn_2").hide();
+	$("#dstb_list_1").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+	var w = $('#dstb_list_1').css('width');
+	var h = $('#dstb_list_1').css('height');
+	$('#dstb_list_1 .loading').css('width', w);
+	$('#dstb_list_1 .loading').css('height', h);
+	$("#dstb_list_2").html('');
+	$("#ttcttb").hide();
 	var link = link_server + "get_danhsachbaotri.php";
 	$.ajax({
 		type: "GET",
@@ -14,7 +23,8 @@ function get_thietbi() {
 				s = s + '<li data-ms="' +data[i]['ms'] + '">' + data[i]['ten'] + '</li>';
 			}
 			$('#dstb_list_1').html(s);	
-			currentDeviceID = $('#dstb_list_1 li:first').attr('data-ms');
+			ms_tb = $('#dstb_list_1 li:first').attr('data-ms');
+			tb = $('#dstb_list_1 li:first').html();
 			$("#check_btn_2").show();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
@@ -22,7 +32,14 @@ function get_thietbi() {
 		} 
 	});
 }
-function get_chitiet_baotri(ms){
+function get_chitiet_baotri(ms){	
+	$("#check_btn").hide();
+	$("#dstb_list_2").html('<div class="loading"><img src="images/ajax-loader.gif" /></div>');
+	var w = $('#dstb_list_2').css('width');
+	var h = $('#dstb_list_2').css('height');
+	$('#dstb_list_2 .loading').css('width', w);
+	$('#dstb_list_2 .loading').css('height', h);
+	$("#ttcttb").hide();
 	var link = link_server + "get_chitiet_baotri.php";
 	var dataString = 'ms=' + ms;
 	$.ajax({
@@ -51,7 +68,7 @@ function get_chitiet_baotri(ms){
 							+ data[i]['ten'] + '</li>'; 
 				}
 				$('#dstb_list_2').html(s);
-				$('#dstb_list_2').show();
+				$('#dstb_list_2').show();				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
@@ -72,9 +89,9 @@ function set_logbaotri(){
 		url: link,
 		data: {data:jsonString},
 		success: function(data) {	
-			$('.mainloading').show();
-			$('#left').hide();
-			$('#right').hide();
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
@@ -89,11 +106,12 @@ function set_logbaotri(){
 					$('#ttcttb').hide();			
 					get_chitiet_baotri(ms_tb);
 				} else thongbao('Thao tác thất bại.');
+				get_chitiet_baotri(ms_tb);
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
-			$('.mainloading').show();
-			$('#left').hide();
-			$('#right').hide();
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
@@ -118,12 +136,19 @@ function xacnhan2() {
 		url: link,
 		data: dataString,
 		success: function(data) {	
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+			get_thietbi();
 			if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 				data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 			data = JSON.parse(data);
 			if (data['r']==1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.');
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
 		} 
 	});
