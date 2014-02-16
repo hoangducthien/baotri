@@ -251,14 +251,14 @@ function get_detail_component(ms, ten) {
 				} else if (currentID == 3) {
 					$('#ms').val(ms.substring(ms.search('.')+1,ms.length-ms.search('.'))); 
 					$('#ten').val(ten); 
-					$('#thoigianbaotri').val(data['ThoiGianBaoTri']); 
-					$('#level').val(data['Level']);
+					$('#thoigianbaotri').val(data['thoigianbaotri']); 
+					$('#level').val(data['level']);
 					$('#tb').val(ms.substring(0,ms.search('.'))); 
-					
+					alert(ms.search('.'));
 					$('[data-s="ms"]').html(ms.substring(ms.search('.')+1,ms.length-ms.search('.')));
 					$('[data-s="ten"]').html(ten);
-					$('[data-s="thoigianbaotri"]').html(data['ThoiGianBaoTri']);
-					$('[data-s="level"]').html(data['Level']);
+					$('[data-s="thoigianbaotri"]').html(data['thoigianbaotri']);
+					$('[data-s="level"]').html(data['level']);
 					$('[data-s="tb"]').html(ms.substring(0,ms.search('.')));
 				}
 				
