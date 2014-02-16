@@ -104,13 +104,14 @@
 				$(".column_content").css("width", right/5 - 14.5);
 				$(".column_edit textarea").css("width", right/5 - 12);
 				currentMS = $(this).attr('data-ms');
-				get_detail_component(currentMS,$(this).html());
+				currentName = $(this).html();
+				get_detail_component(currentMS, currentName);
 			});
 			
 			$(".cross_icon").on('click', function(){
 				var content = '<div style="margin-top:10px; margin-left:20px">'+
-							  '<p>Mã số: </p>' +
-							  '<p>Tên: </p> </br>' +
+							  '<p>Mã số: ' + currentMS + '</p>' +
+							  '<p>Tên: ' + currentName + '</p> </br>' +
 							  '<div style="text-align:center; margin-right:20px">'+
 							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="Xoa()">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';

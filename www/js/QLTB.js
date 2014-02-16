@@ -5,7 +5,7 @@ var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thi
 var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocsx','losx','namsx','thoigiansd'],
 			['ms','ten'],['ms','ten','thoigianbaotri','level','tb']];
 
-var currentID, mode, state, num_count, num_page, currentMS;
+var currentID, mode, state, num_count, num_page, currentMS, currentName;
 
 function getColumn(title, content, id, num){
 	var s;
@@ -209,6 +209,10 @@ function get_detail_component(ms, ten) {
 					
 			$('[data-s="ms"]').html(ms);
 			$('[data-s="ten"]').html(ten);
+			$('#column').show();
+			$('#right .loading').hide();
+			$('.cross_icon').show();
+			$('.edit_icon').show();	
 	} else {
 		$('#column').hide();
 		$('#right .loading').show();
@@ -393,15 +397,21 @@ function update(){
 }
 
 function Xoa(){
-	alert('xóa');
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();	
 	dismissDialog();
-	var dataString = 'ms='+currenMS+'&type='+currentID;
+	var dataString = 'ms='+currentMS+'&type='+currentID;
 		link = link_server + "delete_component.php";	
 	$.ajax({
 		type: "GET",
 		url: link,
 		data: dataString,
-		success: function(data) {					
+		success: function(data) {
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
+				$('#'+currentID).click();					
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
