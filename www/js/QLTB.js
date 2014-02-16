@@ -395,4 +395,26 @@ function update(){
 function Xoa(){
 	alert('xóa');
 	dismissDialog();
+	var dataString = 'ms='+currenMS+'&type='+currentID;
+		link = link_server + "delete_component.php";	
+	$.ajax({
+		type: "GET",
+		url: link,
+		data: dataString,
+		success: function(data) {					
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				if (data['r'] == 1) 
+					thongbao('Thao tác thành công.'); 
+				else 
+					thongbao('Thao tác thất bại.');			
+			},
+		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
 }
