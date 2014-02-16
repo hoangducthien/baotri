@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2014 at 11:27 AM
+-- Generation Time: Feb 16, 2014 at 04:50 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `bienbansuachua` (
   `NgayDuyet_PA` bigint(20) NOT NULL,
   `NgayDuyet_BB` bigint(20) NOT NULL,
   `GiaiDoan` int(11) NOT NULL,
-  `KetQua` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `NguoiHuy` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `NguyenNhan` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
@@ -58,15 +58,15 @@ CREATE TABLE IF NOT EXISTS `bienbansuachua` (
 -- Dumping data for table `bienbansuachua`
 --
 
-INSERT INTO `bienbansuachua` (`ID`, `NguoiYeuCau`, `NgayYeuCau`, `TenTB`, `MaTB`, `TinhTrangHuHong`, `DatTai`, `NguyenNhanHuHong`, `PhuongAnSuaChua`, `NguoiLapPhuongAn`, `NgayLapPhuongAn`, `NguoiDuyet_PA`, `KetQuaSuaChua`, `NgayBatDau`, `NgayKetThuc`, `NguoiSuaChua`, `NguoiGiamSat`, `NgayGiamSat`, `Dat`, `NguoiDuyet_BB`, `NgayDuyet_PA`, `NgayDuyet_BB`, `GiaiDoan`, `KetQua`, `NguyenNhan`) VALUES
+INSERT INTO `bienbansuachua` (`ID`, `NguoiYeuCau`, `NgayYeuCau`, `TenTB`, `MaTB`, `TinhTrangHuHong`, `DatTai`, `NguyenNhanHuHong`, `PhuongAnSuaChua`, `NguoiLapPhuongAn`, `NgayLapPhuongAn`, `NguoiDuyet_PA`, `KetQuaSuaChua`, `NgayBatDau`, `NgayKetThuc`, `NguoiSuaChua`, `NguoiGiamSat`, `NgayGiamSat`, `Dat`, `NguoiDuyet_BB`, `NgayDuyet_PA`, `NgayDuyet_BB`, `GiaiDoan`, `NguoiHuy`, `NguyenNhan`) VALUES
 (1, 'Mã Văn A', 1392183104000, 'Băng tải bố 1', 'BANGTAIBO1', 'abc', 'A', 'abc', 'abc', 'Mã Văn A', 1392145583000, 'Mã Văn A', 'undefined', 1392146138000, 1392176030000, 'null', 'null', 1392260737000, 0, 'Mã Văn A', 1392146138000, 1392149503000, 6, '', ''),
-(2, 'Mã Văn A', 1392183731000, 'Băng tải bố 2', 'BANGTAIBO2', '', 'A', '', '', 'null', 1392164424000, 'null', '222', 1392173136000, 0, '', '', 0, 0, '', 1392173136000, 0, 3, '', ''),
-(3, 'Mã Văn A', 1392183757000, 'Máy cán 2', 'MAYCAN2', '', 'C', '', '', 'null', 1392176084000, '', '222', 0, 0, '', '', 0, 0, '', 0, 0, 2, '', ''),
-(4, 'Mã Văn A', 1392183801000, 'Máy quậy mủ 3', 'MAYQUAYMU3', '', 'B', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1, '', ''),
+(2, 'Mã Văn A', 1392183731000, 'Băng tải bố 2', 'BANGTAIBO2', '', 'A', '', '', 'null', 1392164424000, 'null', '222', 1392173136000, 0, '', '', 0, 0, '', 1392173136000, 0, 7, 'Mã Văn A', 'Bấm lộn'),
+(3, 'Mã Văn A', 1392183757000, 'Máy cán 2', 'MAYCAN2', '', 'C', '', '', 'null', 1392176084000, '', '222', 1392435555000, 0, '', '', 0, 0, '', 1392435555000, 0, 7, 'Mã Văn A', 'z vxcs'),
+(4, 'Mã Văn A', 1392183801000, 'Máy quậy mủ 3', 'MAYQUAYMU3', '', 'B', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 7, 'Mã Văn A', 'Bấm lộn'),
 (5, 'Mã Văn A', 1392184017000, 'Máy quậy mủ 2', 'MAYQUAYMU2', '', 'C', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1, '', ''),
 (6, 'null', 1392164378000, 'Băng tải con lăn 1', 'BANGTAICONLAN1', '', 'A', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1, '', ''),
 (7, 'null', 1392165490000, 'Băng tải bố 1', 'BANGTAIBO1', '11', 'A', '111', '1111', 'Mã Văn A', 1392321714000, 'Mã Văn A', 'ssssss', 1392321751000, 1392321770000, 'Mã Văn A', 'Mã Văn A', 1392321787000, 1, 'Mã Văn A', 1392321751000, 1392321854000, 6, '', ''),
-(8, 'null', 1392166372000, 'Băng tải bố 3', 'BANGTAIBO3', '', 'B', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1, '', ''),
+(8, 'null', 1392166372000, 'Băng tải bố 3', 'BANGTAIBO3', 'aaa', 'B', 'aaa', 'aaaa', 'Mã Văn A', 1392521412000, 'Mã Văn A', 'qaaaa', 1392521424000, 1392521439000, 'Mã Văn A', '', 0, 0, '', 1392521424000, 0, 3, '', ''),
 (9, 'Mã Văn A', 1392254685000, 'Máy quậy acid 2', 'MAYQUAYACID2', '', 'A', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1, '', ''),
 (10, 'null', 1392260354000, 'Băng tải bố 4', 'BANGTAIBO4', '', 'B', '', '', '', 0, '', '', 0, 0, '', '', 0, 0, '', 0, 0, 1, '', '');
 
@@ -140,7 +140,7 @@ INSERT INTO `tablechitietthietbi` (`MaSo`, `ChiTietCha`, `ChiTietCon`, `TrangTha
 ('BANGTAIBO1.V.2', '', '', 1, 'V.2', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO1.V.2.1', '', '', 1, 'V.2.1', 0, 0, 0, 0, 0, 1409996173000, 0, 0, 0),
 ('BANGTAIBO1.V.2.2', '', '', 1, 'V.2.2', 0, 0, 0, 0, 0, 1409996173000, 0, 0, 0),
-('BANGTAIBO1.V.2.3', '', '', 1, 'V.2.3', 1392082573000, 1392176173000, 0, 0, 0, 1409996173000, 0, 0, 0),
+('BANGTAIBO1.V.2.3', '', '', 1, 'V.2.3', 0, 0, 0, 0, 0, 1409996173000, 0, 0, 0),
 ('BANGTAIBO1.V.2.4', '', '', 1, 'V.2.4', 1392082573000, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO1.V.3', '', '', 1, 'V.3', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO1.V.3.1', '', '', 1, 'V.3.1', 1392082573000, 1392176173000, 0, 1397396173000, 0, 1409996173000, 0, 0, 0),
@@ -163,7 +163,7 @@ INSERT INTO `tablechitietthietbi` (`MaSo`, `ChiTietCha`, `ChiTietCon`, `TrangTha
 ('BANGTAIBO2.V.2', '', '', 1, 'V.2', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO2.V.2.1', '', '', 1, 'V.2.1', 0, 0, 0, 0, 0, 1409997134000, 0, 0, 0),
 ('BANGTAIBO2.V.2.2', '', '', 1, 'V.2.2', 0, 0, 0, 0, 0, 1409997134000, 0, 0, 0),
-('BANGTAIBO2.V.2.3', '', '', 1, 'V.2.3', 1392083534000, 1392177134000, 0, 0, 0, 1409997134000, 0, 0, 0),
+('BANGTAIBO2.V.2.3', '', '', 1, 'V.2.3', 0, 0, 0, 0, 0, 1409997134000, 0, 0, 0),
 ('BANGTAIBO2.V.2.4', '', '', 1, 'V.2.4', 1392083534000, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO2.V.3', '', '', 1, 'V.3', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO2.V.3.1', '', '', 1, 'V.3.1', 1392083534000, 1392177134000, 0, 1397397134000, 0, 1409997134000, 0, 0, 0),
@@ -209,7 +209,7 @@ INSERT INTO `tablechitietthietbi` (`MaSo`, `ChiTietCha`, `ChiTietCon`, `TrangTha
 ('BANGTAIBO4.V.2', '', '', 1, 'V.2', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO4.V.2.1', '', '', 1, 'V.2.1', 0, 0, 0, 0, 0, 1409997144000, 0, 0, 0),
 ('BANGTAIBO4.V.2.2', '', '', 1, 'V.2.2', 0, 0, 0, 0, 0, 1409997144000, 0, 0, 0),
-('BANGTAIBO4.V.2.3', '', '', 1, 'V.2.3', 1392083544000, 1392177144000, 0, 0, 0, 1409997144000, 0, 0, 0),
+('BANGTAIBO4.V.2.3', '', '', 1, 'V.2.3', 0, 0, 0, 0, 0, 1409997144000, 0, 0, 0),
 ('BANGTAIBO4.V.2.4', '', '', 1, 'V.2.4', 1392083544000, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO4.V.3', '', '', 1, 'V.3', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('BANGTAIBO4.V.3.1', '', '', 1, 'V.3.1', 1392083544000, 1392177144000, 0, 1397397144000, 0, 1409997144000, 0, 0, 0),
@@ -298,8 +298,8 @@ INSERT INTO `tablechitietthietbi` (`MaSo`, `ChiTietCha`, `ChiTietCon`, `TrangTha
 ('LOSAY1.IX.9.1', '', '', 1, 'IX.9.1', 1392082728000, 0, 0, 0, 0, 0, 0, 0, 0),
 ('LOSAY1.IX.9.2', '', '', 1, 'IX.9.2', 1392082728000, 0, 0, 0, 0, 0, 1413596328000, 0, 0),
 ('LOSAY1.IX.9.3', '', '', 1, 'IX.9.3', 1392082728000, 0, 0, 0, 0, 1409996328000, 0, 0, 0),
-('MANGPHANPHOIMU1.III.1', '', '', 1, 'III.1', 1392083737000, 0, 0, 0, 0, 0, 0, 0, 0),
-('MANGPHANPHOIMU1.III.2', '', '', 1, 'III.2', 1392083737000, 1392177337000, 0, 0, 0, 1409997337000, 0, 0, 0),
+('MANGPHANPHOIMU1.III.1', '', '', 1, 'III.1', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('MANGPHANPHOIMU1.III.2', '', '', 1, 'III.2', 0, 0, 0, 0, 0, 1409997337000, 0, 0, 0),
 ('MANGPHANPHOIMU1.III.3', '', '', 1, 'III.3', 0, 0, 0, 0, 0, 0, 0, 0, 1478397337000),
 ('MAYCAN1.VI.1', '', '', 1, 'VI.1', 1392083639000, 0, 0, 0, 0, 0, 0, 0, 0),
 ('MAYCAN1.VI.10', '', '', 1, 'VI.10', 1392083639000, 0, 0, 1397397239000, 0, 0, 0, 0, 0),
@@ -748,7 +748,7 @@ CREATE TABLE IF NOT EXISTS `tableloaichitiet` (
   `ThoiGianBaoTri` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Level` tinyint(4) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=300 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=302 ;
 
 --
 -- Dumping data for table `tableloaichitiet`
@@ -1067,7 +1067,7 @@ CREATE TABLE IF NOT EXISTS `tableloaithietbi` (
   `Ten` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `ChiTiet` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `tableloaithietbi`
@@ -1096,22 +1096,23 @@ INSERT INTO `tableloaithietbi` (`ID`, `MaSo`, `Ten`, `ChiTiet`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tablelogbaotri` (
   `ID` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `MaSo` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `MaSo` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Ngay` bigint(20) NOT NULL,
   `MaCongViec` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `NguoiThucHien` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `GhiChu` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `tablelogbaotri`
 --
 
 INSERT INTO `tablelogbaotri` (`ID`, `MaSo`, `Ngay`, `MaCongViec`, `NguoiThucHien`, `GhiChu`) VALUES
-(4, 'BANGTAIBO1', 1392319970000, 'I', 'Mã Văn A', ''),
-(5, 'BANGTAIBO2', 1392320147000, 'I', 'Mã Văn A', ''),
-(6, 'BANGTAIBO3', 1392320258000, 'I', 'Mã Văn A', '');
+(8, 'BANGTAIBO2.V.2.3', 1392432233000, 'I,L', 'Mã Văn A', ''),
+(9, 'BANGTAIBO4.V.2.3', 1392432795000, 'I,L', 'Mã Văn A', ''),
+(10, 'MANGPHANPHOIMU1.III.1', 1392493315000, 'I', 'Mã Văn A', ''),
+(11, 'MANGPHANPHOIMU1.III.2', 1392493330000, 'I,L', 'Mã Văn A', '');
 
 -- --------------------------------------------------------
 
@@ -1205,9 +1206,9 @@ INSERT INTO `tablethietbi` (`MaTB`, `LoaiTB`, `SoDangKy`, `TrangThai`, `KieuDang
 ('BANGTAICONLAN1', 'XII', '', 0, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392397200000;;03/2014:1393693200000;', 0, 'Băng tải con lăn 1', 'A'),
 ('BOMCOM1', 'VIII', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392397200000;;03/2014:1393693200000;', 0, 'Bơm cốm 1', 'A'),
 ('LOSAY1', 'IX', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1393866000000;', 0, 'Lò sấy 1', 'B'),
-('MANGPHANPHOIMU1', 'III', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1394038800000;', 0, 'Mảng phân phối mủ 1', 'B'),
+('MANGPHANPHOIMU1', 'III', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';03/2014:1394038800000;', 0, 'Mảng phân phối mủ 1', 'B'),
 ('MAYCAN1', 'VI', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1393866000000;', 0, 'Máy cán 1', 'A'),
-('MAYCAN2', 'VI', '', 0, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1393866000000;', 0, 'Máy cán 2', 'C'),
+('MAYCAN2', 'VI', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1393866000000;', 0, 'Máy cán 2', 'C'),
 ('MAYCAN3', 'VI', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1393866000000;', 0, 'Máy cán 3', 'C'),
 ('MAYCANCAT1', 'VII', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1393866000000;', 0, 'Máy cán cắt 1', 'C'),
 ('MAYEPKIEN1', 'XI', '', 1, '', '', '', '', 1, 1391996173000, '', '', '', '', '', '', '', '', ';02/2014:1392310800000;;03/2014:1394038800000;', 0, 'Máy ép kiện 1', 'A'),
