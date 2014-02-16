@@ -61,6 +61,7 @@ function check_date(s){
 }
 
 function get_Time(s){
+	if (s == '') return 0;
 	if (s.search('/')>0) var s = s.split('/'); 
 	else if (s.search('-')>0) var s = s.split('-');
 	var date = parseInt(s[0]);
