@@ -46,20 +46,33 @@
 			});			
 			
 			$(".edit_icon").on('click', function () {
-				if ($(this).hasClass('checked')){					
-					$(".column_content").show();
-					$(".column_edit").hide();
+				if ($(this).hasClass('checked')){
+					var s = check_null();										
 					if (mode == 'add'){
-						if (check_null()) add();	
+						if (s == ""){ 
+							$(this).toggleClass("checked");
+							$(".column_content").show();
+							$(".column_edit").hide();
+							add();								
+						} else {
+							thongbao('Nhập lại ' + s);
+						}
 					} else {
-						update();	
+						if (s == ""){  
+							$(this).toggleClass("checked");
+							$(".column_content").show();
+							$(".column_edit").hide();
+							update();	
+						} else {
+							thongbao('Nhập lại ' + s);
+						}
 					}
 				} else {
 					mode="edit";
 					$(".column_content").hide();
 					$(".column_edit").show();	
 				}
-				$(this).toggleClass("checked");
+				
 							
 			});	
 			state = 1;
@@ -78,13 +91,7 @@
 			$(".left_menu li").on('click', function () {
 				currentID = $(this).attr('id');
 				get_list_component(1);
-				get_count_component();				
-				$('#left .loading').show();
-				$('#ds_comp').hide();
-				$("#page").hide();
-				$('.column').html('');
-				$('.edit_icon').removeClass('checked');
-				$('.edit_icon').hide();														
+				get_count_component();																						
 				$('.left_menu_content').hide();				
 				$(".left_menu").animate({width: 0}, 200 );
 				show = false;								

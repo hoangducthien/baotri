@@ -10,6 +10,7 @@
 			while ($row = $res->fetch_assoc()) {
 				echo json_encode(array('noidat'=>$row['ViTri'],'trangthai'=>$row['TrangThai'],'loaitb'=>$row['LoaiTB'],
 									'kieudang'=>$row['KieuDang'],'hangsx'=>$row['HangSX'],'nuocsx'=>$row['NuocSX'],
+									'losx'=>$row['LoSX'],
 									'namsx'=>$row['NamSX'],'thoigiansd'=>$row['ThoiGianBatDauSD']));					
 			}
 			mysqli_free_result($res);

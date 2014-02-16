@@ -7,30 +7,47 @@ var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocs
 
 var currentID, mode, state, num_count, num_page, currentMS;
 
-function getColumn(title, content, id){
-	var s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
-	'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
-	'<div class="column_edit"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+function getColumn(title, content, id, num){
+	var s;
+	if (num != 0 || mode == 'add'){
+		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+		'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
+		'<div class="column_edit"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+	} else {
+		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+		'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
+		'<div class="column_edit"><textarea style="resize:none" id="'+id+'" disabled>' + content + '</textarea></div></div>';		
+	}
 	return s;
 }
 
-function getColumn2(title, content, id){
-	var s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
-	'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
-	'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+function getColumn2(title, content, id, num){
+	var s;
+	if (num != 0 || mode == 'add'){
+		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+		'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
+		'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+	} else {
+		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+		'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
+		'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'" disabled>' + content + '</textarea></div></div>';
+	}
+	
 	return s;
 }
 
 function getTable(k){
 	var s = '';
+	
 	for (i = 0; i< title[k].length; i++){
-		if (mode == 'add') s += getColumn(title[k][i], '',id_t[k][i]); else
-		if (mode == 'edit') s += getColumn2(title[k][i], '',id_t[k][i]);
+		if (mode == 'add') s += getColumn(title[k][i], '',id_t[k][i], i); else
+		if (mode == 'edit') s += getColumn2(title[k][i], '',id_t[k][i], i);
 	}
 	return s;
 }
 
 function check_date(s){
+	if (s == "") return true;
 	if (s.search('/')>0) var s = s.split('/'); 
 	else if (s.search('-')>0) var s = s.split('-');
 	var date = parseInt(s[0]);
@@ -55,31 +72,26 @@ function get_Time(s){
 
 function check_null() {
 	if (currentID == 1) {
-		if ($('#ms').val() == '') return false; 
-		if ($('#ten').val() == '') return false; 
-		if ($('#noidat').val() == '') return false; 
-		if ($('#loaitb').val() == '') return false; 
-		if ($('#trangthai').val() == '') return false;
-		if ($('#kieudang').val() == '') return false;  
-		if ($('#hangsx').val() == '') return false; 
-		if ($('#nuocsx').val() == '') return false;
-		if ($('#losx').val() == '') return false;
-		if ($('#namsx').val() == '') return false;
-		if ($('#thoigiansd').val() == '') return false;
+		if ($('#ms').val() == '') return 'Mã số'; 
+		if ($('#ten').val() == '') return 'Tên'; 
+		
+		if ($('#loaitb').val() == '') return 'Loại thiết bị'; 
+		if ($('#trangthai').val() == '') return 'Trạng thái'; 
+		
 		else {
-			if (!check_date($('#thoigiansd').val())) return false;
+			if (!check_date($('#thoigiansd').val())) return 'Thời gian sử dụng';
 		}
 	} else if (currentID == 2) {
-		if ($('#ms').val() == '') return false; 
-		if ($('#ten').val() == '') return false; 
+		if ($('#ms').val() == '') return 'Mã số'; 
+		if ($('#ten').val() == '') return 'Tên'; 
 	} else if (currentID == 3) {
-		if ($('#ms').val() == '') return false; 
-		if ($('#ten').val() == '') return false; 
-		if ($('#thoigianbaotri').val() == '') return false;
-		if ($('#level').val() == '') return false;
-		if ($('#tb').val() == '') return false;  
+		if ($('#ms').val() == '') return 'Mã số'; 
+		if ($('#ten').val() == '') return 'Tên'; 
+		if ($('#thoigianbaotri').val() == '') return 'Thời gian bảo trì';
+		if ($('#level').val() == '') return 'Level';
+		if ($('#tb').val() == '') return 'Thuộc thiết bị';  
 	}
-	return true;
+	return "";
 }
 
 function add() {
@@ -157,6 +169,12 @@ function add() {
 }
 
 function get_list_component(page) {
+	$('#left .loading').show();
+	$('#ds_comp').hide();
+	$("#page").hide();
+	$('.column').html('');
+	$('.edit_icon').removeClass('checked');
+	$('.edit_icon').hide();
 	var dataString = 'type='+currentID+'&page='+page;
 		link = link_server + "get_list_component.php";	
 	$.ajax({
@@ -242,6 +260,7 @@ function get_detail_component(ms, ten) {
 					$('[data-s="level"]').html(data['Level']);
 					$('[data-s="tb"]').html(ms.substring(0,ms.search('.')));
 				}
+				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			thongbao('Mạng có vấn đề, vui lòng thử lại!');
@@ -280,8 +299,7 @@ function get_count_component() {
 	});
 }
 
-function update(){
-	alert('update');
+function update(){	
 	$('.mainloading').show();
 	$('#left').hide();
 	$('#right').hide();
