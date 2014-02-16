@@ -98,7 +98,8 @@
 				$(".column_header").css("width", right/5 - 23);
 				$(".column_content").css("width", right/5 - 14.5);
 				$(".column_edit textarea").css("width", right/5 - 12);
-				get_detail_component($(this).attr('data-ms'),$(this).html());
+				currentMS = $(this).attr('data-ms');
+				get_detail_component(currentMS,$(this).html());
 			});
 			
 			var currentPage = 1;			

@@ -5,7 +5,7 @@ var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thi
 var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocsx','losx','namsx','thoigiansd'],
 			['ms','ten'],['ms','ten','thoigianbaotri','level','tb']];
 
-var currentID, mode, state, num_count, num_page;
+var currentID, mode, state, num_count, num_page, currentMS;
 
 function getColumn(title, content, id){
 	var s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
@@ -282,4 +282,76 @@ function get_count_component() {
 
 function update(){
 	alert('update');
+	$('.mainloading').show();
+	$('#left').hide();
+	$('#right').hide();
+	var dataString = {};
+	dataString['re_ms'] = currentMS;
+	if (currentID == 1) {
+		dataString['ms'] = $('#ms').val(); 
+		dataString['ten'] = $('#ten').val(); 
+		dataString['noidat'] = $('#noidat').val();
+		dataString['loaitb'] = $('#loaitb').val(); 
+		dataString['trangthai'] = $('#trangthai').val(); 
+		dataString['kieudang'] = $('#kieudang').val(); 
+		dataString['hangsx'] = $('#hangsx').val(); 
+		dataString['nuocsx'] = $('#nuocsx').val(); 
+		dataString['losx'] = $('#losx').val(); 
+		dataString['namsx'] = $('#namsx').val(); 
+		dataString['thoigiansd'] = get_Time($('#thoigiansd').val()); 
+		
+		$('[data-s="ms"]').html($('#ms').val());
+		$('[data-s="ten"]').html($('#ten').val());
+		$('[data-s="noidat"]').html($('#noidat').val());
+		$('[data-s="loaitb"]').html($('#loaitb').val());
+		$('[data-s="trangthai"]').html($('#trangthai').val());
+		$('[data-s="kieudang"]').html($('#kieudang').val());
+		$('[data-s="hangsx"]').html($('#hangsx').val());
+		$('[data-s="nuocsx"]').html($('#nuocsx').val());
+		$('[data-s="losx"]').html($('#losx').val());
+		$('[data-s="namsx"]').html($('#namsx').val());
+		$('[data-s="thoigiansd"]').html($('#thoigiansd').val());
+		
+	} else if (currentID == 2) {
+		dataString['ms'] = $('#ms').val(); 
+		dataString['ten'] = $('#ten').val(); 
+		
+		$('[data-s="ms"]').html($('#ms').val());
+		$('[data-s="ten"]').html($('#ten').val());
+	} else if (currentID == 3) {
+		dataString['ms'] = $('#ms').val(); 
+		dataString['ten'] = $('#ten').val(); 
+		dataString['thoigianbaotri'] = $('#thoigianbaotri').val(); 
+		dataString['level'] = $('#level').val();
+		dataString['tb'] = $('#tb').val(); 
+		
+		$('[data-s="ms"]').html($('#ms').val());
+		$('[data-s="ten"]').html($('#ten').val());
+		$('[data-s="thoigianbaotri"]').html($('#thoigianbaotri').val());
+		$('[data-s="level"]').html($('#level').val());
+		$('[data-s="tb"]').html($('#tb').val());
+	}
+	dataString['type'] = currentID;
+	var jsonString = JSON.stringify(dataString);
+		link = link_server + "edit_component.php";	
+	$.ajax({
+		type: "GET",
+		url: link,
+		data: {data:jsonString},
+		success: function(data) {	
+				$('.mainloading').hide();
+				$('#left').show();
+				$('#right').show();
+				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
+					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
+				data = JSON.parse(data);
+				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
+			},
+		error: function (xhr, ajaxOptions, thrownError) {
+			$('.mainloading').hide();
+			$('#left').show();
+			$('#right').show();
+			thongbao('Mạng có vấn đề, vui lòng thử lại!');
+		} 
+	});
 }
