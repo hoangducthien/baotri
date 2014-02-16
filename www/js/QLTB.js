@@ -158,6 +158,7 @@ function add() {
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
+				$('#'+currentID).click();;
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('.mainloading').hide();
@@ -360,6 +361,9 @@ function update(){
 				$('.mainloading').hide();
 				$('#left').show();
 				$('#right').show();
+				$('.edit_icon').removeClass("checked");
+				$(".column_content").show();
+				$(".column_edit").hide();
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);

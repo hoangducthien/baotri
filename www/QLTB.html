@@ -49,19 +49,13 @@
 				if ($(this).hasClass('checked')){
 					var s = check_null();										
 					if (mode == 'add'){
-						if (s == ""){ 
-							$(this).toggleClass("checked");
-							$(".column_content").show();
-							$(".column_edit").hide();
+						if (s == ""){ 							
 							add();								
 						} else {
 							thongbao('Nhập lại ' + s);
 						}
 					} else {
-						if (s == ""){  
-							$(this).toggleClass("checked");
-							$(".column_content").show();
-							$(".column_edit").hide();
+						if (s == ""){  							
 							update();	
 						} else {
 							thongbao('Nhập lại ' + s);
