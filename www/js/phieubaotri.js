@@ -233,7 +233,7 @@ function xacnhan2(id, gd){
 	set_phieubaotri_return(id,gd);
 }
 
-function xacnhan3(id){	
+function xacnhan3(id, gd){	
 	var reason = $('#reason').val();
 	dismissDialog();	
 	if (reason == ""){
@@ -255,6 +255,7 @@ function xacnhan3(id){
 				if (data['r'] == 1) {	
 					thongbao('Thao tác thành công');			
 				} else thongbao('Thao tác thất bại');
+				$('#'+gd).click();
 				$('.mainloading').hide();
 				$('#left').show();
 				$('#right').show();

@@ -88,8 +88,7 @@
 							  '<p>Nguyên nhân: </p>' +
 							  '<textarea id="reason" style="margin-top:10px; margin-bottom:10px; resize:none; width:240px; height:100px; overflow:auto" class="input"></textarea>' +
 							  '<div style="text-align:center; margin-right:20px">'+
-							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan3(' + id +
-							  ')">'+
+							  '<input type="button" value="Xác nhận" class="button" style="margin-right:40px" onclick="xacnhan3(' + id + ',' + gd +')">'+
 							  '<input type="button" value="Thôi" class="button" onclick="dismissDialog()"></div></div>';
 				popupDialog("Xóa biên bản bảo trì", 300, 250, content);					
 			});
