@@ -172,6 +172,12 @@ function get_lichbaotri_detail(ms) {
 	});
 }
 
+var work = new Array();
+work['I'] = "Kiểm tra, làm sạch, hiệu chỉnh hoặc thay thế";
+work['I1'] = "Kiểm tra, làm sạch, hiệu chỉnh hoặc thay thế có dùng khí nén để vệ sinh";
+work['L'] = "Bôi trơn";
+work['R'] = "Thay thế";
+
 function get_logbaotri(ms) {
 	var dataString = "ms="+ms;
 	var link = link_server + "get_logbaotri.php";
@@ -184,16 +190,25 @@ function get_logbaotri(ms) {
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
 				var s = '';
-				for (var i in data) 
+				var tt = '';
+				for (var i in data) {
+				 	var a = data[i]['congviec'].split(',');
+					for (j = 0; j < a.length; j++){
+						if (tt != ''){						
+							tt += '; ';
+						}						
+						tt += work[a[j]];
+					}
 				 s='<div class="sukienbaotri" style="border-bottom:1px solid #ccc">'+
                             '<p> Mã bảo trì: '+data[i]['id']+'</p>'+
                             '<p>Ngày bảo trì: '+get_Date(data[i]['ngay'])+'</p>'+
                             '<p>Người thực hiện: '+data[i]['nguoithuchien']+'</p>'+      
                             '</p>'+
-                            '<p> Thao tác bảo trì: '+data[i]['congviec']+
+                            '<p> Thao tác bảo trì: '+tt+
                             '</p>'+                        
                             '<p>Ghi chú: </p>'+	               
                         '</div>';
+				}
 				$('#log_baotri').html(s);				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
