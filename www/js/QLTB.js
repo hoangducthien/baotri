@@ -87,7 +87,8 @@ function check_null() {
 		if ($('#ten').val() == '') return 'Tên'; 
 	} else if (currentID == 3) {
 		if ($('#ms').val() == '') return 'Mã số'; 
-		if ($('#ten').val() == '') return 'Tên'; 		
+		if ($('#ten').val() == '') return 'Tên'; 
+		if ($('#thoigianbaotri').val() == '') return 'Thời gian bảo trì'; 				
 		if ($('#level').val() == '') return 'Level';
 		if ($('#tb').val() == '') return 'Thuộc thiết bị';  
 	}
