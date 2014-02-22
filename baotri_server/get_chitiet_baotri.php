@@ -31,22 +31,22 @@
 					}
 			}
 			if  ($kt == 1)
-			array_push($array,array('ms'=>$row['MaSo'],'ten'=>$row['Ten'],'level'=>$row['Level'],'T'=>$s)); else 
-			if ($row['Level'] == 1) array_push($array,array('ms'=>$row['MaSo'],'ten'=>$row['Ten'],'level'=>$row['Level'],'T'=>array()));
+			array_push($array,array('ms'=>$row['MaSo'],'ten'=>$row['Ten'],'level'=>$row['Level'],'T'=>$s,'check'=>1)); else 
+			array_push($array,array('ms'=>$row['MaSo'],'ten'=>$row['Ten'],'level'=>$row['Level'],'T'=>array(),'check'=>0));
 		}
 		
 		foreach ($array as $k => $v) {
 			$kt = 0;
-			if ($array[$k]['level'] == 1) {
-			foreach ($array as $k1 => $v1) {
-				if ($array[$k1]['level'] == 2) {
-					if (strpos($array[$k1]['ms'], $array[$k]['ms'].'.') !== false) {
-						$kt = 1; 
-						break;
+			if ($array[$k]['check'] == 0) {
+				foreach ($array as $k1 => $v1) {
+					if (($array[$k1]['check'] == 1) && (($array[$k1]['level'] == ($array[$k]['level']+1)))) {
+						if (strpos($array[$k1]['ms'], $array[$k]['ms'].'.') !== false) {
+							$kt = 1; 
+							break;
+						}
 					}
 				}
-			}
-			if ($kt == 0) unset($array[$k]);
+				if ($kt == 0) unset($array[$k]);
 			}
 		}
 		mysqli_free_result($res);
