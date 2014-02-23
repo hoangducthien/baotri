@@ -9,6 +9,9 @@ $(function(){
 		$(this).animate({top:"-=5"}, 100);
 		$(this).animate({top:"+=5"}, 100);
 	});
+	$(".refresh").on('click', function(){
+		location.reload();
+	});
 });
 
 function backKeyDown() {

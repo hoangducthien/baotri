@@ -17,13 +17,17 @@
 									WHERE MaSo = '".$data['re_ms']."'");
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
 		} else if ($data['type'] == 3) {
+
 			$res = $mysqli->query("UPDATE tableloaichitiet 
 								   SET Ten = '".$data['ten']."',
+                                                                       MaSo = '".$data['ms']."',
 								       ThoiGianBaoTri = '".$data['thoigianbaotri']."',
-									   Level = '".$data['level']."'
-									WHERE MaSo = '".$data['re_ms']."'");
+								       Level = '".$data['level']."',
+                                                                       HasChild = '".$data['hasChild']."',
+                                                                       TenChiTietCha = '".$data['tenChiTietCha']."'
+								   WHERE MaSo = '".$data['re_ms']."'");
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
 		}
 		mysqli_close($mysqli);
 	}
-?>
+?>	

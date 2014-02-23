@@ -15,12 +15,12 @@
 			}
 			mysqli_free_result($res);
 		} else if ($_GET['type'] == 3) {
-			$res = $mysqli->query("SELECT ThoiGianBaoTri, Level
+			$res = $mysqli->query("SELECT ThoiGianBaoTri, Level, HasChild, TenChiTietCha
 									FROM tableloaichitiet
 									WHERE MaSo = '".$_GET['ms']."'");
 			$res->data_seek(0);
 			while ($row = $res->fetch_assoc()) {
-				echo json_encode(array('thoigianbaotri'=>$row['ThoiGianBaoTri'],'level'=>$row['Level']));
+				echo json_encode(array('thoigianbaotri'=>$row['ThoiGianBaoTri'],'level'=>$row['Level'], 'hasChild'=>$row['HasChild'], 'tenChiTietCha'=>$row['TenChiTietCha']));
 			}
 			mysqli_free_result($res);
 		}

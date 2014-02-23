@@ -34,6 +34,13 @@
 	function dismissDialog(){
 		$(".dialog").hide();
 	}
+	
+	function dismissDialog(x){
+		if (typeof x != "undefined"){
+			x.unbind();
+		}
+		$(".dialog").hide();
+	}
 
 	function thongbao(content){
 		var c = '<div style="margin-top:20px; text-align:center"><p>' + content + '</p><div style="text-align:center; margin-top:20px"><input type="button" value="OK" class="button" onclick="dismissDialog()"></div></div>';

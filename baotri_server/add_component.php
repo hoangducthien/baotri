@@ -29,8 +29,10 @@
 			$res = $mysqli->query("INSERT INTO tableloaithietbi VALUES('','".$data['ms']."','".$data['ten']."','')");
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
 		} else if ($data['type'] == 3) {
-			$res = $mysqli->query("INSERT INTO tableloaichitiet VALUES('','".$data['tb'].".".$data['ms']."','".$data['ten']."',
-								'".$data['thoigianbaotri']."','".$data['level']."')");
+			$res = $mysqli->query("INSERT INTO tableloaichitiet VALUES('','".$data['ms']."','".$data['ten']."',
+								'".$data['thoigianbaotri']."','".$data['level']."',
+								'".$data['tenChiTietCha']."',
+								'".$data['hasChild']."')");
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
 		}
 		mysqli_close($mysqli);

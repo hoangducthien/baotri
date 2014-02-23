@@ -16,8 +16,8 @@
 			$(".left_menu").css("height",y-65);		
 			x -= 2;
 			y -= 35;
-			var left = x/4;
-			var right = x - left;	
+			left = x/4;
+			right = x - left;	
 			$("#left").css("width",left); 
 			$("#left").css("height",y);
 			$("#right").css("width",right); 
@@ -34,7 +34,7 @@
 			
 			$("#left .loading").css('height', y - 120);
 			
-			$("#right .loading").css('height', y - 30);
+			$("#right .loading").css('height', y - 30);					
 			
 			$(".menu_icon").on('click', function () {
 				if (show == false){
@@ -47,19 +47,21 @@
 				show = !show;
 			});			
 			
-			$(".edit_icon").on('click', function () {
+			$(".edit_icon").on('click', function (e) {
+				e.stopPropagation();
 				if ($(this).hasClass('checked')){
 					var s = check_null();										
 					if (mode == 'add'){
+						
 						if (s == ""){ 							
 							add();								
 						} else {
 							thongbao('Nhập lại ' + s);
 						}
-					} else {
-						if (s == ""){  							
+					} else {						
+						if (s == ""){														
 							update();	
-						} else {
+						} else {							
 							thongbao('Nhập lại ' + s);
 						}
 					}
@@ -75,17 +77,19 @@
 			state = 1;
 			$(".add_icon").on('click', function () {
 				mode = "add";
-				$('.edit_icon').addClass('checked');
-				$('.edit_icon').show();	
-				$('.column').show();			
-				$('.column').html(getTable(currentID-1));
-				$(".column_item").css("width", right/5 - 1);
-				$(".column_header").css("width", right/5 - 23);
-				$(".column_content").css("width", right/5 - 14.5);
-				$(".column_edit textarea").css("width", right/5 - 14.5);
+				if (devicesTypeName.length < 1){
+					$('#column').hide();
+					$('#right .loading').show();
+					$('.cross_icon').hide();
+					$('.edit_icon').hide();	
+					getListDevicesType();
+				} else {
+					showAdd();					
+				}
 			});				
 			
 			$(".left_menu li").on('click', function () {
+				num_page = 0;
 				$('.cross_icon').hide();
 				currentID = $(this).attr('id');
 				setPage(1, true);
@@ -101,8 +105,9 @@
 				$('.column').html(getTable(currentID-1));
 				$(".column_item").css("width", right/5 - 1);
 				$(".column_header").css("width", right/5 - 23);
-				$(".column_content").css("width", right/5 - 14.5);
-				$(".column_edit textarea").css("width", right/5 - 12);
+				$(".column_content").css("width", right/5 - 14.5); 
+				$(".column_edit textarea").css("width", right/5 - 14.5);				
+				$(".column_edit .select_detail").css("width", right/5 - 5);
 				currentMS = $(this).attr('data-ms');
 				currentName = $(this).html();
 				get_detail_component(currentMS, currentName);
@@ -140,7 +145,7 @@
 				setPage(num_page);
 			});
 			
-			$('.page_num').on('click', function(){
+			$('#page .page_num').on('click', function(){
 				setPage(parseInt($(this).html()));			
 			});					
 			
@@ -157,14 +162,14 @@
 					get_list_component(currentPage);					
 					var firstPage = currentPage - 1;
 					if (firstPage > 0){
-						$('.page_num').each(function() {
+						$('#page .page_num').each(function() {
                             $(this).html(firstPage);
 							$(this).removeClass('selected_color');
 							firstPage++;							
                         });
 						$('#page2').addClass('selected_color');
 					} else {
-						$('.page_num').each(function() {
+						$('#page .page_num').each(function() {
                             $(this).html(firstPage+1);
 							$(this).removeClass('selected_color');
 							firstPage++;							
@@ -177,8 +182,7 @@
 						$('#page3').show();
 					}
 				}	
-			}
-
+			}						
 		});
 	</script>
 </head>
@@ -242,5 +246,6 @@
             
 		</div>	
 	</div>	
+    <img src="img/refresh.png" width="25" height="25" class="refresh">
 </body>
 </html>

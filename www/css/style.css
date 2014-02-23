@@ -1,5 +1,35 @@
 /* CSS Document */
-#page{
+.refresh{
+	position:fixed;
+	right:5px;
+	top:5px;
+}
+.select_detail{
+	height:60px;
+	border: 1px solid #4799C1;
+	background:#ddd;
+	margin:0px !important;
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+}
+
+.selectable_list{
+	height:60px;
+	overflow:auto;
+	border: 1px solid #4799C1;
+	background:#ffffff;
+}
+
+.selectable_list li{
+	text-align:center;
+}
+
+.selectable_list .selected_li{
+	background:#ddd;
+}
+
+#page, #dl_page{
 	clear:both;
 	width:100%;
 	height:30px;
@@ -9,13 +39,13 @@
 	color:#CCCCCC;
 	text-align:center;
 }
-#page a{
+#page a, #dl_page a{
 	padding:5px;
 }
-#page img:hover{
+#page img:hover, #dl_page img:hover{
 	cursor:pointer;
 }
-#page a:hover{
+#page a:hover, #dl_page a:hover{
 	background-color:#4799C1;
 	cursor:pointer;
 	border-radius:3px;
@@ -212,11 +242,13 @@ td{
 	height:50px;
 	overflow:auto;
 	background-color:#666;
+	text-align:center;
 }
 .column_edit textarea{
 	padding:5px;
 	border:1px solid #4799C1;
 	height:50px;
+	text-align:center;
 }
 
 .column_item{
@@ -266,7 +298,6 @@ td{
 	background-color:#eee;
 	border:1px solid #ccc;
 	border-top:none;
-	height:20px;
 	padding:10px;
 	font-weight:600;
 }
