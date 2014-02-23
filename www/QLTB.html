@@ -12,6 +12,13 @@
 	<script type="text/javascript">
 		app.initialize();	
 		$(function(){ 
+			var qh = localStorage.getItem('qh');
+			if (qh == null){
+				window.location.href="index.html";	
+			}
+			if (qh != 0 && qh.indexOf(6) < 0){
+				window.location.href="menu.html";	
+			}
 			var show = false;
 			$(".left_menu").css("height",y-65);		
 			x -= 2;

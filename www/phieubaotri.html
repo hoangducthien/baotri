@@ -11,7 +11,15 @@
 <script type="text/javascript" src="js/phieubaotri.js"></script>
 <script type="text/javascript">	
 	app.initialize();
-	$(function(){ 		
+	$(function(){
+			var qh = localStorage.getItem('qh');
+			if (qh == null){
+				window.location.href="index.html";	
+			}
+			if (qh != 0 && qh.indexOf(3) < 0){
+				window.location.href="menu.html";	
+			}
+ 		
 			x -= 2;
 			y -= 75;
 			var left = x/4;
