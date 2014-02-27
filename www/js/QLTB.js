@@ -5,7 +5,7 @@ var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thi
 var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocsx','losx','namsx','thoigiansd'],
 			['ms','ten'],['ms','ten', 'level', 'hasChild', '24h', '50h', '500h', '1500h', '2500h', '5000h', '6000h', '12000h', 'BDMua', 'thuocloaict','tb']];
 
-var currentID, mode, state, num_count, num_page, currentMS, currentName, left, right, dl_currentPage;
+var currentID, mode, state, num_count, num_page, currentMS, currentName, left, right, dl_currentPage, currentPage = 1;;
 var work = ['NULL', 'I', 'I1', 'L', 'R'];
 var hasChild = ['Không', 'Có'];
 var statusText = ["Ngừng hoạt động", "Hoạt động"];
@@ -82,7 +82,7 @@ function getColumnWithButton(name, id){
 		
 	var s = '<div class="column_item"><div class="column_header decorate_text">' + name + '</div>'+
 			'<div class="column_content" style="display:none" data-s="'+id+'" > </div>'+
-			'<div class="column_edit"> <p class="select_detail" onclick="showDialog(event)"> Chọn chi tiết </p></div></div>';
+			'<div class="column_edit"> <p class="select_detail" onclick="showDialog(event)"> Chọn loại chi tiết </p></div></div>';
 	
 	return s;
 }
@@ -91,7 +91,7 @@ function getColumnWithButton2(name, id){
 		
 	var s = '<div class="column_item"><div class="column_header decorate_text">' + name + '</div>'+
 			'<div class="column_content" data-s="'+id+'" > </div>'+
-			'<div class="column_edit" style="display:none"> <p class="select_detail" onclick="showDialog(event)"> Chọn chi tiết </p></div></div>';
+			'<div class="column_edit" style="display:none"> <p class="select_detail" onclick="showDialog(event)"> Chọn loại chi tiết </p></div></div>';
 	
 	return s;
 }
@@ -216,7 +216,8 @@ function add() {
 		
 		dataString['tb'] = $('[data-s="tb"]').attr('id');
 		var ss = $('[data-s="thuocloaict"]').attr('id');
-		if (ss == ""){
+
+		if (ss == "" || typeof ss == "undefined"){
 			dataString['ms'] = dataString['tb'] + "." + $('#ms').val(); 
 		} else {
 			dataString['ms'] = ss + "." + $('#ms').val();
@@ -225,9 +226,13 @@ function add() {
 		dataString['ten'] = $('#ten').val();
 		dataString['hasChild'] = $('[data-s="hasChild"]').attr("id");
 		
-		dataString['tenChiTietCha'] = $('[data-s="thuocloaict"]').html();
-		dataString['thoigianbaotri'] = $(".column_content").eq(4).html();	
+		dataString['thoigianbaotri'] = "";
 		
+		dataString['tenChiTietCha'] = $('[data-s="thuocloaict"]').html();
+		if ($(".column_content").eq(4).html() != "NULL"){
+			dataString['thoigianbaotri'] = $(".column_content").eq(4).html();
+		}	
+
 		for (d = 5; d < 13; d++){							
 			dataString['thoigianbaotri'] += ",";
 			if ($(".column_content").eq(d).html() != "NULL"){
@@ -242,8 +247,8 @@ function add() {
 		$('[data-s="level"]').html($('#level').val());
 	}
 	dataString['type'] = currentID;
-	var jsonString = JSON.stringify(dataString);
-		link = link_server + "add_component.php";
+	var jsonString = JSON.stringify(dataString);	
+	link = link_server + "add_component.php";
 	$.ajax({
 		type: "GET",
 		url: link,
@@ -255,8 +260,10 @@ function add() {
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
-				if (data['r'] == 1) thongbao('Thao tác thành công.'); else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
-				$('#'+currentID).click();
+				if (data['r'] == 1){
+					 thongbao('Thao tác thành công.');
+					 $("#"+currentID).click();
+				} else thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('.mainloading').hide();
@@ -723,7 +730,7 @@ function update(){
 		
 		dataString['tb'] = $('[data-s="tb"]').attr('id');
 		var ss = $('[data-s="thuocloaict"]').attr('id');
-		if (ss == ""){
+		if (ss == "" || typeof ss == "undefined"){
 			dataString['ms'] = dataString['tb'] + "." + $('#ms').val(); 
 		} else {
 			dataString['ms'] = ss + "." + $('#ms').val();
@@ -733,8 +740,13 @@ function update(){
 		dataString['hasChild'] = $('[data-s="hasChild"]').attr("id");
 		
 		dataString['tenChiTietCha'] = $('[data-s="thuocloaict"]').html();
-		dataString['thoigianbaotri'] = $(".column_content").eq(4).html();	
 		
+		dataString['thoigianbaotri'] = "";
+			
+		if ($(".column_content").eq(4).html() != "NULL"){
+			dataString['thoigianbaotri'] = $(".column_content").eq(4).html();
+		}
+
 		for (d = 5; d < 13; d++){							
 			dataString['thoigianbaotri'] += ",";
 			if ($(".column_content").eq(d).html() != "NULL"){
@@ -751,7 +763,7 @@ function update(){
 	}
 	dataString['type'] = currentID;
 	var jsonString = JSON.stringify(dataString);
-		link = link_server + "edit_component.php";	
+	link = link_server + "edit_component.php";	
 	$.ajax({
 		type: "GET",
 		url: link,
@@ -766,11 +778,12 @@ function update(){
 				if (data.indexOf("<!-- Hosting24 Analytics Code -->")>0)
 					data = data.substring(0, data.indexOf("<!-- Hosting24 Analytics Code -->"));
 				data = JSON.parse(data);
-				if (data['r'] == 1) 
+				if (data['r'] == 1){ 
 					thongbao('Thao tác thành công.'); 
+					$("#"+currentID).click();
+				}
 				else 
-					thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');
-				$('#'+currentID).click();				
+					thongbao('Thao tác thất bại.\n Vui lòng kiểm tra thông tin đã nhập.');							
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('.mainloading').hide();

@@ -32,6 +32,7 @@
 		$("#right").css("height",y); 
 		$("#tttk").css("width",right - 50); 
 		$("#tttk").css("height",y - 30); 
+		$("#tttk_edit").css("height",y - 30); 
 		$("#top").css("height",y-101); 
 		$("#account-list").css('height',y-90); 	
 		$("#account-list").css("width",left); 			
@@ -42,8 +43,7 @@
 			$(this).css('width', w);
 			$(this).css('height', h);
 		});			
-		
-		var mode = '';
+				
 		var maso = '';
 		get_nhanvien();
 
@@ -107,8 +107,14 @@
 				if (mode == 'add')
 					add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
 							,$('#chucvu').val(), quyenhan_check());
-				else edit_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
+				else{
+					var mk = $('#matkhau').val();
+					if (mk != ""){
+						mk = hex_md5(mk);
+					}
+					 edit_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),mk
 							,$('#chucvu').val(), quyenhan_check());
+				}
 				reset_input();
 				get_nhanvien();
 			}else thongbao('Không được bỏ trống '+check_input());
@@ -165,7 +171,7 @@
                 <p>Quyền hạn: <span id="s_quyenhan"></span></p>
             </div>
 		</div>
-		<div id="tttk_edit" style="display:none; margin-left:20px">
+		<div id="tttk_edit" style="display:none; margin-left:20px; overflow:auto">
         	</br></br>
        		<span style="width:100px; display:block; float:left">Mã số :</span> 
             <input type="text" id="maso" class="input" />
@@ -207,6 +213,11 @@
                 <p style="margin-top:10px">
                 	<span style="width:240px; display:block; float:left"><input type="checkbox" id="7" /><span> Quản lý tài khoản </span></span>
                 	<span><input type="checkbox" id="8" /><span>Xem báo cáo</span></span>
+                </p>
+                <p style="margin-top:10px">
+                	<span style="width:240px; display:block; float:left"><input type="checkbox" id="9" /><span> Duyệt phương án sửa 
+                    chữa </span></span>
+                	<span><input type="checkbox" id="10" /><span>Giám sát</span></span>
                 </p>
             </div>
 			</br></br>

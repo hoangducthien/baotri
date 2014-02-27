@@ -45,21 +45,30 @@
 			var gd = 0;
 				id = 0;
 			$('.progressbar li').click(function(){							
-				$('.next_icon').hide();
-				$('.previous_icon').hide();
-				$('.cross_icon').hide();
-				$(this).parent().children().children().removeClass("selected_list");
-
-				$(this).children().addClass("selected_list");				
-				
 				gd = $(this).attr('id');
-				$("#info").html('');
-				$("#dsbb").html('<div class="loading"> <img src="images/ajax-loader.gif" /> </div>');
-				var w = $("#dsbb").css('width');
-				var h = $("#dsbb").css('height');
-				$("#dsbb .loading").css('width', w);
-				$("#dsbb .loading").css('height', h);				
-				get_phieubaotri(gd);						
+				if (qh != 0 && 
+					(
+						(gd == 1 && qh.indexOf("1,") < 0) || 
+						(gd == 2 && qh.indexOf(9) < 0) ||
+						(gd == 3 && qh.indexOf(9) < 0 && qh.indexOf("1,") < 0) || 
+						(gd == 4 && qh.indexOf(10) < 0) ||
+						(gd == 5 && qh.indexOf(6) < 0) 
+					)){
+					thongbao("Quyền hạn của bạn không đủ để xem thông tin này");
+				}else {
+					$('.next_icon').hide();
+					$('.previous_icon').hide();
+					$('.cross_icon').hide();
+					$(this).parent().children().children().removeClass("selected_list");
+					$(this).children().addClass("selected_list");												
+					$("#info").html('');
+					$("#dsbb").html('<div class="loading"> <img src="images/ajax-loader.gif" /> </div>');
+					var w = $("#dsbb").css('width');
+					var h = $("#dsbb").css('height');
+					$("#dsbb .loading").css('width', w);
+					$("#dsbb .loading").css('height', h);				
+					get_phieubaotri(gd);						
+				}
 			});
 			$(document).on('click','#dsbb li',function(){
 				id = $(this).attr('data-ms');
@@ -103,7 +112,13 @@
 			
 				
 			search_list('#dsbb','#dsbt_se_1');
-			$('#1').click();
+			if (qh.indexOf("1,") > - 1 || qh == 0){				
+				$('#1').click();
+			} else if (qh.indexOf(10) > - 1){
+				$('#4').click();
+			} else if (qh.indexOf(6) > - 1){
+				$('#5').click();
+			}
 			$('body').show();													
 	});
 </script>
