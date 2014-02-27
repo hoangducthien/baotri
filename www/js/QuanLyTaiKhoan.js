@@ -1,3 +1,4 @@
+var mode = '';
 function quyenhan_check(){
 			var s = '';
 			 if ($('#0').is(":checked") == true){
@@ -84,7 +85,7 @@ function check_input() {
 		if ($('#maso').val() == '') return 'Mã Số';
 		if ($('#hoten').val() == '') return 'Họ Tên';
 		if ($('#taikhoan').val() == '') return 'Tài Khoản';
-		if ($('#matkhau').val() == '') return 'Mật Khẩu';
+		if ($('#matkhau').val() == '' && mode == 'add') return 'Mật Khẩu';
 		if ($('#chucvu').val() == '0') return 'Chức Vụ';
 		if (quyenhan_check() == '') return 'Quyền Hạn';
 		return '0';

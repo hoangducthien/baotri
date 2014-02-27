@@ -2,6 +2,7 @@
 	include('connect_db.php');
 	$res = $mysqli->query("SELECT MaTB, TenTB, ThoiGianBaoTri
 						   FROM tablethietbi
+                                                   WHERE TrangThai = '1'
 						   ORDER BY TenTB");
 	$res->data_seek(0);
 	$array = array();
@@ -29,4 +30,4 @@
 	mysqli_free_result($res);
 	echo json_encode($array);
 	mysqli_close($mysqli);
-?>
+?>		

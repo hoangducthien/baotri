@@ -12,7 +12,15 @@
 <script type="text/javascript" src="js/thongtincanhan.js"></script>
 <script type="text/javascript">	
 	app.initialize();
-	$(function(){		
+	$(function(){
+		var qh = localStorage.getItem('qh');
+		if (qh == null){
+			window.location.href="index.html";	
+		}
+		if (qh != 0 && qh.indexOf(5) < 0){
+			window.location.href="menu.html";	
+		}
+		
 		y = y - 35;		
 		$("#right").css("width", x - 1); 
 		$("#right").css("height", y); 
@@ -77,6 +85,6 @@
 		</div>	
 	</div>
   </div>
-  
+  <img src="img/refresh.png" width="25" height="25" class="refresh">
 </body>
 </html>
