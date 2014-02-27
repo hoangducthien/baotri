@@ -13,16 +13,34 @@
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
 		} else if ($data['type'] == 2) {
 			$res = $mysqli->query("UPDATE tableloaithietbi
-			                       SET Ten = '".$data['ten']."'
+			                       SET Ten = '".$data['ten']."', 
+								   		MaSo = '".$data['ms']."'
 									WHERE MaSo = '".$data['re_ms']."'");
-			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
+			if ($res) {
+				if ($data['ms'] != $data['re_ms']) {
+					$query = "UPDATE tablethietbi
+			                       			SET LoaiTB = '".$data['ms']."'
+											WHERE LoaiTB = '".$data['re_ms']."';";
+					$query .= "UPDATE tableloaichitiet
+			                       			SET MaSo = replace(MaSo, '".$data['re_ms'].".','".$data['ms'].".') 
+											WHERE INSTR(MaSo,'".$data['re_ms'].".')>0;";
+					$query .= "UPDATE tablechitietthietbi
+			                       SET MaSo = replace(MaSo, '.".$data['re_ms'].".','.".$data['ms'].".'), 
+								   		LoaiChiTiet = replace(LoaiChiTiet, '".$data['re_ms'].".','".$data['ms'].".')
+									WHERE INSTR(LoaiChiTiet,'".$data['re_ms'].".')>0";
+					$res = $mysqli->multi_query($query);
+				}
+				echo json_encode(array('r'=>1)); 
+			}else echo json_encode(array('r'=>0));
 		} else if ($data['type'] == 3) {
 			$res = $mysqli->query("UPDATE tableloaichitiet 
 								   SET Ten = '".$data['ten']."',
 								       ThoiGianBaoTri = '".$data['thoigianbaotri']."',
 									   Level = '".$data['level']."'
 									WHERE MaSo = '".$data['re_ms']."'");
-			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
+			if ($res) { 
+				echo json_encode(array('r'=>1)); 
+			}else echo json_encode(array('r'=>0));
 		}
 		mysqli_close($mysqli);
 	}
