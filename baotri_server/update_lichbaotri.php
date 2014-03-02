@@ -33,10 +33,21 @@
 				mysqli_free_result($r);	
 				if ($kt == 1) $r_1 = $mysqli->query("UPDATE tablethietbi
 													SET	ThoiGianBaoTri = '".$a."'
-				 									WHERE MaTB = '".$array_1[0]."'");
-								
+				 									WHERE MaTB = '".$array_1[0]."'");									
 			}
-			echo json_encode(array('r'=>1)); 
+			echo json_encode(array('r'=>1));
+			require_once('sendmail.php');
+			$res2 = $mysqli->query("SELECT QuyenHan, Email FROM tableaccount");
+			$res2->data_seek(0);						
+			while ($row = $res2->fetch_assoc()) {
+				if (strpos($row['QuyenHan'],'1,') !== false && $row['Email'] != ''){
+					$mail->AddAddress($row['Email']);
+				}				
+			}
+			$mail->Subject = "[Lịch bảo trì] Tháng ".$_POST['ms'];
+			$mail->Body = 'Hệ thống MAMAssitant vừa cập nhật lịch bảo trì tháng '.$_POST['ms'].'. '."\r\n".' Các nhân viên có nhiệm vụ liên quan mời đăng nhập vào hệ thống để xem thông tin chi tiết';
+			mysqli_free_result($res2);
+			$mail->Send();			 
 		} else echo json_encode(array('r'=>0));
 		mysqli_close($mysqli);
 	}

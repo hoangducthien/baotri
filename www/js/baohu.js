@@ -67,8 +67,8 @@ function baohu(ms,ten,vitri){
 				data = JSON.parse(data);
 				if (data['r'] == 1) {
 					$("#right_top .list_p").hide();
-					thongbao('Báo hư thành công');
-					get_thietbi();	
+					get_thietbi();
+					thongbao('Báo hư thành công');						
 				} else thongbao('Báo hư thất bại');
 				$('.mainloading').hide();
 				$('#left').show();
