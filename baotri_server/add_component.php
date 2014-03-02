@@ -32,7 +32,7 @@
 			$res = $mysqli->query("INSERT INTO tableloaithietbi VALUES('','".$data['ms']."','".$data['ten']."','')");
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
 		} else if ($data['type'] == 3) {
-			$ms = $data['tb'].".".$data['ms'];
+			$ms = $data['ms'];
 			$res = $mysqli->query("INSERT INTO tableloaichitiet VALUES('','".$data['ms']."','".$data['ten']."',
 								'".$data['thoigianbaotri']."','".$data['level']."',
 								'".$data['tenChiTietCha']."',
@@ -41,7 +41,7 @@
 					$t = array(0=>86400000,1=>180000000,2=>1800000000,3=>5400000000,4=>9000000000,5=>18000000000
 								,6=>21600000000,7=>43200000000,8=>86400000000);
 					$job = explode(",",$data["thoigianbaotri"]);
-					$r = $mysqli->query("SELECT MaTB, ThoiGianBatDauSD FROM tableloaichitiet WHERE LoaiTB = '".$data['tb']."'");
+					$r = $mysqli->query("SELECT MaTB, ThoiGianBatDauSD FROM tablethietbi WHERE LoaiTB = '".$data['tb']."'");
 					$r->data_seek(0);
 					while ($row = $r->fetch_assoc()) {
 						for ($i=0;$i<9;$i++) {
