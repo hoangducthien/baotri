@@ -1,6 +1,7 @@
 // JavaScript Document	
-	var link_server = "http://192.168.1.34/baotri_server/";	
-//	var link_server = "http://www.servertest.net23.net/baotri_server/";	
+	var link_server = localStorage.getItem('link_server');
+	//var link_server = "http://192.168.1.34/baotri/baotri_server/";	
+	//var link_server = "http://www.servertest.net23.net/baotri_server/";	
 	
 	var quyenhan = ["Tất cả các quyền","Xem danh sách bảo trì","Báo hư","Xem biên bản sửa chữa","Xem kế hoạch bảo trì"
 					,"Xem thông tin cá nhân","Quản lý thiết bị","Quản lý tài khoản","Xem báo cáo", "Duyệt phương án sửa chữa", 

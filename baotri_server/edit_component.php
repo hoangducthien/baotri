@@ -36,21 +36,14 @@
 
 			$res = $mysqli->query("UPDATE tableloaichitiet 
 								   SET Ten = '".$data['ten']."',
-                                                                       MaSo = '".$data['ms']."',
+                                       MaSo = '".$data['ms']."',
 								       ThoiGianBaoTri = '".$data['thoigianbaotri']."',
-<<<<<<< HEAD
-									   Level = '".$data['level']."'
-									WHERE MaSo = '".$data['re_ms']."'");
-			if ($res) { 
-				echo json_encode(array('r'=>1)); 
-			}else echo json_encode(array('r'=>0));
-=======
-								       Level = '".$data['level']."',
-                                                                       HasChild = '".$data['hasChild']."',
-                                                                       TenChiTietCha = '".$data['tenChiTietCha']."'
+									   Level = '".$data['level']."',
+                                       HasChild = '".$data['hasChild']."',
+                                       TenChiTietCha = '".$data['tenChiTietCha']."'
 								   WHERE MaSo = '".$data['re_ms']."'");
 			if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
->>>>>>> bbbfc091a329871abd164c0abe4ae49fb8b70b9c
+
 		}
 		mysqli_close($mysqli);
 	}

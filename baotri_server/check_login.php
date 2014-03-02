@@ -1,4 +1,4 @@
-<?php
+<?php	
 	if ((isset($_POST['ur'])) && (isset($_POST['pw']))) {
 		include('connect_db.php');
 		$result = $mysqli->query("SELECT MaSo, TenNV, QuyenHan FROM tableaccount 

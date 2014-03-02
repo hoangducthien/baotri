@@ -13,6 +13,7 @@
 	<script type="text/javascript">	
 	app.initialize();
 	$(function(){
+		localStorage.setItem('link_server',"http://192.168.1.34/baotri/baotri_server/");
 		if (localStorage.getItem('qh') != null){
 			window.location.href="menu.html";
 		}		
@@ -41,7 +42,19 @@
 		$("#backgroud")	.css("margin-left", marginLeft);
 		$("#lg_container").css("width",x); 
 		$("#lg_container").css("height",y - marginTop);
-		$("#login_btn").on('click',function(){		
+		$("#login_btn").on('click',function(){
+			if ($('#username').val() == "c1111"){
+				link_server = "http://192.168.1.34/baotri/baotri_server/";
+				localStorage.setItem('link_server', link_server);
+				thongbao("Chuyen sang server local");
+				return;
+			}
+			if ($('#username').val() == "c2222"){
+				link_server = "http://www.servertest.net23.net/baotri_server/";
+				localStorage.setItem('link_server', link_server);
+				thongbao("Chuyen sang server online");
+				return;
+			}
 			$('.loading').show();	
 			$('#login_area').hide();
 			check_login($('#username').val(),hex_md5($('#password').val()));

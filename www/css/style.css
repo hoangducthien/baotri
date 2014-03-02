@@ -244,7 +244,7 @@ td{
 	background-color:#666;
 	text-align:center;
 }
-.column_edit textarea{
+.column_edit textarea, .column_edit input{
 	padding:5px;
 	border:1px solid #4799C1;
 	height:50px;
