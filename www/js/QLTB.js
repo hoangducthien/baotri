@@ -17,30 +17,41 @@ var detailsTypeID = new Array();
 
 function getColumn(title, content, id, num){
 	var s;
-	if (num != 0 || mode == 'add'){
+	if (id == "thoigiansd"){
 		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
-		'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
-		'<div class="column_edit"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+			'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
+			'<div class="column_edit"><input type="text" id="'+id+'" value="' + content + '"></div></div>';
 	} else {
-		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
-		'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
-		'<div class="column_edit"><textarea style="resize:none" id="'+id+'" disabled>' + content + '</textarea></div></div>';		
+		if (num != 0 || mode == 'add'){
+			s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+			'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
+			'<div class="column_edit"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+		} else {
+			s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+			'<div class="column_content" style="display:none" data-s="'+id+'">' + content + '</div>'+
+			'<div class="column_edit"><textarea style="resize:none" id="'+id+'" disabled>' + content + '</textarea></div></div>';		
+		}
 	}
 	return s;
 }
 
 function getColumn2(title, content, id, num){	
 	var s;
-	if (num != 0 || mode == 'add'){
+	if (id == "thoigiansd"){
 		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
-		'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
-		'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+			'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
+			'<div class="column_edit" style="display:none"><input type="text" id="'+id+'" value="' + content + '"></div></div>';
 	} else {
-		s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
-		'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
-		'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'" disabled>' + content + '</textarea></div></div>';
+		if (num != 0 || mode == 'add'){
+			s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+			'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
+			'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'">' + content + '</textarea></div></div>';
+		} else {
+			s = '<div class="column_item"><div class="column_header decorate_text">' + title + '</div>'+
+			'<div class="column_content" data-s="'+id+'">' + content + '</div>'+
+			'<div class="column_edit"  style="display:none"><textarea style="resize:none" id="'+id+'" disabled>' + content + '</textarea></div></div>';
+		}
 	}
-	
 	return s;
 }
 
@@ -360,6 +371,7 @@ function showAdd(){
 	$(".column_header").css("width", right/5 - 23);
 	$(".column_content").css("width", right/5 - 14.5);
 	$(".column_edit textarea").css("width", right/5 - 14.5);	
+	$(".column_edit input").css("width", right/5 - 14.5);	
 	$(".selectable_list li").on('click', function(){
 		$(this).parent().children().removeClass('selected_li');
 		$(this).addClass('selected_li');	
@@ -367,7 +379,7 @@ function showAdd(){
 		$("[data-s='"+id+"']").html($(this).html());
 		$("[data-s='"+id+"']").attr('id', $(this).attr('id'));
 	});
-	
+	$( "#thoigiansd" ).datepicker({ dateFormat: 'dd/mm/yy' });
 }
 
 function deleteDevicesType(){
@@ -729,6 +741,10 @@ function update(){
 	} else if (currentID == 3) {
 		
 		dataString['tb'] = $('[data-s="tb"]').attr('id');
+		var index = devicesTypeID.indexOf(dataString['tb']);
+			if (index > -1){
+				dataString['ten_tb'] = devicesTypeName[index];
+		}
 		var ss = $('[data-s="thuocloaict"]').attr('id');
 		if (ss == "" || typeof ss == "undefined"){
 			dataString['ms'] = dataString['tb'] + "." + $('#ms').val(); 

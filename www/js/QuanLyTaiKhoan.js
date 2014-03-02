@@ -85,6 +85,7 @@ function check_input() {
 		if ($('#maso').val() == '') return 'Mã Số';
 		if ($('#hoten').val() == '') return 'Họ Tên';
 		if ($('#taikhoan').val() == '') return 'Tài Khoản';
+		if ($('#email').val() == '') return 'Email';
 		if ($('#matkhau').val() == '' && mode == 'add') return 'Mật Khẩu';
 		if ($('#chucvu').val() == '0') return 'Chức Vụ';
 		if (quyenhan_check() == '') return 'Quyền Hạn';
@@ -155,7 +156,7 @@ function reset_input() {
 		$('#hoten').val('');
 		$('#taikhoan').val('');
 		$('#matkhau').val('');
-		$('#chucvu').val('');
+		$('#chucvu').val('0');
 		$('#0').prop("checked", false);
 		$("#cb_quyenhan input").prop("checked", false);
 }

@@ -39,6 +39,7 @@
 								   SET Ten = '".$data['ten']."',
                                        MaSo = '".$data['ms']."',
 								       ThoiGianBaoTri = '".$data['thoigianbaotri']."',
+									   Level = '".$data['level']."',
                                        HasChild = '".$data['hasChild']."',
                                        TenChiTietCha = '".$data['tenChiTietCha']."'
 								   WHERE MaSo = '".$data['re_ms']."'";
