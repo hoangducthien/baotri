@@ -45,7 +45,7 @@
 					$r->data_seek(0);
 					while ($row = $r->fetch_assoc()) {
 						for ($i=0;$i<9;$i++) {
-							if ($job[$i] != '')$t[$i] = $row['thoigiansd']+$t[$i]; else $t[$i] = 0;
+							if ($job[$i] != '')$t[$i] = $row['ThoiGianBatDauSD']+$t[$i]; else $t[$i] = 0;
 						}
 						$r_ = $mysqli->query("INSERT INTO tablechitietthietbi VALUES ('".$row["MaTB"].".".$ms."','','','1','".$ms."'
 																					,'".$t[0]."','".$t[1]."','".$t[2]."','".$t[3]."','".$t[4]."','".$t[5]."','".$t[6]."'

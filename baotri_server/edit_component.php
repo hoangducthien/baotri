@@ -29,12 +29,14 @@
 								   		LoaiChiTiet = replace(LoaiChiTiet, '".$data['re_ms'].".','".$data['ms'].".')
 									WHERE INSTR(LoaiChiTiet,'".$data['re_ms'].".')>0";
 					$res = $mysqli->multi_query($query);
+					while ($mysqli->next_result()) {;}
 				}
 				echo json_encode(array('r'=>1)); 
 			}else echo json_encode(array('r'=>0));
 		} else if ($data['type'] == 3) {	
-				$query .= "DELETE FROM tablechitietthietbi WHERE LoaiChiTiet = '".$_GET['re_ms']."'";
-				$query .= "DELETE FROM tablechitietthietbi WHERE LoaiChiTiet LIKE '".$_GET['re_ms'].".%'";
+			if ($data['re_ms'] != $data['ms']) {
+				$query .= "DELETE FROM tablechitietthietbi WHERE LoaiChiTiet = '".$data['re_ms']."';";
+				$query .= "DELETE FROM tablechitietthietbi WHERE LoaiChiTiet LIKE '".$data['re_ms'].".%';";
 				$query .= "UPDATE tableloaichitiet 
 								   SET Ten = '".$data['ten']."',
                                        MaSo = '".$data['ms']."',
@@ -42,13 +44,14 @@
 									   Level = '".$data['level']."',
                                        HasChild = '".$data['hasChild']."',
                                        TenChiTietCha = '".$data['tenChiTietCha']."'
-								   WHERE MaSo = '".$data['re_ms']."'";
+								   WHERE MaSo = '".$data['re_ms']."';";
 				$query .= "UPDATE tableloaichitiet 
 								   SET MaSo = replace(MaSo,'".$data['re_ms'].".','".$data['ms'].".'),
                                        TenChiTietCha = '".$data['ten']."'
 								   WHERE MaSo LIKE '".$data['re_ms'].".%'";
-			$res = $mysqli->query($query);
+			$res = $mysqli->multi_query($query);
 			if ($res) {
+					while ($mysqli->next_result()) {;}
 					$t = array(0=>86400000,1=>180000000,2=>1800000000,3=>5400000000,4=>9000000000,5=>18000000000
 								,6=>21600000000,7=>43200000000,8=>86400000000);
 					$job = explode(",",$data["thoigianbaotri"]);
@@ -56,7 +59,7 @@
 					$r->data_seek(0);
 					while ($row = $r->fetch_assoc()) {
 						for ($i=0;$i<9;$i++) {
-							if ($job[$i] != '')$t[$i] = $row['thoigiansd']+$t[$i]; else $t[$i] = 0;
+							if ($job[$i] != '')$t[$i] = $row['ThoiGianBatDauSD']+$t[$i]; else $t[$i] = 0;
 						}
 						$r_ = $mysqli->query("INSERT INTO tablechitietthietbi VALUES ('".$row["MaTB"].".".$data['ms']."','','','1','".$data['ms']."'
 																					,'".$t[0]."','".$t[1]."','".$t[2]."','".$t[3]."','".$t[4]."','".$t[5]."','".$t[6]."'
@@ -67,7 +70,7 @@
 						while ($row_1 = $r_1->fetch_assoc()) {
 							$job = explode(",",$row_1["ThoiGianBaoTri"]);
 							for ($i=0;$i<9;$i++) {
-								if ($job[$i] != '')$t[$i] = $row['thoigiansd']+$t[$i]; else $t[$i] = 0;
+								if ($job[$i] != '')$t[$i] = $row['ThoiGianBatDauSD']+$t[$i]; else $t[$i] = 0;
 							}
 							$r_ = $mysqli->query("INSERT INTO tablechitietthietbi VALUES ('".$row["MaTB"].".".$row_1['MaSo']."','','','1','".$row_1['MaSo']."'
 																						,'".$t[0]."','".$t[1]."','".$t[2]."','".$t[3]."','".$t[4]."','".$t[5]."','".$t[6]."'
@@ -78,6 +81,17 @@
 					mysqli_free_result($r);
 					echo json_encode(array('r'=>1));
 			} else echo json_encode(array('r'=>0));
+			} else {
+				$query = "UPDATE tableloaichitiet 
+								   SET Ten = '".$data['ten']."',
+								       ThoiGianBaoTri = '".$data['thoigianbaotri']."',
+									   Level = '".$data['level']."',
+                                       HasChild = '".$data['hasChild']."',
+                                       TenChiTietCha = '".$data['tenChiTietCha']."'
+								   WHERE MaSo = '".$data['re_ms']."'";
+				$res = $mysqli->query($query);
+				if ($res) echo json_encode(array('r'=>1)); else echo json_encode(array('r'=>0));
+			}
 		}
 		mysqli_close($mysqli);
 	}
