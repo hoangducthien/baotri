@@ -125,7 +125,7 @@ function get_detail_phieubaotri(id,gd,ten){
 						'<p style="clear:both"> <span style="float:left">Người duyệt: '+localStorage.getItem('ten')+'</span>';
 				}
 				$('.next_icon').show();
-				if (gd == 2 || gd == 4){
+				if (gd == 2 || gd == 4 || gd == 5){
 					$('.previous_icon').show();	
 				}
 				$('.cross_icon').show();			

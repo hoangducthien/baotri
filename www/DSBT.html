@@ -101,21 +101,22 @@
 					var thaotac = info_chitiet[$(this).attr('data-ms')];			
 					var str_thaotac = '';
 					tt = '';
+					
 					for (var i in thaotac) {
 						if (str_thaotac != ''){
 							str_thaotac += ',';
 							tt += '; ';
-						}
+						}						
 						str_thaotac += thaotac[i]['job'];						
-						if (thaotac[i]['job'].search('/+/')<0) {
+						if (thaotac[i]['job'].indexOf('+')<0) {
 							tt += work[""+thaotac[i]['job']];
 						} else {
-							var sss = thaotac[i]['job'].split('/+/');
-							for (var j in sss) 
+							var sss = thaotac[i]['job'].split('+');
+							for (var j in sss) {
 								tt += work[""+sss[j]];
+							}
 						}
-					}
-										
+					}	
 					$('#s_thaotac').html(tt);
 					$('#s_thaotac').addClass(str_thaotac);
 					$('#s_tb').html(tb);

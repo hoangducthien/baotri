@@ -236,8 +236,8 @@ function get_phieubaotri(ms) {
 				 s='<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+' </span>'+ 
 				 '<span style="float:right; margin-right:20px">Ngày yêu cầu: '+get_Date(data['ngayyeucau'])+' </span></p>'+
                 '</br>'+
-                '<p style="clear:both"> <span style="float:left">Tên thiết bị:'+data['tentb']+' </span>'+
-				'<span style="float:right; margin-right:20px">Đặt tại: '+data['dattai']+' </span></p>'+
+                '<p style="clear:both"> <span style="float:left">Tên thiết bị: '+data['tentb']+' </span>'+
+				'<span style="float:right; margin-right:20px; margin-top:10px">Đặt tại: '+data['dattai']+' </span></p>'+
              	'</br>'+
                 '<p style="clear:both"> Mã hiệu: '+data['matb']+'</p>'+                
                 '<p>Tình trạng hư hỏng: '+data['tinhtranghuhong']+'</p>'+
@@ -251,15 +251,18 @@ function get_phieubaotri(ms) {
                 '<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 				'<span style="float:right; margin-right:20px">Người sửa chữa: '+data['nguoisuachua']+'</span></p>'+
                 '</br>'+
-                '<p style="clear:both">Ngày kết thúc sửa chữa: '+get_Date(data['ngayketthuc'])+'</p>'+
+                '<p style="clear:both; margin-top:20px">Ngày kết thúc sửa chữa: '+get_Date(data['ngayketthuc'])+'</p>'+
                 '<p>Kết quả giám sát: '+dat(data['dat'])+'</p>'+
 				'<p> <span style="float:left">Người giám sát: '+data['nguoigiamsat']+'</span>'+
 				'<span style="float:right; margin-right:20px">Ngày giám sát: '+get_Date(data['ngaygiamsat'])+'</span></p>'+
                 '</br>'+
                 '<p style="clear:both"> <span style="float:left">Người duyệt: '+data['nguoiduyetbb']+' </span>'+
 				'<span style="float:right; margin-right:20px">Ngày duyệt:  '+get_Date(data['ngayduyetbb'])+'</span></p>';
-				if (data['giaidoan'] == 7) s+='<p>Người huỷ biên bản: '+data['nguoihuy']+'</p>'+
-												'<p>Nguyên nhân huỷ: '+data['nguyennhan']+'</p>';
+				if (data['giaidoan'] == 7){
+					 s+='</br>'+
+                		'<p style="clear:both"> <span style="float:left; margin-top:10px">Người huỷ biên bản: '+data['nguoihuy']+' </span>'+
+						'<span style="float:right; margin-right:20px">Nguyên nhân huỷ:  '+data['nguyennhan']+'</span></p>';
+				}
 				$('#step_1').html(s);				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {

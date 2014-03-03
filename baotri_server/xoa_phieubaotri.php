@@ -13,7 +13,7 @@
 			$res->data_seek(0);		
 			while ($row = $res->fetch_assoc()) {
 				$r_1 = $mysqli->query("UPDATE tablethietbi
-									   SET TinhTrang = 1
+									   SET TrangThai = 1
 									   WHERE MaTB ='".$row['MaTB']."'");
 			}
 			mysqli_free_result($res); 
