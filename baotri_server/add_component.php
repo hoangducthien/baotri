@@ -3,11 +3,13 @@
 		include('connect_db.php');
 		$data = json_decode(stripslashes($_GET['data']),true);
 		if ($data['type'] == 1) {
-			$res = $mysqli->query("INSERT INTO tablethietbi VALUES ('".$data['ms']."','".$data['loaitb']."','',".$data['trangthai'].",
+			if ($data['namsx'] == '') $data['namsx'] = 1;
+			$query = "INSERT INTO tablethietbi VALUES ('".$data['ms']."','".$data['loaitb']."','',".$data['trangthai'].",
 																'".$data['kieudang']."','".$data['hangsx']."','".$data['nuocsx']."'
 															 	,'".$data['losx']."',".$data['namsx'].",".$data['thoigiansd'].",'','','',
 																'','','','','','',0,
-																'".$data['ten']."','".$data['noidat']."')");
+																'".$data['ten']."','".$data['noidat']."')";
+			$res = $mysqli->query($query);
 			if ($res) {
 				$res_1 = $mysqli->query("SELECT MaSo, Ten, ThoiGianBaoTri FROM tableloaichitiet WHERE MaSo LIKE '".$data["loaitb"].".%'");
 				$res_1->data_seek(0);

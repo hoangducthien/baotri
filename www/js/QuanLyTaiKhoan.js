@@ -29,6 +29,7 @@ function get_detail_nhanvien(maso) {
 				$('#s_taikhoan').html(data['ur']);			
 				$('#s_hoten').html(data['ten']);		
 				$('#s_chucvu').html(data['chucvu']);
+				$('#s_email').html(data['email']);
 				if (data['quyenhan'] == '0') { 
 					$('#s_quyenhan').html('Tất cả các quyền'); 
 					$('#0').prop("checked", true);
@@ -50,6 +51,7 @@ function get_detail_nhanvien(maso) {
 				$('#maso').val(maso);
 				$('#hoten').val(data['ten']);
 				$('#taikhoan').val(data['ur']);
+				$('#email').val(data['email']);
 				$('#chucvu').val(data['machucvu']);
 				$('#tttk .data').show();
 				$('#tttk .loading').hide();
@@ -91,10 +93,10 @@ function check_input() {
 		if (quyenhan_check() == '') return 'Quyền Hạn';
 		return '0';
 }
-function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
+function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan, email){
 		var link = link_server + "add_user.php"; 
 		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+matkhau
-						+"&chucvu="+chucvu+"&quyenhan="+quyenhan;
+						+"&chucvu="+chucvu+"&quyenhan="+quyenhan+"&email="+email;
 		$.ajax({
 			type: "POST",
 			url: link,
@@ -121,10 +123,10 @@ function add_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
 			} 
 		});
 }
-function edit_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan){
+function edit_user(maso, hoten, taikhoan, matkhau, chucvu, quyenhan, email){
 		var link = link_server + "edit_user.php"; 
 		var dataString = "maso="+maso+"&hoten="+hoten+"&ur="+taikhoan+"&pw="+matkhau
-						+"&chucvu="+chucvu+"&quyenhan="+quyenhan;
+						+"&chucvu="+chucvu+"&quyenhan="+quyenhan+"&email="+email;
 		$.ajax({
 			type: "POST",
 			url: link,
@@ -156,6 +158,7 @@ function reset_input() {
 		$('#hoten').val('');
 		$('#taikhoan').val('');
 		$('#matkhau').val('');
+		$('#email').val('');
 		$('#chucvu').val('0');
 		$('#0').prop("checked", false);
 		$("#cb_quyenhan input").prop("checked", false);

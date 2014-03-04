@@ -60,13 +60,13 @@
 				
 				$mes .= "<tr><td style='border:1px solid #ccc;'>$arr3[0]</td>"; 
 				$arr4 = explode(",", $arr3[1]);
-				$sss = '';
+				$sss = ',';
 				for ($k = 0, $size2 = count($arr4); $k < $size2; $k++){
-					$sss .= date("d", $arr4[$k]/10) . ",";
+					$sss .= (int)date("d", $arr4[$k]/1000) . ",";
 				}
-				 
 				for ($i = 1; $i <= $maxday; $i++) {
-					if (strpos($sss,$i.",") !== false){
+					if (strpos($sss,",".$i.",") !== false){
+						
 						$mes .= "<td style='border:1px solid #ccc;'>X</td>";
 					}else{
 						$mes .= "<td style='border:1px solid #ccc;'></td>";
