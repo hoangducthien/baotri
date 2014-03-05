@@ -1,4 +1,4 @@
-var currentID;
+﻿var currentID;
 var	listtb;
 function get_thietbi() {
 	var link = link_server + "get_thietbi.php";	
@@ -196,8 +196,15 @@ function get_logbaotri(ms) {
 					for (j = 0; j < a.length; j++){
 						if (tt != ''){						
 							tt += '; ';
-						}						
-						tt += work[a[j]];
+						}
+						if (a[j].indexOf('+')<0) {
+							tt += work[a[j]];
+						} else {
+							var sss = a[j].split('+');
+							for (var j in sss) {
+								tt += work[""+sss[j]] + "; ";
+							}
+						}												
 					}
 				 s='<div class="sukienbaotri" style="border-bottom:1px solid #ccc">'+
                             '<p> Mã bảo trì: '+data[i]['id']+'</p>'+

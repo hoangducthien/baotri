@@ -10,18 +10,7 @@
 								WHERE ID = ".$id);
 		if ($res){
 				$kq = 1;
-			 	require_once('sendmail.php');
-				$res2 = $mysqli->query("SELECT QuyenHan, Email FROM tableaccount");
-				$res2->data_seek(0);						
-				while ($row = $res2->fetch_assoc()) {
-					if (strpos($row['QuyenHan'],'1,') !== false && $row['Email'] != ''){
-						$mail->AddAddress($row['Email']);
-					}				
-				}
-				$mail->Subject = "[Biên bản sửa chữa] [Không duyệt] Tìm phương án";
-				$mail->Body = 'Hệ thống MAMAssitant vừa cập nhật biên bản sửa chữa. '."\r\n".' Các nhân viên có nhiệm vụ liên quan mời đăng nhập vào hệ thống để xem thông tin chi tiết';
-				mysqli_free_result($res2);
-				$mail->Send();	
+			 	sendMail(array('qh' => "1,", 'title' => "[Không duyệt] Tìm phương án"));				
 		}
 	} else if ($gd == 4){
 		$res = $mysqli->query("UPDATE bienbansuachua
@@ -29,18 +18,7 @@
 								WHERE ID = ".$id);
 		if ($res){
 				$kq = 1;
-			 	require_once('sendmail.php');
-				$res2 = $mysqli->query("SELECT QuyenHan, Email FROM tableaccount");
-				$res2->data_seek(0);						
-				while ($row = $res2->fetch_assoc()) {
-					if (strpos($row['QuyenHan'],'9,') !== false && $row['Email'] != ''){
-						$mail->AddAddress($row['Email']);
-					}				
-				}
-				$mail->Subject = "[Biên bản sửa chữa] [Không duyệt] Xác nhận kết quả";
-				$mail->Body = 'Hệ thống MAMAssitant vừa cập nhật biên bản sửa chữa. '."\r\n".' Các nhân viên có nhiệm vụ liên quan mời đăng nhập vào hệ thống để xem thông tin chi tiết';
-				mysqli_free_result($res2);
-				$mail->Send();	
+			 	sendMail(array('qh' => "9,", 'title' => "[Không duyệt] Xác nhận kết quả"));					
 		} 
 	} else if ($gd == 5){
 		$res = $mysqli->query("UPDATE bienbansuachua
@@ -48,21 +26,24 @@
 								WHERE ID = ".$id);
 		if ($res){
 				$kq = 1;
-			 	require_once('sendmail.php');
-				$res2 = $mysqli->query("SELECT QuyenHan, Email FROM tableaccount");
-				$res2->data_seek(0);						
-				while ($row = $res2->fetch_assoc()) {
-					if (strpos($row['QuyenHan'],'10,') !== false && $row['Email'] != ''){
-						$mail->AddAddress($row['Email']);
-					}				
-				}
-				$mail->Subject = "[Biên bản sửa chữa] [Không duyệt] Người giám sát";
-				$mail->Body = 'Hệ thống MAMAssitant vừa cập nhật biên bản sửa chữa. '."\r\n".' Các nhân viên có nhiệm vụ liên quan mời đăng nhập vào hệ thống để xem thông tin chi tiết';
-				mysqli_free_result($res2);
-				$mail->Send();	
+			 	sendMail(array('qh' => "10,", 'title' => "[Không duyệt] Người giám sát"));
 		}
 	}
 	echo json_encode(array('r'=>$kq));
 	mysqli_close($mysqli);
 	}
+	
+	function sendMail($data){
+			$url = 'http://' . $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/sendEmailPBT.php";
+			
+			$ch = curl_init();
+			curl_setopt( $ch, CURLOPT_URL, $url );
+			curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+ 			curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			curl_exec($ch);
+			curl_close($ch);
+	}
+	
 ?>

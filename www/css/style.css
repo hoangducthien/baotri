@@ -14,18 +14,18 @@
 	text-align:center;
 }
 
-.selectable_list{
+.selectable_list, .multiSelectable_list{
 	height:60px;
 	overflow:auto;
 	border: 1px solid #4799C1;
 	background:#ffffff;
 }
 
-.selectable_list li{
+.selectable_list li, .multiSelectable_list li{
 	text-align:center;
 }
 
-.selectable_list .selected_li{
+.selectable_list .selected_li, .multiSelectable_list .selected_li{
 	background:#ddd;
 }
 

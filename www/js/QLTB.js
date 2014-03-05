@@ -1,4 +1,4 @@
-var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thiết bị', 'Trạng thái', 'Kiểu dáng', 'Hãng sản xuất', 'Nước sản xuất', 
+﻿var title = [['Mã thiết bị', 'Tên thiết bị', 'Nơi đặt','Loại thiết bị', 'Trạng thái', 'Kiểu dáng', 'Hãng sản xuất', 'Nước sản xuất', 
 			'Lô sản xuất', 'Năm sản xuất', 'Thời gian bắt đầu sử dụng'], ['Mã loại thiết bị', 'Tên thiết bị'],['Mã loại chi tiết', 
 			'Tên chi tiết', 'Level', 'Có chứa chi tiết con', '24h', '50h', '500h', '1500h', '2500h', '5000h', '6000h', '12000h', 'BD Mùa', 'Thuộc loại chi tiết', 'Thuộc loại thiết bị']];										
 			
@@ -6,7 +6,7 @@ var id_t = [['ms','ten','noidat','loaitb','trangthai','kieudang','hangsx','nuocs
 			['ms','ten'],['ms','ten', 'level', 'hasChild', '24h', '50h', '500h', '1500h', '2500h', '5000h', '6000h', '12000h', 'BDMua', 'thuocloaict','tb']];
 
 var currentID, mode, state, num_count, num_page, currentMS, currentName, left, right, dl_currentPage, currentPage = 1;;
-var work = ['NULL', 'I', 'I1', 'L', 'R'];
+var work = ['I', 'I1', 'L', 'R'];
 var hasChild = ['Không', 'Có'];
 var statusText = ["Ngừng hoạt động", "Hoạt động"];
 var statusID = ['0', '1'];
@@ -68,6 +68,19 @@ function getSelectList(array1, array2, value, id){
 	return s;
 }
 
+function getMultiSelectList(array1, array2, value, id){	
+	var s = "<ul id='"+id+"' class='multiSelectable_list'>";	
+	for (j = 0; j < array1.length; j++){		
+		if ((value == "" && j == 0) || (value == array2[j])){			
+			s += "<li id='"+array2[j]+"' class='selected_li'>"+ array1[j] +"</li>";			
+		} else {
+			s += "<li id='"+array2[j]+"'>"+ array1[j] +"</li>";
+		}
+	}
+	s += "</ul>";
+	return s;
+}
+
 function getColumnWithList(name, array1, array2, pos, id){
 	var value = array1[pos];
 	var content_id = array2[pos];
@@ -83,6 +96,27 @@ function getColumnWithList2(name, array1, array2, pos, id){
 	var value = array1[pos];
 	var content_id = array2[pos];
 	var list = getSelectList(array1, array2, content_id, id);
+	var s = '<div class="column_item"><div class="column_header decorate_text">' + name + '</div>'+
+			'<div class="column_content" data-s="'+id+'" id="'+content_id+'">' + value + '</div>'+
+			'<div class="column_edit"  style="display:none">' + list + '</div></div>';		
+	return s;
+}
+
+function getColumnWithMultiList(name, array1, array2, pos, id){
+	var value = array1[pos];
+	var content_id = array2[pos];
+	var list = getMultiSelectList(array1, array2, content_id, id);	
+	var s = '<div class="column_item"><div class="column_header decorate_text">' + name + '</div>'+
+			'<div class="column_content" style="display:none" data-s="'+id+'" id="'+content_id+'">' + value + '</div>'+
+			'<div class="column_edit">' + list + '</div></div>';
+	
+	return s;
+}
+
+function getColumnWithMultiList2(name, array1, array2, pos, id){
+	var value = array1[pos];
+	var content_id = array2[pos];
+	var list = getMultiSelectList(array1, array2, content_id, id);
 	var s = '<div class="column_item"><div class="column_header decorate_text">' + name + '</div>'+
 			'<div class="column_content" data-s="'+id+'" id="'+content_id+'">' + value + '</div>'+
 			'<div class="column_edit"  style="display:none">' + list + '</div></div>';		
@@ -115,7 +149,7 @@ function getTable(k){
 			if ((k == 0 && i == 3) || (k == 2 && i == 14)){				
 				s += getColumnWithList(title[k][i], devicesTypeName, devicesTypeID, 0, id_t[k][i]);
 			} else if (k == 2 && i > 3 && i < 13){
-				s += getColumnWithList(title[k][i], work, work, 0, id_t[k][i]);
+				s += getColumnWithMultiList(title[k][i], work, work, 0, id_t[k][i]);
 			} else if (k == 2 && i == 3){
 				s += getColumnWithList(title[k][i], hasChild, statusID, 0, id_t[k][i]);
 			}  else if (k == 0 && i == 4){
@@ -136,7 +170,7 @@ function getTable(k){
 			} else if (k == 2 && i == 13){
 				s += getColumnWithButton2(title[k][i], id_t[k][i]);
 			} else if (k == 2 && i > 3 && i < 13){
-				s += getColumnWithList2(title[k][i], work, work, 0, id_t[k][i]);
+				s += getColumnWithMultiList2(title[k][i], work, work, 0, id_t[k][i]);
 			} else {
 				s += getColumn2(title[k][i], '',id_t[k][i], i); 
 			}
@@ -347,6 +381,21 @@ function getListDevicesType(){
 					$("[data-s='"+id+"']").html($(this).html());
 					$("[data-s='"+id+"']").attr('id', $(this).attr('id'));
 				});
+				$(".multiSelectable_list li").unbind();
+				$(".multiSelectable_list li").on('click', function(){
+					$(this).toggleClass('selected_li');					
+					var id = $(this).parent().attr('id');
+					var s = "";
+					$(this).parent().children().each(function(){				
+						if ($(this).hasClass('selected_li')){
+							if (s != "") s += " + ";
+								s += $(this).html();
+						}
+					});
+					$("[data-s='"+id+"']").html(s);
+					$("[data-s='"+id+"']").attr('id', s);
+				});
+				
 			},
 		error: function (xhr, ajaxOptions, thrownError) {
 			$('#right .loading').hide();
@@ -367,6 +416,7 @@ function showAdd(){
 	$('.column').html(getTable(currentID-1));
 	$(".column_item").css("width", right/5 - 1);
 	$(".selectable_list").css("width", right/5 - 5);	
+	$(".multiSelectable_list").css("width", right/5 - 5);
 	$(".select_detail").css("width", right/5 - 5);		
 	$(".column_header").css("width", right/5 - 23);
 	$(".column_content").css("width", right/5 - 14.5);
@@ -378,6 +428,22 @@ function showAdd(){
 		var id = $(this).parent().attr('id');
 		$("[data-s='"+id+"']").html($(this).html());
 		$("[data-s='"+id+"']").attr('id', $(this).attr('id'));
+	});
+	$(".multiSelectable_list li").unbind();
+	$(".multiSelectable_list li").on('click', function(){
+		$(this).toggleClass('selected_li');					
+		var id = $(this).parent().attr('id');
+		var s = "";
+		
+		$(this).parent().children().each(function(){				
+			if ($(this).hasClass('selected_li')){
+				if (s != "") s += " + ";
+					s += $(this).html();
+			}
+		});
+		
+		$("[data-s='"+id+"']").html(s);
+		$("[data-s='"+id+"']").attr('id', s);
 	});
 	$( "#thoigiansd" ).datepicker({ dateFormat: 'dd/mm/yy' });
 }
@@ -495,7 +561,7 @@ function get_list_component_for_popup(page) {
 	$('#dialog_list ul').html("");
 	$('#dialog_list ul').hide();
 	$('#dialog_list .loading').show();
-	var dataString = 'type=3&page='+page;
+	var dataString = 'device='+$('[data-s="tb"]').attr('id');
 		link = link_server + "get_list_component.php";	
 	$.ajax({
 		type: "GET",
@@ -652,13 +718,28 @@ function get_detail_component(ms, ten) {
 						}
 						
 					}
-					$(".selectable_list").css("width", right/5 - 5);	
+					$(".selectable_list").css("width", right/5 - 5);
+					$(".multiSelectable_list").css("width", right/5 - 5);	
 					$(".selectable_list li").on('click', function(){
 						$(this).parent().children().removeClass('selected_li');
 						$(this).addClass('selected_li');	
 						var id = $(this).parent().attr('id');
 						$("[data-s='"+id+"']").html($(this).html());
 						$("[data-s='"+id+"']").attr('id', $(this).attr('id'));
+					});
+					$(".multiSelectable_list li").unbind();
+					$(".multiSelectable_list li").on('click', function(){
+						$(this).toggleClass('selected_li');					
+						var id = $(this).parent().attr('id');
+						var s = "";
+						$(this).parent().children().each(function(){				
+							if ($(this).hasClass('selected_li')){
+								if (s != "") s += " + ";
+									s += $(this).html();
+							}
+						});
+						$("[data-s='"+id+"']").html(s);
+						$("[data-s='"+id+"']").attr('id', s);
 					});
 				},
 			error: function (xhr, ajaxOptions, thrownError) {
