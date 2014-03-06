@@ -106,14 +106,14 @@
 				$('#right').hide();
 				if (mode == 'add')
 					add_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),hex_md5($('#matkhau').val())
-							,$('#chucvu').val(), quyenhan_check());
+							,$('#chucvu').val(), quyenhan_check(), $('#email').val());
 				else{
 					var mk = $('#matkhau').val();
 					if (mk != ""){
 						mk = hex_md5(mk);
 					}
 					 edit_user($('#maso').val(), $('#hoten').val(), $('#taikhoan').val(),mk
-							,$('#chucvu').val(), quyenhan_check());
+							,$('#chucvu').val(), quyenhan_check(), $('#email').val());
 				}
 				reset_input();
 				get_nhanvien();

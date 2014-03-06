@@ -113,10 +113,11 @@
 						} else {
 							var sss = thaotac[i]['job'].split('+');
 							for (var j in sss) {
-								tt += work[""+sss[j]];
+								tt += work[""+sss[j]] + "; ";
 							}
 						}
 					}	
+					
 					$('#s_thaotac').html(tt);
 					$('#s_thaotac').addClass(str_thaotac);
 					$('#s_tb').html(tb);

@@ -67,7 +67,7 @@
 		$res = $mysqli->query("SELECT MaTB, NguoiYeuCau, NgayYeuCau, DatTai,
 									TinhTrangHuHong,NguyenNhanHuHong,PhuongAnSuaChua,
 									NguoiLapPhuongAn, NgayLapPhuongAn, NguoiDuyet_PA, NgayDuyet_PA, NgayBatDau,
-									NgayKetThuc, NguoiSuaChua, Dat, NguoiGiamSat, NgayGiamSat  
+									NgayKetThuc, NguoiSuaChua, Dat, NguoiGiamSat, NgayGiamSat, KetQuaSuaChua 
 								FROM bienbansuachua
 								WHERE ID = ".$_GET['id']);
 		$res->data_seek(0);
@@ -78,7 +78,7 @@
 									,'nguoilapphuongan'=>$row['NguoiLapPhuongAn'],'ngaylapphuongan'=>$row['NgayLapPhuongAn']
 									,'nguoiduyetphuongan'=>$row['NguoiDuyet_PA'],'ngayduyetphuongan'=>$row['NgayDuyet_PA']
 									,'ngaybatdau'=>$row['NgayBatDau'],'ngayketthuc'=>$row['NgayKetThuc']
-									,'nguoisuachua'=>$row['NguoiSuaChua'],'dat'=>$row['Dat']
+									,'nguoisuachua'=>$row['NguoiSuaChua'],'dat'=>$row['Dat'],'ketquasuachua'=>$row['KetQuaSuaChua']
 									,'nguoigiamsat'=>$row['NguoiGiamSat'],'ngaygiamsat'=>$row['NgayGiamSat']));
 		}
 		mysqli_free_result($res);

@@ -8,12 +8,14 @@
 		$pw = $_POST['pw'];
 		$chucvu = $_POST['chucvu'];
 		$quyenhan = $_POST['quyenhan'];
+		$email = $_POST['email'];
 		$result = $mysqli->query("UPDATE tableaccount 
 								  SET TenNV = '".$hoten."',
 									  TaiKhoan = '".$ur."',
 									  MatKhau = '".$pw."',
 									  ChucVu = '".$chucvu."',
-									  QuyenHan = '".$quyenhan."'
+									  QuyenHan = '".$quyenhan."',
+									  Email = '".$email."'
 								  WHERE MaSo = '".$ms."'");
 		if ($result) echo json_encode(array('result' => '1')); else echo json_encode(array('result' => '0'));
 		mysqli_close($mysqli);

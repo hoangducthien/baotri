@@ -16,19 +16,18 @@
 							WHERE MaTB = '".$_GET['ms']."'");
 		if ($r){
 			echo json_encode(array('r'=>'1')); 
-			require_once('sendmail.php');
-			$res2 = $mysqli->query("SELECT QuyenHan, Email FROM tableaccount");
-			$res2->data_seek(0);	
+			$url = 'http://' . $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/sendEmailBH.php";
 				
-			while ($row = $res2->fetch_assoc()) {
-				if (strpos($row['QuyenHan'],'1,') !== false && $row['Email'] != ''){
-					$mail->AddAddress($row['Email']);
-				}				
-			}
-			$mail->Subject = "[Báo Hư] ".$_GET['ten'];
-			$mail->Body = 'Hệ thống MAMAssitant vừa nhận được thông báo hư thiết bị từ nhân viên '.$_GET['nguoiyeucau'].'. Thiết bị hư là "'.$_GET['ten'].'" có mã số "'.$_GET['ms'].'"';
-			mysqli_free_result($res2);
-			$mail->Send();							
+				$data = array('ms' => $_GET['ms'], 'ten' => $_GET['ten'], 'nguoiyeucau' => $_GET['nguoiyeucau']);
+				
+				$ch = curl_init();
+				curl_setopt( $ch, CURLOPT_URL, $url );
+				curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+				curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				curl_exec($ch);
+				curl_close($ch);							
 		} else {
 			echo json_encode(array('r'=>'0')); 
 		}
