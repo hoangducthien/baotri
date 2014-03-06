@@ -45,7 +45,7 @@
 	}  else if ($gd == 4){
 		$res = $mysqli->query("UPDATE bienbansuachua
 								SET GiaiDoan = 5,
-									Dat = ".$_POST['dat'].",
+									Dat = '1',
 									NgayGiamSat = ".$n.",
 									NguoiGiamSat = '".$_POST['nguoigiamsat']."'
 								WHERE ID = ".$id);

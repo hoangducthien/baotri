@@ -458,69 +458,17 @@ function deleteDevicesType(){
 function showDialog(e){
 	e.stopPropagation();
 	dl_currentPage = 1;	
-	var dialog = '<div id="dialog_list"><div class="loading" style="width:300px; height:350px"><img src="images/ajax-loader.gif" /></div><ul class="liststyle" style="overflow: auto; display:none; width:300px; height:350px"></ul> </div>';
-	dialog += "<div id='dl_page' > <a id='dl_first'>First</a> <a id='dl_pre'> <img src='img/cate_image_pg_back.png' /> </a><a class='selected_color page_num' id='dl_page1'> 1 </a> <a class='page_num' id='dl_page2'> 2 </a> <a class='page_num' id='dl_page3'> 3 </a><a id='dl_next'> <img src='img/cate_image_pg_next.png' /> </a><a id='dl_last'> Last </a></div>"
+	var dialog = '<div id="dialog_list"><div class="loading" style="width:300px; height:350px"><img src="images/ajax-loader.gif" /></div><ul class="liststyle" style="overflow: auto; display:none; width:300px; height:350px"></ul> </div>';	
 	dialog += '<div style="text-align:center"><input type="button" value="Xóa" class="button" onclick="deleteDevicesType()"></div>';
 	popupDialog('Loại chi tiết', 300, 470, dialog);
-	if (num_page < 1){		
-		$('#dl_page').hide();
-	}
+	
 	get_list_component_for_popup(1);
-	$('#dl_first').on('click', function(){
-				setPage(1);			
-			});	
-			
-			$('#dl_pre').on('click', function(){
-				dl_setPage(dl_currentPage - 1);			
-			});
-			
-			$('#dl_next').on('click', function(){
-				dl_setPage(dl_currentPage + 1);			
-			});
-			
-			$('#dl_last').on('click', function(){
-				dl_setPage(num_page);
-			});
-			
-			$('#dl_page .page_num').on('click', function(){				
-				dl_setPage(parseInt($(this).html()));			
-			});								
+								
 	$("#container").on('click', function () {
 		dismissDialog(this);
 	});									
 }
-	function dl_setPage(page){
-				dl_setPage(page, false);
-			}
 	
-	function dl_setPage(page, check){
-		
-				if ((dl_currentPage != page && page > 0 && page <= num_page) || check){
-					dl_currentPage = page;					
-					get_list_component_for_popup(dl_currentPage);					
-					var firstPage = dl_currentPage - 1;
-					if (firstPage > 0){
-						$('#dl_page .page_num').each(function() {
-                            $(this).html(firstPage);
-							$(this).removeClass('selected_color');
-							firstPage++;							
-                        });
-						$('#dl_page2').addClass('selected_color');
-					} else {
-						$('#dl_page .page_num').each(function() {
-                            $(this).html(firstPage+1);
-							$(this).removeClass('selected_color');
-							firstPage++;							
-                        });
-						$('#dl_page1').addClass('selected_color');
-					}
-					if (dl_currentPage == num_page){
-						$('#dl_page3').hide();
-					} else if (num_page > 2){
-						$('#page3').show();
-					}
-				}	
-			}
 function get_list_component(page) {
 	if (currentID == 2){						
 		devicesTypeName.length = 0;
@@ -562,7 +510,7 @@ function get_list_component_for_popup(page) {
 	$('#dialog_list ul').hide();
 	$('#dialog_list .loading').show();
 	var dataString = 'device='+$('[data-s="tb"]').attr('id');
-		link = link_server + "get_list_component.php";	
+		link = link_server + "get_list_component_popup.php";	
 	$.ajax({
 		type: "GET",
 		url: link,
@@ -769,10 +717,8 @@ function get_count_component() {
 				if (num_page > 1){
 					if (num_page < 2){
 						$('#page3').hide();
-						$('#dl_page3').hide();
 					}
 					$('#page').show();
-					$('#dl_page').show();
 				}				
 				return num_page;
 			},

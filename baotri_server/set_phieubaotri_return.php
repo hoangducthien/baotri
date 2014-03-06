@@ -22,7 +22,8 @@
 		} 
 	} else if ($gd == 5){
 		$res = $mysqli->query("UPDATE bienbansuachua
-								SET GiaiDoan = 4
+								SET GiaiDoan = 4,
+								Dat = '0'
 								WHERE ID = ".$id);
 		if ($res){
 				$kq = 1;
