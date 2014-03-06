@@ -99,8 +99,7 @@ function get_detail_phieubaotri(id,gd,ten){
 						'<p>Kết quả sửa chữa: '+ data['ketquasuachua']+'</p>  '+
 						'<p style="clear:both"> <span style="float:left">Ngày bắt đầu sửa chữa: '+get_Date(data['ngaybatdau'])+'</span>'+
 						'<span style="float:right; margin-right:20px">Người sửa chữa: '+ data['nguoisuachua']+'</span></p>'+
-						'<p style="clear:both">Ngày kết thúc sửa chữa: '+ get_Date(data['ngayketthuc']) +'</p>'+
-               			'<p><label for="ketqua">Kết quả giám sát: </label> <input type="checkbox" name="ketqua" id="dat_ck"/> </p>'+
+						'<p style="clear:both">Ngày kết thúc sửa chữa: '+ get_Date(data['ngayketthuc']) +'</p>'+               			
 						'<p><span style="float:left">Người giám sát: '+localStorage.getItem('ten')+'</span></p>';
 				}  else if (gd == 5) {
 					s = '<p> <span style="float:left">Người yêu cầu: '+data['nguoiyeucau']+'</span> '+
@@ -136,16 +135,14 @@ function get_detail_phieubaotri(id,gd,ten){
 		} 
 	});
 }
-function get_check() {
-	if ($('#dat_ck').is(':checked')) return 1; else return 0;
-}
+
 function set_phieubaotri(id,gd){
 	var dataString = '';
 	if (gd == 1) dataString = 'id='+id+'&gd='+gd+'&tinhtranghuhong='+$('#tinhtrang').val()+'&nguyennhanhuhong='+$('#nguyennhan').val()
 								+'&phuongansuachua='+$('#phuongan').val()+'&nguoilapphuongan='+localStorage.getItem('ten');
 	else if (gd == 2) dataString = 'id='+id+'&gd='+gd+'&nguoiduyetphuongan='+localStorage.getItem('ten'); 
 	else if (gd == 3) dataString = 'id='+id+'&gd='+gd+'&ketquasuachua='+$('#ketqua').val()+'&nguoisuachua='+localStorage.getItem('ten');
-	else if (gd == 4) dataString = 'id='+id+'&gd='+gd+'&dat='+get_check()+'&nguoigiamsat='+localStorage.getItem('ten'); 
+	else if (gd == 4) dataString = 'id='+id+'&gd='+gd+'&nguoigiamsat='+localStorage.getItem('ten'); 
 	else if (gd == 5) dataString = 'id='+id+'&gd='+gd+'&nguoiduyet='+localStorage.getItem('ten'); 
 	var link = link_server + "set_phieubaotri.php";
 	$.ajax({
